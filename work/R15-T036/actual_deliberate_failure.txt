@@ -1,0 +1,30 @@
+F...F..
+======================================================================
+FAIL: test_every_corner_inside (test_example.Boundaries.test_every_corner_inside)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.rjVgrBXURN/test_example.py", line 29, in test_every_corner_inside
+    self.assertEqual(classify(lat, lon), "inside")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+======================================================================
+FAIL: test_readme_table (test_example.ReadmeAgrees.test_readme_table)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.rjVgrBXURN/test_example.py", line 60, in test_readme_table
+    self.assertEqual(actual, expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+FAILED (failures=2)
+exit=1
