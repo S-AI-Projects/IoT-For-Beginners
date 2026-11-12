@@ -1,0 +1,31 @@
+..F....F.
+======================================================================
+FAIL: test_perfect (test_example.Boundary.test_perfect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.Ytz7prf5I0/test_example.py", line 54, in test_perfect
+    self.assertEqual((r["precision"], r["recall"]), (1.0, 1.0))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (0.6666666666666666, 1.0) != (1.0, 1.0)
+
+First differing element 0:
+0.6666666666666666
+1.0
+
+- (0.6666666666666666, 1.0)
++ (1.0, 1.0)
+
+======================================================================
+FAIL: test_primary_fixture (test_example.Primary.test_primary_fixture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.Ytz7prf5I0/test_example.py", line 13, in test_primary_fixture
+    self.assertEqual(r["precision"], 0.5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.3333333333333333 != 0.5
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+FAILED (failures=2)
+exit=1

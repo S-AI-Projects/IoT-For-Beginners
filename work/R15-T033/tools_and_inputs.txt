@@ -1,0 +1,3 @@
+python: Python 3.13.18
+unittest: stdlib
+inputs/expected: see 4-manufacturing/lessons/1-train-fruit-detector/applied-labs/r15-t033/README.md fixtures
