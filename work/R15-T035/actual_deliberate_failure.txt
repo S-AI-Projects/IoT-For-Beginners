@@ -1,0 +1,18 @@
+.........F
+======================================================================
+FAIL: test_unrelated_control_flagged_for_review (test_example.Rubric.test_unrelated_control_flagged_for_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.Y1C8JOGmmz/test_example.py", line 21, in test_unrelated_control_flagged_for_review
+    self.assertEqual(r["status"], "review")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'pass' != 'review'
+- pass
++ review
+
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+FAILED (failures=1)
+exit=1
