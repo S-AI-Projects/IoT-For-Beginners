@@ -1,0 +1,9 @@
+accepted:
+   ('A', 1, 20.0)
+   ('A', 2, 21.5)
+   ('A', 3, 22.0)
+errors:
+  message 2: duplicate message for device A at timestamp 1
+  message 3: reading must be a number, got str
+  message 4: missing field: reading
+  message 5: malformed JSON: Expecting ',' delimiter: line 1 column 51 (char 50)
