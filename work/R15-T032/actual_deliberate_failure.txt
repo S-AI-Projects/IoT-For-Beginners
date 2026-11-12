@@ -1,0 +1,30 @@
+.FF..
+======================================================================
+FAIL: test_clamp_matches_table (test_example.ExpectedTable.test_clamp_matches_table) (point=(21, 75))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.hHEmVxZg2e/test_example.py", line 18, in test_clamp_matches_table
+    self.assertEqual(classify_by_clamp(*point), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+======================================================================
+FAIL: test_direct_matches_table (test_example.ExpectedTable.test_direct_matches_table) (point=(21, 75))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.hHEmVxZg2e/test_example.py", line 13, in test_direct_matches_table
+    self.assertEqual(classify(*point), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.009s
+
+FAILED (failures=2)
+exit=1
