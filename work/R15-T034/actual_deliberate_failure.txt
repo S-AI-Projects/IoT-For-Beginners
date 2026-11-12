@@ -1,0 +1,24 @@
+....FF......
+======================================================================
+FAIL: test_endpoints (test_example.Normalize.test_endpoints)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.wY782eeNkE/test_example.py", line 19, in test_endpoints
+    self.assertEqual(out[0][0][1], 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 0.99609375 != 1
+
+======================================================================
+FAIL: test_middle_values (test_example.Normalize.test_middle_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.wY782eeNkE/test_example.py", line 23, in test_middle_values
+    self.assertAlmostEqual(out[0][1][0], 128 / 255)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.5 != 0.5019607843137255 within 7 places (0.0019607843137254832 difference)
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+FAILED (failures=2)
+exit=1
