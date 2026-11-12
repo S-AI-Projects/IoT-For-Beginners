@@ -212,6 +212,10 @@ Every time you make a prediction using the quick test option, the image and resu
 
 ---
 
+## Applied lab: precision, recall and a state trace
+
+Custom Vision reports *Precision* and *Recall* after training. The [classification evaluation example](applied-labs/r15-t033/README.md) computes them from fixed labels and records the counts after each step. Fixture `y_true=[1,1,0,0]`, `y_pred=[1,0,1,0]` gives TP=1, FN=1, FP=1, TN=1, precision=0.5, recall=0.5; with no predicted positives, precision is defined as 0 (a documented policy). Run: `python3 -m unittest discover -s 4-manufacturing/lessons/1-train-fruit-detector/applied-labs/r15-t033 -p "test_*.py"`. This is a **simulation** in standard-library Python and says nothing about how a trained model performs.
+
 ## 🚀 Challenge
 
 What do you think would happen if you used a picture of a strawberry with a model trained on bananas, or a picture of an inflatable banana, or a person in a banana suit, or even a yellow cartoon character like someone from the Simpsons?
