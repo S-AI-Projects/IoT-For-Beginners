@@ -540,6 +540,10 @@ Rather than calling LUIS from the IoT device, you can use serverless code with a
 
 ---
 
+## Applied lab: access-policy evaluation
+
+Once an intent is recognised, an app must still decide whether the caller may perform it. The [access-policy example](applied-labs/r15-t031/README.md) evaluates a role/action/resource matrix locally (default deny, deny overrides allow, readers cannot write, unknown roles are denied). Run: `python3 -m unittest discover -s 6-consumer/lessons/2-language-understanding/applied-labs/r15-t031 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not use LUIS, Azure or hardware.
+
 ## 🚀 Challenge
 
 There are many ways to request the same thing, such as setting a timer. Think of different ways to do this, and use them as examples in your LUIS app. Test these out, to see how well your model can cope with multiple ways to request a timer.
