@@ -196,6 +196,10 @@ More advanced digital actuators, such as screens require the digital data to be 
 
 ---
 
+## Applied lab: validate sensor messages, fail and recover
+
+A sensor is only useful if its messages can be trusted. The [sensor-message example](applied-labs/r15-t038/README.md) validates JSON messages with `device_id`, `timestamp` and a numeric reading, returns accepted messages ordered by timestamp, rejects duplicate device/timestamp pairs and string readings, and shows the stream accepting the next valid message after a malformed one. Run: `python3 -m unittest discover -s 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t038 -p "test_*.py"`. This is a **simulation** in standard-library Python on local JSON strings and makes no claim about real sensor hardware.
+
 ## 🚀 Challenge
 
 The challenge in the last two lessons was to list as many IoT devices as you can that are in your home, school or workplace and decide if they are built around microcontrollers or single-board computers, or even a mixture of both.
