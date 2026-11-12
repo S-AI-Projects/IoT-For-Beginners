@@ -1,0 +1,33 @@
+......F...F..
+======================================================================
+FAIL: test_valid_exit_zero_and_no_secret_printed (test_example.CommandLine.test_valid_exit_zero_and_no_secret_printed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.dDy56NDrV6/test_example.py", line 106, in test_valid_exit_zero_and_no_secret_printed
+    self.assertIn(REDACTED, out)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: '<redacted>' not found in '{\n  "ok": true,\n  "errors": [],\n  "summary": {\n    "command": "func",\n    "args": [\n      "start"\n    ],\n    "env": {\n      "IOT_HUB_CONNECTION_STRING": "HostName=demo;SharedAccessKey=not-a-real-key"\n    },\n    "launched": false\n  }\n}\n'
+
+======================================================================
+FAIL: test_valid_record_gives_redacted_summary (test_example.Contract.test_valid_record_gives_redacted_summary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.dDy56NDrV6/test_example.py", line 35, in test_valid_record_gives_redacted_summary
+    self.assertEqual(r["summary"], {
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+        "command": "func", "args": ["start"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "env": {"IOT_HUB_CONNECTION_STRING": REDACTED}, "launched": False})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'com[67 chars]G': 'HostName=demo;SharedAccessKey=not-a-real-[20 chars]alse} != {'com[67 chars]G': '<redacted>'}, 'launched': False}
+  {'args': ['start'],
+   'command': 'func',
+-  'env': {'IOT_HUB_CONNECTION_STRING': 'HostName=demo;SharedAccessKey=not-a-real-key'},
++  'env': {'IOT_HUB_CONNECTION_STRING': '<redacted>'},
+   'launched': False}
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.003s
+
+FAILED (failures=2)
+exit=1
