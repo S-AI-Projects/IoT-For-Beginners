@@ -625,6 +625,10 @@ Make sure your IoT device is running. Change the moisture levels by adjusting th
 
 ---
 
+## Applied lab: validate a launch configuration
+
+Your app's settings hold values such as connection strings that must not leak. The [launch-configuration example](applied-labs/r15-t037/README.md) validates a command, an argument list and named environment keys, rejects a missing command or a single-string argument, and reports a summary with every value redacted, without launching anything. It compares three controlled sizes (small, medium, large) by number of checks and report size. Run: `python3 -m unittest discover -s 2-farm/lessons/5-migrate-application-to-the-cloud/applied-labs/r15-t037 -p "test_*.py"`. This is a **simulation** in standard-library Python and makes no claim about Azure Functions or real hardware behaviour.
+
 ## 🚀 Challenge
 
 In the previous lesson, you managed timing for the relay by unsubscribing from MQTT messages whilst the relay was on, and for a short while after it was turned off. You can't use this method here - you cannot unsubscribe your IoT Hub trigger.
