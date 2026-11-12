@@ -1,0 +1,21 @@
+...F......
+======================================================================
+FAIL: test_each_stated_answer_matches_computed (test_example.Questions.test_each_stated_answer_matches_computed) (q='Q3 policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.vDLtHNCNvE/test_example.py", line 40, in test_each_stated_answer_matches_computed
+    self.assertEqual(stated, computed)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: {'inclusive': 1, 'half_open': 1} != {'inclusive': 2, 'half_open': 1}
+- {'half_open': 1, 'inclusive': 1}
+?                               ^
+
++ {'half_open': 1, 'inclusive': 2}
+?                               ^
+
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+FAILED (failures=1)
+exit=1

@@ -1,0 +1,3 @@
+valid: {"ok": true, "errors": [], "summary": {"command": "func", "args": ["start"], "env": {"IOT_HUB_CONNECTION_STRING": "<redacted>"}, "launched": false}}
+missing command: {"ok": false, "errors": ["command is missing or empty"], "summary": null}
+args as one string: {"ok": false, "errors": ["args must be a list of strings, not a single string"], "summary": null}

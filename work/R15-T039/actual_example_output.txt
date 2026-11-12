@@ -1,0 +1,9 @@
+Q1 predict: OK
+   stated:    ['inside', 'inside', 'outside']
+   computed:  ['inside', 'inside', 'outside']
+Q2 diagnose: OK
+   stated:    coordinate order swapped: (75, 15) is (longitude, latitude)
+   computed:  coordinate order swapped: (75, 15) is (longitude, latitude)
+Q3 policy: OK
+   stated:    {'inclusive': 2, 'half_open': 1}
+   computed:  {'inclusive': 2, 'half_open': 1}
