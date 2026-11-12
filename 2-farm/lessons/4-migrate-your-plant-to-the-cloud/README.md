@@ -415,6 +415,10 @@ You can also use the Azure CLI to call direct methods on your IoT device.
 
 ---
 
+## Applied lab: validate a batch before sending it to a service
+
+Before data goes to a cloud service, check and scale it. The [tensor-shape example](applied-labs/r15-t034/README.md) validates a synthetic N x H x W batch of pixels 0..255, scales it to 0..1 without changing the shape, rejects negative or above-255 pixels, and calls the service through a callable with a deterministic local adapter. Fixture `[[[0,255],[128,64]]]` keeps shape (1,2,2), with 0 giving 0 and 255 giving 1. Run: `python3 -m unittest discover -s 2-farm/lessons/4-migrate-your-plant-to-the-cloud/applied-labs/r15-t034 -p "test_*.py"`. This is a **simulation** in standard-library Python; it checks preprocessing only, not model quality, and the adapter does not show how a real service behaves.
+
 ## 🚀 Challenge
 
 The free tier of IoT Hub allows 8,000 messages a day. The code you wrote sends telemetry messages every 10 seconds. How many messages a day is one message every 10 seconds?
