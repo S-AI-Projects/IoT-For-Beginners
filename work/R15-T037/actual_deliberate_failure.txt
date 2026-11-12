@@ -1,0 +1,35 @@
+.....FF...F
+======================================================================
+FAIL: test_report_size_independent_of_secret_length (test_example.Comparison.test_report_size_independent_of_secret_length)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.waHJsDNPqZ/test_example.py", line 84, in test_report_size_independent_of_secret_length
+    self.assertEqual(len(sizes), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 3 != 1
+
+======================================================================
+FAIL: test_three_configs_all_correct_and_no_leak (test_example.Comparison.test_three_configs_all_correct_and_no_leak)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.waHJsDNPqZ/test_example.py", line 74, in test_three_configs_all_correct_and_no_leak
+    self.assertFalse(row[5], "secret leaked in " + row[0])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : secret leaked in small
+
+======================================================================
+FAIL: test_valid_record_gives_redacted_summary (test_example.Contract.test_valid_record_gives_redacted_summary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.waHJsDNPqZ/test_example.py", line 28, in test_valid_record_gives_redacted_summary
+    self.assertEqual(r["summary"]["env"], {"API_KEY": REDACTED})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'API_KEY': 'hunter2'} != {'API_KEY': '<redacted>'}
+- {'API_KEY': 'hunter2'}
++ {'API_KEY': '<redacted>'}
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.003s
+
+FAILED (failures=3)
+exit=1

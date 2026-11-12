@@ -1,0 +1,4 @@
+name    args env checks report_chars leaked
+small      1   1      4           55 False
+medium    10   5     17          190 False
+large    100  20    122         1190 False
