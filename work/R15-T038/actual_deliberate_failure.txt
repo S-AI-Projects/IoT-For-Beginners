@@ -1,0 +1,37 @@
+...F..F....
+======================================================================
+FAIL: test_documented_fixture (test_example.Recovery.test_documented_fixture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.Xv75J69tAa/test_example.py", line 85, in test_documented_fixture
+    self.assertEqual(accepted, [("A", 1, 20.0), ("A", 2, 21.5), ("A", 3, 22.0)])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('A', 1, 20.0), ('A', 1, 20.0), ('A', 2, 21.5), ('A', 3, 22.0)] != [('A', 1, 20.0), ('A', 2, 21.5), ('A', 3, 22.0)]
+
+First differing element 1:
+('A', 1, 20.0)
+('A', 2, 21.5)
+
+First list contains 1 additional elements.
+First extra element 3:
+('A', 3, 22.0)
+
+- [('A', 1, 20.0), ('A', 1, 20.0), ('A', 2, 21.5), ('A', 3, 22.0)]
+?                        ----------------
+
++ [('A', 1, 20.0), ('A', 2, 21.5), ('A', 3, 22.0)]
+
+======================================================================
+FAIL: test_duplicate_reported (test_example.Rejections.test_duplicate_reported)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.Xv75J69tAa/test_example.py", line 32, in test_duplicate_reported
+    self.assertEqual(len(accepted), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+FAILED (failures=2)
+exit=1
