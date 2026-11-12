@@ -155,6 +155,10 @@ Work through the relevant guide to convert translate text on your IoT device:
 
 ---
 
+## Applied lab: a security-scenario rubric
+
+Sending text and a key to a translator service raises security questions. The [scenario rubric example](applied-labs/r15-t035/README.md) encodes three fictional scenarios as asset, threat, control and residual-risk fields and checks them: a complete scenario passes, one without an asset fails, and a control unrelated to the named threat is flagged for review. The checker verifies structure only; a human must judge the explanation. A baseline checker and a refactored one (with the control-matching step extracted) are shown to give identical results. Run: `python3 -m unittest discover -s 6-consumer/lessons/4-multiple-language-support/applied-labs/r15-t035 -p "test_*.py"`. This is a **simulation** in standard-library Python and says nothing about real translator service behaviour.
+
 ## 🚀 Challenge
 
 How can machine translations benefit other IoT applications beyond smart devices? Think of different ways translations can help, not just with spoken words but with text.
