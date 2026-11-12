@@ -635,6 +635,10 @@ Think about different ways you could handle this in your Functions App.
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/18)
 
+## Applied lab: check a launch configuration
+
+You start the app with `func start` and keep secret settings in `local.settings.json`. The [launch-configuration example](applied-labs/r15-t040/README.md) checks a command, an argument list and named environment keys, fails on a missing command or a single-string argument, and reports a valid record with every value redacted, without running anything. Each input and output is tied to the lesson in the example's README. Run: `python3 -m unittest discover -s 2-farm/lessons/5-migrate-application-to-the-cloud/applied-labs/r15-t040 -p "test_*.py"`. This is a **simulation** in standard-library Python and makes no claim about Azure Functions, real hardware or cloud service behaviour.
+
 ## Review & Self Study
 
 * Read up on serverless computing on the [Serverless Computing page on Wikipedia](https://wikipedia.org/wiki/Serverless_computing)
