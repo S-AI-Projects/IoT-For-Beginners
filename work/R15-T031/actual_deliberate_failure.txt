@@ -1,0 +1,36 @@
+...F..F
+======================================================================
+FAIL: test_reader_cannot_write_public (test_example.Boundary.test_reader_cannot_write_public)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.cKiLBhFkvV/test_example.py", line 16, in test_reader_cannot_write_public
+    self.assertEqual(evaluate("reader", "write", "public"),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     ("deny", "default deny"))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: ('allow', 'matched allow rule') != ('deny', 'default deny')
+
+First differing element 0:
+'allow'
+'deny'
+
+- ('allow', 'matched allow rule')
++ ('deny', 'default deny')
+
+======================================================================
+FAIL: test_reader_reads_public (test_example.SmallestValid.test_reader_reads_public)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/tmp.cKiLBhFkvV/test_example.py", line 11, in test_reader_reads_public
+    self.assertEqual(evaluate("reader", "read", "public")[0], "allow")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'deny' != 'allow'
+- deny
++ allow
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=2)
+exit=1
