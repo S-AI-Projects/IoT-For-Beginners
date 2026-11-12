@@ -185,6 +185,10 @@ Work through the relevant guide to decode GPS sensor data using your IoT device:
 
 ---
 
+## Applied lab: geofence membership
+
+Once you can read a latitude and longitude, you can ask whether a vehicle is inside an area. The [geofence example](applied-labs/r15-t032/README.md) classifies `(latitude, longitude)` records against an inclusive rectangle (latitude 10 to 20, longitude 70 to 80) and compares two approaches on identical inputs. Expected: `(15, 75)` and `(10, 70)` inside, `(21, 75)` outside, latitude `100` invalid. Run: `python3 -m unittest discover -s 3-transport/lessons/1-location-tracking/applied-labs/r15-t032 -p "test_*.py"`. This is a **simulation** using standard-library Python, and the rectangle is **not a spherical-distance model**.
+
 ## 🚀 Challenge
 
 Write your own NMEA decoder! Rather than relying on third party libraries to decode NMEA sentences, can you write your own decoder to extract latitude and longitude from NMEA sentences?
