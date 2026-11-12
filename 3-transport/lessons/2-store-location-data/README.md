@@ -461,6 +461,10 @@ Think about how satellite navigation could overcome this? What data does your sa
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/24)
 
+## Applied lab: geofence scenario assessment
+
+Test your understanding of location records with three applied questions: predict a classification, diagnose a failure (swapped coordinate order) and choose a boundary policy for a shared edge. The [scenario assessment](applied-labs/r15-t039/README.md) uses an inclusive rectangle (latitude 10 to 20, longitude 70 to 80): `(15, 75)` and `(10, 70)` inside, `(21, 75)` outside, latitude `100` rejected. Each answer has a rationale and an executable check. Run: `python3 -m unittest discover -s 3-transport/lessons/2-store-location-data/applied-labs/r15-t039 -p "test_*.py"`. This is a **simulation** using standard-library Python, and the rectangle is **not a spherical-distance model**.
+
 ## Review & Self Study
 
 * Read about structured data on the [Data model page on Wikipedia](https://wikipedia.org/wiki/Data_model)
