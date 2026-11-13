@@ -467,3 +467,12 @@ Think about how satellite navigation could overcome this? What data does your sa
 ## Assignment
 
 [Investigate function bindings](assignment.md)
+
+## Applied Lab: Geofence Membership Invariant & State Trace (R15-T054)
+
+See the local simulation example in [`applied-labs/r15-t054/README.md`](./applied-labs/r15-t054/README.md) (`example.py` and `test_example.py`). This is a local simulation using an inclusive rectangular teaching geofence (`lat` `[10, 20]`, `lon` `[70, 80]`) with per-step intermediate state tracing—it is **not** a spherical-distance model and does not invoke cloud storage or physical GPS hardware.
+
+* **Prerequisites:** Python 3.9+ (standard library only)
+* **Invocation:** `python3 3-transport/lessons/2-store-location-data/applied-labs/r15-t054/example.py`
+* **Fixture:** `(15, 75)` (inside), `(10, 70)` (boundary inside), `(21, 75)` (outside); invalid `lat = 100` raises `ValueError`
+* **Expected output:** JSON containing `state_trace` (per-step `lat_in_bounds`, `lon_in_bounds`, `computed_inside`) and `results` classifying `(15, 75)` and `(10, 70)` as `"inside": true` and `(21, 75)` as `"inside": false`.
