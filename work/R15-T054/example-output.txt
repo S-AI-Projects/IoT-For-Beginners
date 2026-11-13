@@ -1,0 +1,62 @@
+{
+  "model": "inclusive-rectangular-fixture (not spherical-distance)",
+  "bounds": {
+    "lat": [
+      10.0,
+      20.0
+    ],
+    "lon": [
+      70.0,
+      80.0
+    ]
+  },
+  "state_trace": [
+    {
+      "step": 0,
+      "id": "interior",
+      "validated_lat": 15.0,
+      "validated_lon": 75.0,
+      "lat_in_bounds": true,
+      "lon_in_bounds": true,
+      "computed_inside": true
+    },
+    {
+      "step": 1,
+      "id": "boundary",
+      "validated_lat": 10.0,
+      "validated_lon": 70.0,
+      "lat_in_bounds": true,
+      "lon_in_bounds": true,
+      "computed_inside": true
+    },
+    {
+      "step": 2,
+      "id": "outside",
+      "validated_lat": 21.0,
+      "validated_lon": 75.0,
+      "lat_in_bounds": false,
+      "lon_in_bounds": true,
+      "computed_inside": false
+    }
+  ],
+  "results": [
+    {
+      "id": "interior",
+      "lat": 15.0,
+      "lon": 75.0,
+      "inside": true
+    },
+    {
+      "id": "boundary",
+      "lat": 10.0,
+      "lon": 70.0,
+      "inside": true
+    },
+    {
+      "id": "outside",
+      "lat": 21.0,
+      "lon": 75.0,
+      "inside": false
+    }
+  ]
+}
