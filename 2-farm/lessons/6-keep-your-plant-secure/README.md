@@ -231,3 +231,12 @@ You can find plenty of documentation, tutorials and guides on the Azure Portal i
 ## Assignment
 
 [Build a new IoT device](assignment.md)
+
+## Applied Lab: Sensor-Message Validation Refactoring (R15-T055)
+
+See the local simulation example in [`applied-labs/r15-t055/README.md`](./applied-labs/r15-t055/README.md) (`example.py` and `test_example.py`). This local simulation demonstrates a monolithic baseline refactored by extracting `validate_and_parse_message` while proving before/after equivalence—no X.509 certificates, cloud IoT Hub, or physical device hardware is invoked.
+
+* **Prerequisites:** Python 3.9+ (standard library only)
+* **Invocation:** `python3 2-farm/lessons/6-keep-your-plant-secure/applied-labs/r15-t055/example.py`
+* **Fixture:** Device `"A"` messages at timestamps `2`, `1`, and duplicate `1` (string reading `"23.0"` raises `ValueError`)
+* **Expected output:** JSON confirming `"equivalent": true` between baseline and refactored implementations, with accepted messages for `"A"` ordered `1, 2` and duplicate `("A", 1)` reported.
