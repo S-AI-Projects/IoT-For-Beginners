@@ -1,0 +1,2 @@
+accepted: [{'device_id': 'A', 'timestamp': 1, 'reading': 0.8}, {'device_id': 'A', 'timestamp': 2, 'reading': 0.9}]
+errors: [(2, 'duplicate device/timestamp: A/1'), (3, 'reading must be numeric')]

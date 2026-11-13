@@ -156,3 +156,30 @@ You trained your custom vision model using the portal. This relies on having ima
 ## Assignment
 
 [Respond to classification results](assignment.md)
+
+## Applied lab: validate sensor messages (R15-T051)
+
+An IoT device sends JSON messages to the cloud, so the receiving side should check them before use. This lab validates `device_id`, `timestamp` and a numeric `reading`, orders accepted messages by timestamp, and reports duplicate device/timestamp pairs. It relates to this lesson because a device that sends classification results or images is only useful if its messages are well formed, correctly identified and correctly ordered.
+
+**Simulation notice:** this is a local simulation. It uses small hard-coded message strings as a fixture. No real device, cloud service, camera or trained model is involved, and it makes no claims about real hardware or model performance. It does not cover networking, authentication, image payloads or out-of-order delivery over time.
+
+Code: [example.py](applied-labs/r15-t051/example.py) and [test_example.py](applied-labs/r15-t051/test_example.py)
+
+Run the example (fixture: four messages for device A at times 2, 1, 1 and 3, where the last has the string reading "high"):
+
+```bash
+python3 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t051/example.py
+```
+
+Expected output:
+
+```
+accepted: [{'device_id': 'A', 'timestamp': 1, 'reading': 0.8}, {'device_id': 'A', 'timestamp': 2, 'reading': 0.9}]
+errors: [(2, 'duplicate device/timestamp: A/1'), (3, 'reading must be numeric')]
+```
+
+Run the checks:
+
+```bash
+python3 -m unittest discover -s 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t051 -p "test_*.py"
+```

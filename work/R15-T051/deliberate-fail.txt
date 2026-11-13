@@ -1,0 +1,21 @@
+F..........
+======================================================================
+FAIL: test_wrong_order (test_deliberate_fail.DeliberateWrong)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/mannattehlani/IoT-For-Beginners/4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t051/test_deliberate_fail.py", line 10, in test_wrong_order
+    self.assertEqual([m["timestamp"] for m in accepted], [2, 1])
+AssertionError: Lists differ: [1, 2] != [2, 1]
+
+First differing element 0:
+1
+2
+
+- [1, 2]
++ [2, 1]
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+FAILED (failures=1)
+exit code: 1
