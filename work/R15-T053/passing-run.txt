@@ -1,0 +1,8 @@
+test_callable_adapter_interface (test_example.TestGeofenceOfflineAdapter) ... ok
+test_interior_boundary_and_outside_points (test_example.TestGeofenceOfflineAdapter) ... ok
+test_rejects_invalid_latitude_100 (test_example.TestGeofenceOfflineAdapter) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

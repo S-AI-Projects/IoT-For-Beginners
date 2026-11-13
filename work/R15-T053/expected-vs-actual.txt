@@ -1,0 +1,3 @@
+Input fixture: (15, 75), boundary (10, 70), outside (21, 75); invalid lat=100 rejected.
+Expected: (15, 75) -> inside=True, (10, 70) -> inside=True, (21, 75) -> inside=False; lat=100 raises ValueError.
+Actual: Matched expected output exactly; all 3 unit tests passed (exit code 0).
