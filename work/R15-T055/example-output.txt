@@ -1,0 +1,24 @@
+{
+  "equivalent": true,
+  "result": {
+    "accepted": [
+      {
+        "device_id": "A",
+        "timestamp": 1,
+        "reading": 23.0
+      },
+      {
+        "device_id": "A",
+        "timestamp": 2,
+        "reading": 24.5
+      }
+    ],
+    "duplicates": [
+      {
+        "device_id": "A",
+        "timestamp": 1,
+        "reason": "duplicate"
+      }
+    ]
+  }
+}

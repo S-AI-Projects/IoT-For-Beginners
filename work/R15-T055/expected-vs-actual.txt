@@ -1,0 +1,3 @@
+Input fixture: Device A at timestamps 2, 1, and duplicate 1; string reading "23.0" rejected.
+Expected: Accepted ordered [1, 2], duplicate (A, 1) reported, baseline == refactored, string reading raises ValueError.
+Actual: Matched expected output and baseline/refactored equivalence exactly; all unit tests passed (exit code 0).
