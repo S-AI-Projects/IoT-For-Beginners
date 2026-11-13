@@ -1,0 +1,16 @@
+test_boolean_reading_rejected (test_example.BoundaryCases) ... ok
+test_empty_input (test_example.BoundaryCases) ... ok
+test_same_timestamp_different_devices_allowed (test_example.BoundaryCases) ... ok
+test_zero_and_negative_readings_allowed (test_example.BoundaryCases) ... ok
+test_malformed_json (test_example.FailureCases) ... ok
+test_missing_field (test_example.FailureCases) ... ok
+test_non_object_message (test_example.FailureCases) ... ok
+test_duplicate_device_timestamp_reported (test_example.NormalCases) ... ok
+test_orders_by_timestamp (test_example.NormalCases) ... ok
+test_string_reading_rejected (test_example.NormalCases) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK
+exit code: 0

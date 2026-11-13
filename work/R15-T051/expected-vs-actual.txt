@@ -1,0 +1,4 @@
+Input (4 messages): A/2 (0.9), A/1 (0.8), A/1 (0.7), A/3 (reading "high")
+Expected accepted: timestamps [1, 2] in that order
+Expected errors: index 2 duplicate A/1; index 3 reading must be numeric
+Actual: see example-output.txt (matches expected)
