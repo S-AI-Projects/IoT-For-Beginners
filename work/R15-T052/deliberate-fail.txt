@@ -1,0 +1,5 @@
+  File "<string>", line 6
+    assert res["shape"] == [9, 9, 9], f"Deliberate wrong shape check failed as expected: got {res[\"shape\"]}"
+                                                                                                              ^
+SyntaxError: f-string expression part cannot include a backslash
+Exit code: 1

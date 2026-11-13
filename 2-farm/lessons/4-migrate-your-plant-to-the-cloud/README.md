@@ -435,3 +435,12 @@ The IoT Hub SDK is open source for both Arduino and Python. In the code repos on
 ## Assignment
 
 [Learn about cloud services](assignment.md)
+
+## Applied Lab: Tensor-Shape & Normalization Boundary Contract (R15-T052)
+
+See the local simulation example in [`applied-labs/r15-t052/README.md`](./applied-labs/r15-t052/README.md) (`example.py` and `test_example.py`). This is a local synthetic preprocessing simulation only—no cloud service, trained model, or camera hardware is invoked.
+
+* **Prerequisites:** Python 3.9+ (standard library only)
+* **Invocation:** `python3 2-farm/lessons/4-migrate-your-plant-to-the-cloud/applied-labs/r15-t052/example.py`
+* **Fixture:** `[[[0, 255], [128, 64]]]` (shape `(1, 2, 2)`, testing lower `0` and upper `255` boundaries; negative or `>255` pixels raise `ValueError`)
+* **Expected output:** `{"shape": [1, 2, 2], "normalized": [[[0.0, 1.0], [0.501961, 0.25098]]]}`
