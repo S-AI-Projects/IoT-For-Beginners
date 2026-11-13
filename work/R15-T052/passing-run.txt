@@ -1,0 +1,8 @@
+test_rejects_invalid_shape_and_non_numeric (test_example.TestTensorShapeContract) ... ok
+test_rejects_negative_and_over_255_pixels (test_example.TestTensorShapeContract) ... ok
+test_valid_boundary_batch (test_example.TestTensorShapeContract) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
