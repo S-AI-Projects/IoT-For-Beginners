@@ -344,3 +344,12 @@ Azure Maps is particularly useful for working with IoT devices.
 ## Assignment
 
 [Deploy your app](assignment.md)
+
+## Applied Lab: Geofence Membership Offline Service Adapter (R15-T053)
+
+See the local simulation example in [`applied-labs/r15-t053/README.md`](./applied-labs/r15-t053/README.md) (`example.py` and `test_example.py`). This is an offline deterministic simulation using an inclusive rectangular teaching geofence (`lat` `[10, 20]`, `lon` `[70, 80]`) behind a callable adapter—it is **not** a spherical-distance model and does not establish live cloud map service or GPS hardware behavior.
+
+* **Prerequisites:** Python 3.9+ (standard library only)
+* **Invocation:** `python3 3-transport/lessons/3-visualize-location-data/applied-labs/r15-t053/example.py`
+* **Fixture:** `(15, 75)` (inside), `(10, 70)` (boundary inside), `(21, 75)` (outside); invalid `lat = 100` raises `ValueError`
+* **Expected output:** JSON classifying `(15, 75)` and `(10, 70)` as `"inside": true` and `(21, 75)` as `"inside": false`.

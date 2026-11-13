@@ -1,0 +1,33 @@
+{
+  "model": "inclusive-rectangular-fixture (not spherical-distance)",
+  "bounds": {
+    "lat": [
+      10.0,
+      20.0
+    ],
+    "lon": [
+      70.0,
+      80.0
+    ]
+  },
+  "results": [
+    {
+      "id": "interior",
+      "lat": 15.0,
+      "lon": 75.0,
+      "inside": true
+    },
+    {
+      "id": "boundary",
+      "lat": 10.0,
+      "lon": 70.0,
+      "inside": true
+    },
+    {
+      "id": "outside",
+      "lat": 21.0,
+      "lon": 75.0,
+      "inside": false
+    }
+  ]
+}
