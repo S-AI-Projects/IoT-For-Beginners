@@ -1,0 +1,47 @@
+Task R15-T022: Fixture Inputs and Processing Results
+======================================================
+Execution Command:
+  python3 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t022/example.py
+
+Fixture Inputs:
+-------------------------------------------------------------------------------------------------------------------
+Index  Device ID     Timestamp  Reading   Description
+-------------------------------------------------------------------------------------------------------------------
+1      Device-A      2          24.5      Device A, timestamp 2, valid numeric reading
+2      Device-A      1          21.0      Device A, timestamp 1, valid numeric reading
+3      Device-A      1          21.8      Second Device A, timestamp 1 (duplicate)
+4      Device-B      3          "25.5"    Message with string reading (must be rejected)
+5      Device-C      0          0         Valid zero reading (boundary case: zero value measurement)
+6      ""            4          18.2      Invalid device case (empty string device_id)
+7      Device-D      NaN        19.5      Invalid timestamp case (non-finite float NaN)
+-------------------------------------------------------------------------------------------------------------------
+
+Expected versus Actual Results:
+-------------------------------------------------------------------------------------------------------------------
+Category     Expected Output                                     Actual Output                               Match?
+-------------------------------------------------------------------------------------------------------------------
+ACCEPTED     Device-C: ts=0, reading=0                           Device-C: ts=0, reading=0                   YES
+             Device-A: ts=1, reading=21.0                        Device-A: ts=1, reading=21.0                YES
+             Device-A: ts=2, reading=24.5                        Device-A: ts=2, reading=24.5                YES
+
+DUPLICATES   Device-A: ts=1, reading=21.8                        Device-A: ts=1, reading=21.8                YES
+             (Reported separately from invalid records)          (Flagged: Duplicate pair ('Device-A', 1))   YES
+
+INVALID      Device-B: ts=3, reading="25.5" -> Rejected          Rejected (Field 'reading' must be numeric)  YES
+             "": ts=4, reading=18.2 -> Rejected                  Rejected (Field 'device_id' non-empty)      YES
+             Device-D: ts=NaN, reading=19.5 -> Rejected          Rejected (Field 'timestamp' finite number)  YES
+-------------------------------------------------------------------------------------------------------------------
+
+Ordering Verification:
+  Accepted messages for Device-A are correctly sorted in chronological order:
+    1. Timestamp 1 (reading 21.0)
+    2. Timestamp 2 (reading 24.5)
+  (Despite timestamp 2 appearing before timestamp 1 in the raw input fixture).
+
+Boundary and Type Decisions:
+  1. Zero Reading (0 / 0.0): ACCEPTED
+     - Zero is a physically meaningful measurement in IoT domains (e.g. 0°C, 0 lux, 0 mm).
+     - Falsy checks ('if not reading:') would incorrectly discard valid zero measurements.
+  2. String Reading ("25.5"): REJECTED
+     - Telemetry ingestion must enforce strong numeric types. Allowing strings causes silent
+       type coercion bugs, string concatenation errors, and incorrect lexicographical sorting.

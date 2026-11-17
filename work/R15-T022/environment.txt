@@ -1,0 +1,9 @@
+Task R15-T022: Environment Information
+========================================
+Execution Timestamp: 2026-11-18T00:59:40+05:30
+Branch: student/e26b07f0811
+Python Version: Python 3.14.3
+Git Version: git version 2.56.0
+OS/Platform: macOS (Darwin 27.0.0 arm64)
+External Packages: None (Python 3 standard library only)
+Test Framework: unittest (Python standard library)

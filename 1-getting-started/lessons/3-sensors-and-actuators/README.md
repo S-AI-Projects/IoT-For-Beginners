@@ -202,6 +202,14 @@ The challenge in the last two lessons was to list as many IoT devices as you can
 
 For every device you listed, what sensors and actuators are they connected to? What is the purpose of each sensor and actuator connected to these devices?
 
+## Applied Lab - Sensor-Message Validation
+
+Extend your understanding of how physical sensor measurements become digital signals interpreted by IoT software:
+
+* [Applied Lab: Sensor-Message Validation](applied-labs/r15-t022/README.md)
+
+This lab introduces message schema validation, numeric boundary checks, deduplication, and chronological sorting using Python on simulated sensor telemetry. It demonstrates how software verifies incoming sensor measurements before passing them to actuators or cloud storage.
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/6)
