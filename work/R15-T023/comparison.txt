@@ -1,0 +1,98 @@
+Task R15-T023: Scenario Comparison and Mismatch Verification
+============================================================
+
+1. MAIN SCENARIO INPUTS & ACTUAL VERDICTS
+-----------------------------------------
+
+Scenario 1:
+  ID: scenario_credentials
+  Name: Translation API Credentials Protection
+  Asset: Cloud translation API subscription keys and service endpoints
+  Threat: Hardcoded credentials in IoT client code or public repositories leading to unauthorized API quota exhaustion or credential theft
+  Control: Store keys in environment variables or Azure Key Vault, and route translation calls through backend Azure Functions rather than embedding keys on the IoT device
+  Residual Risk: Compromise of the backend deployment environment or host server access could still expose secrets
+  Actual Verdict: PASS
+  Reason: Scenario is complete with all 4 fields and a related control.
+
+Scenario 2:
+  ID: scenario_user_input
+  Name: User-Provided Translation Input Handling
+  Asset: Spoken and textual user voice input (Japanese speech translated to English)
+  Threat: Malicious prompt injection, oversized payload causing denial of service, or eavesdropping of unencrypted voice/text transcripts in transit
+  Control: Enforce TLS 1.3 encryption in transit, restrict input payload length to 500 characters, and sanitize text before passing to language understanding
+  Residual Risk: Third-party translation provider logs may retain transient voice samples subject to the cloud provider's privacy policy
+  Actual Verdict: PASS
+  Reason: Scenario is complete with all 4 fields and a related control.
+
+Scenario 3:
+  ID: scenario_translated_response
+  Name: Translated Response Verification
+  Asset: Synthesized audio feedback and translated response text (English response translated back to Japanese)
+  Threat: Tampering with translated response causing offensive synthesized audio, or unauthorized audio interception revealing private timer schedules
+  Control: Validate translation output schema and apply profanity masking before passing translated text to the text-to-speech synthesizer
+  Residual Risk: Subtle translation inaccuracies or culturally misleading phrasing might not be caught by automated profanity filters
+  Actual Verdict: PASS
+  Reason: Scenario is complete with all 4 fields and a related control.
+
+
+2. BOUNDARY SCENARIOS & ACTUAL VERDICTS
+---------------------------------------
+
+Boundary Scenario 1 (Missing Asset):
+  ID: scenario_missing_asset
+  Name: Missing Asset Boundary Case
+  Asset: None (field omitted from scenario dictionary)
+  Threat: Eavesdropping on unencrypted local WiFi communication
+  Control: Enable WPA3 encryption on the local wireless network
+  Residual Risk: Physical access to the local router could still allow packet capture
+  Actual Verdict: FAIL
+  Reason: Missing or empty required field: 'asset'.
+
+Boundary Scenario 2 (Unrelated Control):
+  ID: scenario_unrelated_control
+  Name: Unrelated Control Boundary Case
+  Asset: Translation API subscription keys
+  Threat: Hardcoded credentials in client code leading to API key theft
+  Control: Mount the IoT device in an aesthetically pleasing blue plastic case with extra ventilation
+  Residual Risk: Keys remain completely unprotected in source code
+  Actual Verdict: REVIEW
+  Reason: Control appears unrelated to the named threat; requires human security review.
+
+
+3. SEPARATELY AUTHORED EXPECTED-RESULT TABLE (APPROACH B)
+---------------------------------------------------------
+{
+    "scenario_credentials": "PASS",
+    "scenario_user_input": "PASS",
+    "scenario_translated_response": "PASS",
+    "scenario_missing_asset": "FAIL",
+    "scenario_unrelated_control": "REVIEW"
+}
+
+Approach Comparison Result:
+  actual_results == expected_results -> MATCH (True)
+
+
+4. EVIDENCE OF MISMATCH DETECTION
+---------------------------------
+
+Case 4.1: Deliberately Incorrect Expected Result
+  Actual Results:   {"scenario_credentials": "PASS", "scenario_missing_asset": "FAIL"}
+  Expected Results: {"scenario_credentials": "PASS", "scenario_missing_asset": "PASS"}
+  Observed Exception:
+    AssertionError: Approach comparison mismatch detected:
+      - Verdict mismatch for 'scenario_missing_asset': expected 'PASS', got 'FAIL'.
+
+Case 4.2: Missing Scenario ID in Actual Results
+  Actual Results:   {"scenario_credentials": "PASS"}
+  Expected Results: {"scenario_credentials": "PASS", "scenario_missing_from_actual": "PASS"}
+  Observed Exception:
+    AssertionError: Approach comparison mismatch detected:
+      - Missing scenario ID: 'scenario_missing_from_actual' was expected but not found in actual results.
+
+Case 4.3: Unexpected Extra Scenario ID in Actual Results
+  Actual Results:   {"scenario_credentials": "PASS", "scenario_extra_unexpected": "PASS"}
+  Expected Results: {"scenario_credentials": "PASS"}
+  Observed Exception:
+    AssertionError: Approach comparison mismatch detected:
+      - Unexpected extra scenario ID: 'scenario_extra_unexpected' was present in actual results but not in expected table.

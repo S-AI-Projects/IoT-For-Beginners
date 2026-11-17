@@ -1,0 +1,28 @@
+Task R15-T023: Sample Results
+==============================
+Command Executed:
+$ python3 6-consumer/lessons/4-multiple-language-support/applied-labs/r15-t023/example.py
+
+Output:
+================================================================================
+Task R15-T023: Security Scenario Rubric Checker
+Context: Lesson 6-4 Multi-Language Smart Timer Translation Architecture
+Flow: Japanese Input -> English Translation -> Processing -> Japanese Response
+================================================================================
+
+APPROACH A: Direct Rubric Evaluation Results
+--------------------------------------------------------------------------------
+[PASS  ] Translation API Credentials Protection     -> Scenario is complete with all 4 fields and a related control.
+[PASS  ] User-Provided Translation Input Handling   -> Scenario is complete with all 4 fields and a related control.
+[PASS  ] Translated Response Verification           -> Scenario is complete with all 4 fields and a related control.
+[FAIL  ] Missing Asset Boundary Case                -> Missing or empty required field: 'asset'.
+[REVIEW] Unrelated Control Boundary Case            -> Control appears unrelated to the named threat; requires human security review.
+
+APPROACH B: Comparison with Explicit Expected-Result Table
+--------------------------------------------------------------------------------
+✓ All 5 fixture scenarios matched Approach B's expected table perfectly!
+
+DEMONSTRATION: Intentional Mismatch Detection
+--------------------------------------------------------------------------------
+✓ Confirmed: A deliberately altered expected table is detected and raises AssertionError.
+================================================================================

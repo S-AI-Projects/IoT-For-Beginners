@@ -159,6 +159,14 @@ Work through the relevant guide to convert translate text on your IoT device:
 
 How can machine translations benefit other IoT applications beyond smart devices? Think of different ways translations can help, not just with spoken words but with text.
 
+## Applied Lab - Security Scenario Rubric Checker
+
+Explore the security considerations of cloud-connected translation in the smart timer architecture:
+
+* [Applied Lab: Security Scenario Rubric Checker](applied-labs/r15-t023/README.md)
+
+This lab introduces structured threat modeling and a beginner-friendly rubric checker using Python. It demonstrates how to evaluate security scenarios across the translation flow (protecting API credentials, user input, and translated responses) using deterministic evaluation rules and expected-result table comparison.
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/48)
