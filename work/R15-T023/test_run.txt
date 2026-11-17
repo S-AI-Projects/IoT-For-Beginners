@@ -1,0 +1,39 @@
+Task R15-T023: Test Run Execution
+=================================
+Command Executed:
+$ python3 -m unittest discover -s 6-consumer/lessons/4-multiple-language-support/applied-labs/r15-t023 -p "test_*.py" -v
+
+Full Verbose Output:
+test_approach_comparison_detects_extra_scenario (test_example.TestSecurityScenarioRubric.test_approach_comparison_detects_extra_scenario)
+Test that an unexpected extra scenario ID raises an AssertionError. ... ok
+test_approach_comparison_detects_mismatch (test_example.TestSecurityScenarioRubric.test_approach_comparison_detects_mismatch)
+Test that an incorrect expected result raises an AssertionError. ... ok
+test_approach_comparison_detects_missing_scenario (test_example.TestSecurityScenarioRubric.test_approach_comparison_detects_missing_scenario)
+Test that a scenario ID expected but missing from actual results raises an AssertionError. ... ok
+test_approach_comparison_match (test_example.TestSecurityScenarioRubric.test_approach_comparison_match)
+Test that Approach A results match Approach B expected table. ... ok
+test_demonstrate_mismatch_detection_function (test_example.TestSecurityScenarioRubric.test_demonstrate_mismatch_detection_function)
+Test that demonstrate_mismatch_detection successfully executes and catches errors. ... ok
+test_fail_empty_asset_string (test_example.TestSecurityScenarioRubric.test_fail_empty_asset_string)
+Test that an asset containing only whitespace returns FAIL. ... ok
+test_fail_missing_asset_field (test_example.TestSecurityScenarioRubric.test_fail_missing_asset_field)
+Test that an omitted asset field returns FAIL. ... ok
+test_fail_missing_other_required_fields (test_example.TestSecurityScenarioRubric.test_fail_missing_other_required_fields)
+Test that missing threat, control, or residual_risk fields also return FAIL. ... ok
+test_is_control_related_helper (test_example.TestSecurityScenarioRubric.test_is_control_related_helper)
+Test the is_control_related helper function directly. ... ok
+test_pass_credentials_scenario (test_example.TestSecurityScenarioRubric.test_pass_credentials_scenario)
+Test that the translation API credentials scenario returns PASS. ... ok
+test_pass_translated_response_scenario (test_example.TestSecurityScenarioRubric.test_pass_translated_response_scenario)
+Test that the translated response scenario returns PASS. ... ok
+test_pass_user_input_scenario (test_example.TestSecurityScenarioRubric.test_pass_user_input_scenario)
+Test that the user-provided translation input scenario returns PASS. ... ok
+test_review_unrelated_control (test_example.TestSecurityScenarioRubric.test_review_unrelated_control)
+Test that a control unrelated to its named threat returns REVIEW. ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK
+
+Exit Code: 0
