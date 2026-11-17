@@ -1,0 +1,92 @@
+Task R15-T021: Test Execution Log and Verification
+==================================================
+
+1. Required Discovery Test Command:
+----------------------------------
+$ python3 -m unittest discover -s 3-transport/lessons/1-location-tracking/applied-labs/r15-t021 -p "test_*.py"
+
+Output:
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+Exit Code: 0
+
+
+2. Verbose Test Run:
+-------------------
+$ python3 -m unittest discover -s 3-transport/lessons/1-location-tracking/applied-labs/r15-t021 -p "test_*.py" -v
+
+Output:
+test_inclusive_boundary_coordinates (test_example.TestGeofenceMembership.test_inclusive_boundary_coordinates)
+Test that points on boundaries and corners are treated as inside (inclusive). ... ok
+test_invalid_latitude_100 (test_example.TestGeofenceMembership.test_invalid_latitude_100)
+Test that latitude 100 is rejected with a ValueError. ... ok
+test_invalid_latitude_below_minus_90 (test_example.TestGeofenceMembership.test_invalid_latitude_below_minus_90)
+Test that latitudes less than -90 are rejected with a ValueError. ... ok
+test_invalid_longitude_above_180 (test_example.TestGeofenceMembership.test_invalid_longitude_above_180)
+Test that longitudes greater than 180 are rejected with a ValueError. ... ok
+test_invalid_longitude_below_minus_180 (test_example.TestGeofenceMembership.test_invalid_longitude_below_minus_180)
+Test that longitudes less than -180 are rejected with a ValueError. ... ok
+test_non_numeric_and_special_values (test_example.TestGeofenceMembership.test_non_numeric_and_special_values)
+Test rejection of non-numeric types, booleans, NaN, and Inf. ... ok
+test_normal_inside_coordinate (test_example.TestGeofenceMembership.test_normal_inside_coordinate)
+Test points clearly inside the geofence. ... ok
+test_outside_coordinates (test_example.TestGeofenceMembership.test_outside_coordinates)
+Test points located outside the geofence. ... ok
+test_valid_earth_extreme_coordinates (test_example.TestGeofenceMembership.test_valid_earth_extreme_coordinates)
+Test that extreme valid Earth coordinates do not raise ValueError. ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK
+
+Exit Code: 0
+
+
+3. Mutation / Negative Testing Demonstration:
+--------------------------------------------
+Controlled mutation applied:
+  Changed min latitude check from `GEO_MIN_LAT <= latitude` to `GEO_MIN_LAT < latitude` (strictly greater, violating inclusive boundary requirement).
+
+Command run:
+$ python3 -m unittest discover -s 3-transport/lessons/1-location-tracking/applied-labs/r15-t021 -p "test_*.py"
+
+Output:
+F........
+======================================================================
+FAIL: test_inclusive_boundary_coordinates (test_example.TestGeofenceMembership.test_inclusive_boundary_coordinates)
+Test that points on boundaries and corners are treated as inside (inclusive).
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File ".../applied-labs/r15-t021/test_example.py", line 51, in test_inclusive_boundary_coordinates
+    self.assertTrue(
+        is_inside_geofence(10.0, 70.0),
+        "Corner coordinate (10, 70) should be inside (inclusive boundary).",
+    )
+AssertionError: False is not true : Corner coordinate (10, 70) should be inside (inclusive boundary).
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+FAILED (failures=1)
+
+Exit Code: 1 (Nonzero exit code confirmed on failure)
+
+4. Restoration and Final Verification:
+-------------------------------------
+Restored `example.py` to correct inclusive boundary condition (`<=`).
+Re-ran discovery tests:
+$ python3 -m unittest discover -s 3-transport/lessons/1-location-tracking/applied-labs/r15-t021 -p "test_*.py"
+
+Output:
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+
+Exit Code: 0 (All tests passing)

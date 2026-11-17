@@ -189,6 +189,14 @@ Work through the relevant guide to decode GPS sensor data using your IoT device:
 
 Write your own NMEA decoder! Rather than relying on third party libraries to decode NMEA sentences, can you write your own decoder to extract latitude and longitude from NMEA sentences?
 
+## Applied Lab - Geofence Membership
+
+Extend the location-tracking concepts by evaluating whether coordinates fall inside a predefined boundary:
+
+* [Applied Lab: Geofence Membership](applied-labs/r15-t021/README.md)
+
+This lab introduces basic rectangular coordinate boundary containment using Python on local sample coordinate records in decimal degrees (it does not implement a GPS decoder, connect to GPS hardware, or use live telemetry). **Note on simplification:** This lab evaluates coordinates against an axis-aligned planar bounding box (`min <= coordinate <= max`) and is **not** a spherical-distance model (such as Haversine or geodesic formulas).
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/22)
