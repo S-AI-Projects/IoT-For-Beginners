@@ -1,0 +1,105 @@
+Task R15-T022: Test Execution and Verification Log
+==================================================
+
+1. Required Discovery Test Command:
+----------------------------------
+$ python3 -m unittest discover -s 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t022 -p "test_*.py"
+
+Output:
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK
+
+Exit Code: 0
+
+
+2. Verbose Test Run:
+-------------------
+$ python3 -m unittest discover -s 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t022 -p "test_*.py" -v
+
+Output:
+test_boolean_reading_rejection (test_example.TestSensorMessageValidation.test_boolean_reading_rejection)
+Test that boolean values for readings are rejected, avoiding bool-as-int bugs. ... ok
+test_deterministic_ordering_for_equal_timestamps (test_example.TestSensorMessageValidation.test_deterministic_ordering_for_equal_timestamps)
+Test that messages with identical timestamps sort deterministically across permutations. ... ok
+test_duplicate_device_timestamp_pairs (test_example.TestSensorMessageValidation.test_duplicate_device_timestamp_pairs)
+Test that identical (device_id, timestamp) pairs are flagged as duplicates. ... ok
+test_invalid_device_id (test_example.TestSensorMessageValidation.test_invalid_device_id)
+Test that empty or non-string device IDs are rejected. ... ok
+test_invalid_timestamp (test_example.TestSensorMessageValidation.test_invalid_timestamp)
+Test that string, boolean, or None timestamps are rejected. ... ok
+test_missing_fields (test_example.TestSensorMessageValidation.test_missing_fields)
+Test that messages missing required fields or non-dict payloads are rejected. ... ok
+test_nan_and_infinity_rejection (test_example.TestSensorMessageValidation.test_nan_and_infinity_rejection)
+Test that non-finite floats (NaN, Inf, -Inf) are rejected for readings and timestamps. ... ok
+test_required_fixture_behavior (test_example.TestSensorMessageValidation.test_required_fixture_behavior)
+Verify the complete processing of the documented course fixture. ... ok
+test_same_timestamp_different_devices (test_example.TestSensorMessageValidation.test_same_timestamp_different_devices)
+Test that the same timestamp on different devices is NOT considered a duplicate. ... ok
+test_string_reading_rejection (test_example.TestSensorMessageValidation.test_string_reading_rejection)
+Test that string readings like '25.5' are rejected as invalid types. ... ok
+test_timestamp_ordering (test_example.TestSensorMessageValidation.test_timestamp_ordering)
+Test that accepted messages are returned sorted ascending by timestamp. ... ok
+test_valid_message (test_example.TestSensorMessageValidation.test_valid_message)
+Test that a well-formed message passes validation without error. ... ok
+test_zero_reading_accepted (test_example.TestSensorMessageValidation.test_zero_reading_accepted)
+Test that zero readings (0, 0.0) are valid numeric measurements. ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.002s
+
+OK
+
+Exit Code: 0
+
+
+3. Controlled Mutation Test (Negative Verification):
+---------------------------------------------------
+A deliberate mutation was introduced into `validate_sensor_message()` in `example.py` by
+removing the explicit boolean check for readings:
+  # Mutation:
+  reading = message["reading"]
+  if not isinstance(reading, (int, float)): # Boolean is a subclass of int, so True/False would pass!
+
+Command executed:
+$ python3 -m unittest discover -s 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t022 -p "test_*.py"
+
+Output:
+F............
+======================================================================
+FAIL: test_boolean_reading_rejection (test_example.TestSensorMessageValidation.test_boolean_reading_rejection)
+Test that boolean values for readings are rejected, avoiding bool-as-int bugs.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File ".../applied-labs/r15-t022/test_example.py", line 112, in test_boolean_reading_rejection
+    with self.assertRaises(TypeError):
+AssertionError: TypeError not raised
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+FAILED (failures=1)
+
+Exit Code: 1 (Nonzero exit code confirmed on test failure)
+
+
+4. Restoration and Final Verification:
+-------------------------------------
+Restored the explicit boolean check:
+  reading = message["reading"]
+  if isinstance(reading, bool) or not isinstance(reading, (int, float)):
+      raise TypeError(...)
+
+Command executed:
+$ python3 -m unittest discover -s 1-getting-started/lessons/3-sensors-and-actuators/applied-labs/r15-t022 -p "test_*.py"
+
+Output:
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 0.001s
+
+OK
+
+Exit Code: 0
