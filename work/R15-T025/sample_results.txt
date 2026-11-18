@@ -1,0 +1,64 @@
+Task R15-T025: Sample Execution Results
+========================================
+Command Executed:
+$ python3 1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025/example.py
+
+Output:
+================================================================================
+Task R15-T025: Sensor-Message Validation — Offline Service Adapter
+Context: Lesson 1-2 Edge Ingestion & Offline Service Simulation
+================================================================================
+
+INPUT TELEMETRY STREAM:
+--------------------------------------------------------------------------------
+  Input 1: {'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}
+  Input 2: {'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}
+  Input 3: {'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}
+  Input 4: {'device_id': 'Device-A', 'timestamp': 3, 'reading': 'hot'}
+
+PROCESSING OUTCOMES & CLASSIFICATION:
+--------------------------------------------------------------------------------
+  • Accepted Messages (2):
+      Device: Device-A   Timestamp: 1      Reading: 10
+      Device: Device-A   Timestamp: 2      Reading: 20
+  • Duplicate Messages (1):
+      {'device_id': 'Device-A', 'timestamp': 1, 'reading': 10} -> Duplicate (device_id, timestamp) pair already seen: ('Device-A', 1).
+  • Rejected Messages (1):
+      {'device_id': 'Device-A', 'timestamp': 3, 'reading': 'hot'} -> Field 'reading' must be a finite number (int or float), got str.
+
+LOCAL SERVICE ADAPTER ACKNOWLEDGEMENTS:
+--------------------------------------------------------------------------------
+  [DELIVERED] ID: ack-Device-A-1 | Device: Device-A | Ts: 1
+         Details: Message accepted and acknowledged by in-memory mock service.
+  [DELIVERED] ID: ack-Device-A-2 | Device: Device-A | Ts: 2
+         Details: Message accepted and acknowledged by in-memory mock service.
+
+SERVICE DELIVERY SUMMARY:
+--------------------------------------------------------------------------------
+  • Confirmed Delivered: 2 message(s)
+      Device: Device-A, Ts: 1, Reading: 10
+      Device: Device-A, Ts: 2, Reading: 20
+  • Failed Deliveries:   0 message(s)
+
+PIPELINE CONTRACT VERIFICATION:
+--------------------------------------------------------------------------------
+✓ Pipeline Contract Check PASSED: All delivery and sorting guarantees verified.
+
+DEMONSTRATION: Intentional Failure & Delivery Guard
+--------------------------------------------------------------------------------
+  Simulated Service Outage:
+    Accepted for delivery: 2
+    Confirmed Delivered:   0 (Must be 0)
+    Failed Deliveries:     2 (Must match accepted count)
+  ✓ Confirmed: Pipeline never marks failed service submissions as delivered.
+
+DEMONSTRATION: Contract Tampering Detection
+--------------------------------------------------------------------------------
+  ✓ Confirmed: Corrupted result was successfully caught by contract verifier:
+    -> Contract violation: Accepted messages violate sorting rule: (2, 'Device-A', 20) > (1, 'Device-A', 10).
+
+EDUCATIONAL DISCLAIMER:
+--------------------------------------------------------------------------------
+This simulation demonstrates local edge validation and a callable adapter interface.
+It does NOT connect to real cloud services, physical networks, external APIs, or hardware.
+================================================================================

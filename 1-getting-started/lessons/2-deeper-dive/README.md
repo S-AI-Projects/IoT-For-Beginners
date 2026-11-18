@@ -249,6 +249,14 @@ Single-board computers are used for professional IoT deployments, not just as de
 
 The challenge in the last lesson was to list as many IoT devices as you can that are in your home, school or workplace. For every device in this list, do you think they are built around microcontrollers or single-board computers, or even a mixture of both?
 
+## Applied Lab - Sensor-Message Validation: Offline Service Adapter
+
+Explore how edge devices validate incoming telemetry, filter duplicate transmissions, sort events chronologically, and decouple downstream cloud communication using an injectable callable service adapter:
+
+* [Applied Lab: Sensor-Message Validation — Offline Service Adapter](applied-labs/r15-t025/README.md)
+
+This lab introduces edge-processing simulation and decoupled service adapters using Python standard library components. **Scope & Limitations:** This is an in-memory simulation using mock adapters; it does not connect to real cloud services, physical networks, external APIs, or remote IoT hubs.
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/4)

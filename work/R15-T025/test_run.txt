@@ -1,0 +1,57 @@
+Task R15-T025: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_adapter_failure_behavior (test_example.TestOfflineServiceAdapter.test_adapter_failure_behavior)
+Verify that adapter reporting failure or raising exception records failed deliveries. ... ok
+test_adapter_returns_invalid_status (test_example.TestOfflineServiceAdapter.test_adapter_returns_invalid_status)
+Verify that an acknowledgement with unsupported status is treated as failed delivery. ... ok
+test_adapter_returns_none (test_example.TestOfflineServiceAdapter.test_adapter_returns_none)
+Verify that an adapter returning None is treated as failed delivery with descriptive details. ... ok
+test_adapter_returns_string (test_example.TestOfflineServiceAdapter.test_adapter_returns_string)
+Verify that an adapter returning a string is treated as failed delivery with descriptive details. ... ok
+test_boolean_numeric_values (test_example.TestOfflineServiceAdapter.test_boolean_numeric_values)
+Verify that booleans used in timestamp or reading fields are rejected. ... ok
+test_chronological_ordering (test_example.TestOfflineServiceAdapter.test_chronological_ordering)
+Verify that accepted messages are sorted ascending by timestamp. ... ok
+test_chronological_ordering_tie_breaking (test_example.TestOfflineServiceAdapter.test_chronological_ordering_tie_breaking)
+Verify tie-breaking (timestamp, device_id, reading) for matching timestamps. ... ok
+test_correct_order_of_messages_submitted_to_adapter (test_example.TestOfflineServiceAdapter.test_correct_order_of_messages_submitted_to_adapter)
+Verify that messages are passed to the adapter in strictly ascending chronological order. ... ok
+test_deliberate_contract_failure_detection (test_example.TestOfflineServiceAdapter.test_deliberate_contract_failure_detection)
+Verify that contract verifier catches corrupted results and raises AssertionError. ... ok
+test_deterministic_adapter_acknowledgements (test_example.TestOfflineServiceAdapter.test_deterministic_adapter_acknowledgements)
+Verify that InMemoryServiceAdapter returns consistent, predictable acknowledgements. ... ok
+test_duplicate_detection (test_example.TestOfflineServiceAdapter.test_duplicate_detection)
+Verify that duplicate (device_id, timestamp) pairs are isolated. ... ok
+test_empty_device_id (test_example.TestOfflineServiceAdapter.test_empty_device_id)
+Verify that empty, whitespace-only, or non-string device IDs are rejected. ... ok
+test_empty_input (test_example.TestOfflineServiceAdapter.test_empty_input)
+Verify that processing an empty input stream produces empty results and satisfies contract. ... ok
+test_injected_callable_called (test_example.TestOfflineServiceAdapter.test_injected_callable_called)
+Verify that the injected service adapter callable is invoked for accepted messages only. ... ok
+test_invalid_messages_not_reserving_identity (test_example.TestOfflineServiceAdapter.test_invalid_messages_not_reserving_identity)
+Verify that a rejected message does not reserve its (device_id, timestamp) key. ... ok
+test_invalid_string_reading (test_example.TestOfflineServiceAdapter.test_invalid_string_reading)
+Verify that string readings (e.g. 'hot' or numeric strings) are rejected. ... ok
+test_malformed_json (test_example.TestOfflineServiceAdapter.test_malformed_json)
+Verify that malformed JSON strings are rejected with ValueError. ... ok
+test_missing_fields (test_example.TestOfflineServiceAdapter.test_missing_fields)
+Verify that messages missing any required field are rejected. ... ok
+test_non_finite_numbers (test_example.TestOfflineServiceAdapter.test_non_finite_numbers)
+Verify that NaN and Infinity are rejected. ... ok
+test_non_object_json (test_example.TestOfflineServiceAdapter.test_non_object_json)
+Verify that non-object JSON values (arrays, primitives, numbers) are rejected. ... ok
+test_required_fixture_behavior (test_example.TestOfflineServiceAdapter.test_required_fixture_behavior)
+Verify the exact required 4-message fixture outcomes, delivery, and ordering. ... ok
+test_valid_zero_values (test_example.TestOfflineServiceAdapter.test_valid_zero_values)
+Verify that zero is accepted as a valid timestamp and reading. ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.003s
+
+OK
+
+Exit Code: 0
