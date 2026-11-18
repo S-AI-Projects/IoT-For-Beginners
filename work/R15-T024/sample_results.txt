@@ -1,0 +1,60 @@
+Task R15-T024: Sample Execution Results
+========================================
+Command Executed:
+$ python3 1-getting-started/lessons/4-connect-internet/applied-labs/r15-t024/example.py
+
+Output:
+================================================================================
+Task R15-T024: Sensor-Message Validation — Invariant & State Trace
+Context: Lesson 1-4 Internet Telemetry Ingestion over MQTT
+================================================================================
+
+STEP-BY-STEP INTERMEDIATE STATE TRACE:
+--------------------------------------------------------------------------------
+Step 1:
+  Input:   {'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}
+  Outcome: [ACCEPTED] Valid message accepted and sorted chronologically.
+  Accepted (1):   [{'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}]
+  Duplicates (0): []
+  Rejected (0):   []
+--------------------------------------------------------------------------------
+Step 2:
+  Input:   {'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}
+  Outcome: [ACCEPTED] Valid message accepted and sorted chronologically.
+  Accepted (2):   [{'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}, {'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}]
+  Duplicates (0): []
+  Rejected (0):   []
+--------------------------------------------------------------------------------
+Step 3:
+  Input:   {'device_id': 'Device-A', 'timestamp': 1, 'reading': 11}
+  Outcome: [DUPLICATE] Duplicate (device_id, timestamp) pair already seen: ('Device-A', 1).
+  Accepted (2):   [{'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}, {'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}]
+  Duplicates (1): [{'message': {'device_id': 'Device-A', 'timestamp': 1, 'reading': 11}, 'reason': "Duplicate (device_id, timestamp) pair already seen: ('Device-A', 1)."}]
+  Rejected (0):   []
+--------------------------------------------------------------------------------
+Step 4:
+  Input:   {'device_id': 'Device-A', 'timestamp': 3, 'reading': 'not-a-number'}
+  Outcome: [REJECTED] Field 'reading' must be a finite number (int or float), got str.
+  Accepted (2):   [{'device_id': 'Device-A', 'timestamp': 1, 'reading': 10}, {'device_id': 'Device-A', 'timestamp': 2, 'reading': 20}]
+  Duplicates (1): [{'message': {'device_id': 'Device-A', 'timestamp': 1, 'reading': 11}, 'reason': "Duplicate (device_id, timestamp) pair already seen: ('Device-A', 1)."}]
+  Rejected (1):   [{'input': {'device_id': 'Device-A', 'timestamp': 3, 'reading': 'not-a-number'}, 'reason': "Field 'reading' must be a finite number (int or float), got str."}]
+--------------------------------------------------------------------------------
+
+FINAL SUMMARY:
+  • Accepted Messages (2):
+      Device: Device-A   Timestamp: 1    Reading: 10
+      Device: Device-A   Timestamp: 2    Reading: 20
+  • Duplicates Detected (1):
+      {'device_id': 'Device-A', 'timestamp': 1, 'reading': 11} -> Duplicate (device_id, timestamp) pair already seen: ('Device-A', 1).
+  • Rejected Messages (1):
+      {'device_id': 'Device-A', 'timestamp': 3, 'reading': 'not-a-number'} -> Field 'reading' must be a finite number (int or float), got str.
+
+PIPELINE INVARIANT VERIFICATION:
+--------------------------------------------------------------------------------
+✓ Pipeline Invariant Check PASSED: All invariants successfully verified.
+
+DEMONSTRATION: Intentional Corruption Detection
+--------------------------------------------------------------------------------
+✓ Confirmed: Corrupted result was successfully caught by invariant checker:
+  -> Invariant violation: Final accepted messages do not agree with the last trace state.
+================================================================================

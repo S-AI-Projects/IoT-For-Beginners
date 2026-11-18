@@ -432,6 +432,14 @@ The challenge in the last three lessons was to list as many IoT devices as you c
 
 For these devices, think about what messages they might be sending or receiving. What telemetry do they send? What messages or commands might they receive? Do you think they are secure?
 
+## Applied Lab - Sensor-Message Validation: Invariant & State Trace
+
+Explore how an IoT ingestion pipeline validates incoming JSON telemetry, filters duplicate transmissions, orders messages chronologically, and maintains verifiable system invariants:
+
+* [Applied Lab: Sensor-Message Validation — Invariant and State Trace](applied-labs/r15-t024/README.md)
+
+This lab introduces intermediate state tracing and invariant verification using Python. **Scope & Limitations:** This is a local simulation using predefined telemetry fixtures; it does not connect to a live MQTT broker, real hardware sensors, or cloud streaming services.
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/8)
