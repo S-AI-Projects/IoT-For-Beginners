@@ -1,0 +1,148 @@
+Task R15-T025: Comparison, Delivery Contract, and Verification Evidence
+========================================================================
+
+1. REQUIRED FIXTURE INPUTS AND EXPECTED VS. ACTUAL RESULTS
+----------------------------------------------------------
+Fixture Inputs (in exact execution sequence):
+  Input 1: {"device_id": "Device-A", "timestamp": 2, "reading": 20}
+  Input 2: {"device_id": "Device-A", "timestamp": 1, "reading": 10}
+  Input 3: {"device_id": "Device-A", "timestamp": 1, "reading": 10}
+  Input 4: {"device_id": "Device-A", "timestamp": 3, "reading": "hot"}
+
+Summary Comparison Table:
+---------------------------------------------------------------------------------------------------------------------
+Item     Payload                                Expected Outcome        Actual Outcome          Match?
+---------------------------------------------------------------------------------------------------------------------
+Input 1  Device-A, ts=2, reading=20             ACCEPTED                ACCEPTED                YES
+Input 2  Device-A, ts=1, reading=10             ACCEPTED (Sorted)       ACCEPTED (Sorted)       YES
+Input 3  Device-A, ts=1, reading=10             DUPLICATE               DUPLICATE               YES
+Input 4  Device-A, ts=3, reading="hot"          REJECTED (Non-numeric)  REJECTED (Non-numeric)  YES
+---------------------------------------------------------------------------------------------------------------------
+
+Final Accepted Ordering Verification:
+  Expected: Device-A at timestamp 1 followed by Device-A at timestamp 2 (timestamps: [1, 2])
+  Actual:   [{"device_id": "Device-A", "timestamp": 1, "reading": 10},
+             {"device_id": "Device-A", "timestamp": 2, "reading": 20}]
+  Match:    YES (Sorted chronologically by (timestamp, device_id, reading))
+
+Service Adapter Delivery Verification:
+  Injected Callable: InMemoryServiceAdapter
+  Order Passed to Adapter:
+    1. {"device_id": "Device-A", "timestamp": 1, "reading": 10} -> DELIVERED
+    2. {"device_id": "Device-A", "timestamp": 2, "reading": 20} -> DELIVERED
+  Confirmed Delivered Count: 2
+  Failed Deliveries Count:   0
+  Match:    YES
+
+
+2. CALLABLE INTERFACE DESIGN AND DELIVERY SEPARATION
+----------------------------------------------------
+Callable Interface:
+  `process_message_stream(inputs, service_adapter=None) -> ProcessingResult`
+
+Adapter Signature:
+  `service_adapter(message: Dict[str, Any]) -> ServiceAcknowledgement`
+
+Logical Separation:
+  - Validation: Isolates malformed inputs into `rejected` list; does not reserve identity.
+  - Deduplication: Isolates repeated (device_id, timestamp) pairs into `duplicates` list.
+  - Chronological Sorting: Sorts `accepted` messages prior to downstream submission.
+  - Adapter Submission: Only accepted messages are submitted, in strict chronological order.
+  - Adapter Return Validation: The pipeline inspects the adapter return value before accessing fields:
+      * Requires a `ServiceAcknowledgement` instance.
+      * Requires status to be strictly "DELIVERED" or "FAILED".
+      * If the adapter returns `None`, a string, an unexpected status (e.g. "PENDING"), or raises an exception,
+        the pipeline produces a `ServiceAcknowledgement` with status "FAILED" and descriptive details.
+  - Delivery Guard: If the acknowledgement status is != "DELIVERED", the message is routed to
+    `failed_deliveries` and NEVER falsely marked in `delivered`.
+
+
+3. CONTRACT VERIFICATION RESULTS
+--------------------------------
+Executed: verify_pipeline_contract(fixture, result, adapter=adapter)
+Result: PASSED (Returns True)
+
+Verified Contract Guarantees:
+  1. Message Conservation: len(accepted: 2) + len(duplicates: 1) + len(rejected: 1) == 4 inputs.
+  2. No duplicate identity keys in accepted messages.
+  3. Deterministic chronological sorting: (1, 'Device-A', 10) <= (2, 'Device-A', 20).
+  4. Delivery Accounting: len(delivered: 2) + len(failed_deliveries: 0) == len(accepted: 2).
+  5. Acknowledgements Count: exactly 2 acks returned for 2 accepted messages.
+  6. Acknowledgement Validation: All acks are ServiceAcknowledgement instances with status in ("DELIVERED", "FAILED").
+  7. Delivery Integrity: Delivered messages and failed deliveries are mutually exclusive.
+  8. Audit Verification: InMemoryServiceAdapter.submitted_messages exactly matches accepted list.
+
+
+4. DELIBERATE WRONG-RESULT / CORRUPTION DETECTION EVIDENCE
+----------------------------------------------------------
+
+Case 4.1: Corrupted Delivery State (Marking a failed delivery as delivered)
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025')
+      from example import get_required_fixture, process_message_stream, verify_pipeline_contract, InMemoryServiceAdapter
+      from copy import deepcopy
+      f = get_required_fixture()
+      fail_adapter = InMemoryServiceAdapter(should_fail=True)
+      res = process_message_stream(f, service_adapter=fail_adapter)
+      corrupted = deepcopy(res)
+      corrupted.failed_deliveries.pop()
+      corrupted.delivered.append(corrupted.accepted[0])
+      verify_pipeline_contract(f, corrupted)
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    AssertionError: Contract violation: Keys {('Device-A', 1)} appear in both delivered and failed_deliveries.
+
+Case 4.2: Corrupted Sorting Order (Swapping accepted items out of order)
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025')
+      from example import get_required_fixture, process_message_stream, verify_pipeline_contract
+      from copy import deepcopy
+      f = get_required_fixture()
+      res = process_message_stream(f)
+      corrupted = deepcopy(res)
+      corrupted.accepted.reverse()
+      verify_pipeline_contract(f, corrupted)
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    AssertionError: Contract violation: Accepted messages violate sorting rule: (2, 'Device-A', 20) > (1, 'Device-A', 10).
+
+Case 4.3: Inconsistent Delivery Count (Altering total delivery outcomes)
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025')
+      from example import get_required_fixture, process_message_stream, verify_pipeline_contract, InMemoryServiceAdapter
+      from copy import deepcopy
+      f = get_required_fixture()
+      fail_adapter = InMemoryServiceAdapter(should_fail=True)
+      res = process_message_stream(f, service_adapter=fail_adapter)
+      corrupted = deepcopy(res)
+      corrupted.delivered.append(corrupted.accepted[0])
+      verify_pipeline_contract(f, corrupted)
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    AssertionError: Contract violation: Total delivery outcomes (3) does not match accepted messages (2).
+
+Case 4.4: Corrupted Acknowledgement Status in Contract Verification
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t025')
+      from example import get_required_fixture, process_message_stream, verify_pipeline_contract
+      from copy import deepcopy
+      f = get_required_fixture()
+      res = process_message_stream(f)
+      corrupted = deepcopy(res)
+      corrupted.acknowledgements[0].status = 'UNKNOWN'
+      verify_pipeline_contract(f, corrupted)
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    AssertionError: Contract violation: Acknowledgement status must be exactly 'DELIVERED' or 'FAILED', got 'UNKNOWN'.
