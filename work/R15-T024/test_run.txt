@@ -1,0 +1,47 @@
+Task R15-T024: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 1-getting-started/lessons/4-connect-internet/applied-labs/r15-t024 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_boolean_and_non_finite_numeric_values (test_example.TestSensorMessageValidationTrace.test_boolean_and_non_finite_numeric_values)
+Verify that booleans and non-finite floats (NaN, Inf) are rejected. ... ok
+test_corrupted_intermediate_snapshot_content_without_length_change (test_example.TestSensorMessageValidationTrace.test_corrupted_intermediate_snapshot_content_without_length_change)
+Verify that modifying snapshot message content without changing list length raises AssertionError. ... ok
+test_corrupted_intermediate_trace_snapshots (test_example.TestSensorMessageValidationTrace.test_corrupted_intermediate_trace_snapshots)
+Verify that tampering with intermediate trace snapshots raises AssertionError. ... ok
+test_deliberate_corruption_detection (test_example.TestSensorMessageValidationTrace.test_deliberate_corruption_detection)
+Verify that corrupted outputs violate invariants and raise AssertionError. ... ok
+test_duplicate_detection (test_example.TestSensorMessageValidationTrace.test_duplicate_detection)
+Verify that duplicate (device_id, timestamp) pairs are isolated. ... ok
+test_empty_device_id (test_example.TestSensorMessageValidationTrace.test_empty_device_id)
+Verify that empty, whitespace-only, or non-string device IDs are rejected. ... ok
+test_incorrect_step_numbers (test_example.TestSensorMessageValidationTrace.test_incorrect_step_numbers)
+Verify that non-sequential or non-1-based step numbers raise AssertionError. ... ok
+test_incorrect_tie_breaking_order (test_example.TestSensorMessageValidationTrace.test_incorrect_tie_breaking_order)
+Verify that tie-breaking (timestamp, device_id, reading) is enforced and detected. ... ok
+test_invalid_message_does_not_reserve_identity (test_example.TestSensorMessageValidationTrace.test_invalid_message_does_not_reserve_identity)
+Verify that a rejected message does not prevent a subsequent valid message with the same key. ... ok
+test_invalid_timestamp (test_example.TestSensorMessageValidationTrace.test_invalid_timestamp)
+Verify that string, boolean, or None timestamps are rejected. ... ok
+test_invariant_correctness (test_example.TestSensorMessageValidationTrace.test_invariant_correctness)
+Verify that check_pipeline_invariant passes on valid empty and non-empty streams. ... ok
+test_malformed_json (test_example.TestSensorMessageValidationTrace.test_malformed_json)
+Verify that malformed JSON strings or non-dict payloads are rejected. ... ok
+test_missing_fields (test_example.TestSensorMessageValidationTrace.test_missing_fields)
+Verify that messages missing any required field are rejected. ... ok
+test_required_fixture_behavior (test_example.TestSensorMessageValidationTrace.test_required_fixture_behavior)
+Verify the exact required 4-message fixture outcomes and ordering. ... ok
+test_state_trace_correctness (test_example.TestSensorMessageValidationTrace.test_state_trace_correctness)
+Verify that the intermediate state trace records accurate step-by-step state. ... ok
+test_string_reading_rejection (test_example.TestSensorMessageValidationTrace.test_string_reading_rejection)
+Verify that string readings are rejected. ... ok
+test_timestamp_ordering_out_of_order (test_example.TestSensorMessageValidationTrace.test_timestamp_ordering_out_of_order)
+Verify that accepted messages are sorted ascending by timestamp. ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.003s
+
+OK
+
+Exit Code: 0
