@@ -330,6 +330,14 @@ If you make a call to your storage to fetch the data you might be surprised to s
 
 It's nice to be able to display static data on a map as markers. Can you enhance this web app to add animation and show the path of the markers over time, using the timestamped json files? Here are [some samples](https://azuremapscodesamples.azurewebsites.net/) of using animation within maps.
 
+## Applied Lab - Geofence Membership: Refactoring Example
+
+Learn how to evaluate GPS location coordinates against an inclusive rectangular geofence and refactor boundary logic into modular, testable components:
+
+* [Applied Lab: Geofence Membership — Refactor the Teaching Example](applied-labs/r15-t026/README.md)
+
+This lab demonstrates local rectangular geofence membership testing in Python. The sample fixture uses `(latitude, longitude)` coordinates, contrasting with GeoJSON's `[longitude, latitude]` requirement. All rectangular boundaries are inclusive. **Scope & Limitations:** This is a local planar bounding box simulation in decimal degrees; it is not a spherical-distance model (Haversine/geodesic), live interactive map, or real cloud GPS service.
+
 ## Post-lecture quiz
 
 [Post-lecture quiz](https://black-meadow-040d15503.1.azurestaticapps.net/quiz/26)

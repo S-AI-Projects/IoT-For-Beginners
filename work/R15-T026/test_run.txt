@@ -1,0 +1,47 @@
+Task R15-T026: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 3-transport/lessons/3-visualize-location-data/applied-labs/r15-t026 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_baseline_refactored_equivalence_on_fixture (test_example.TestGeofenceMembershipRefactor.test_baseline_refactored_equivalence_on_fixture)
+Verify that baseline and refactored implementations return identical results. ... ok
+test_booleans_rejected (test_example.TestGeofenceMembershipRefactor.test_booleans_rejected)
+Verify that booleans (subclasses of int) are rejected for latitude and longitude. ... ok
+test_custom_bounds_parameterization (test_example.TestGeofenceMembershipRefactor.test_custom_bounds_parameterization)
+Verify that geofence bounds can be configured with custom rectangular ranges. ... ok
+test_deliberate_wrong_result_failure_caught (test_example.TestGeofenceMembershipRefactor.test_deliberate_wrong_result_failure_caught)
+Demonstrate that an intentional wrong expectation causes an AssertionError. ... ok
+test_extracted_is_inside_geofence_directly (test_example.TestGeofenceMembershipRefactor.test_extracted_is_inside_geofence_directly)
+Test the extracted is_inside_geofence function independently. ... ok
+test_inclusive_boundaries (test_example.TestGeofenceMembershipRefactor.test_inclusive_boundaries)
+Verify that coordinates exactly on minimum and maximum boundaries are classified INSIDE. ... ok
+test_invalid_latitude_range (test_example.TestGeofenceMembershipRefactor.test_invalid_latitude_range)
+Verify that latitudes exceeding [-90, 90] are REJECTED, not classified OUTSIDE. ... ok
+test_invalid_longitude_range (test_example.TestGeofenceMembershipRefactor.test_invalid_longitude_range)
+Verify that longitudes exceeding [-180, 180] are REJECTED, not classified OUTSIDE. ... ok
+test_invalid_records_never_classified_outside (test_example.TestGeofenceMembershipRefactor.test_invalid_records_never_classified_outside)
+Verify that invalid coordinates cannot be misinterpreted as OUTSIDE geofence. ... ok
+test_just_outside_each_boundary (test_example.TestGeofenceMembershipRefactor.test_just_outside_each_boundary)
+Verify coordinates immediately outside each of the four rectangular boundaries. ... ok
+test_missing_coordinate_fields (test_example.TestGeofenceMembershipRefactor.test_missing_coordinate_fields)
+Verify that records with missing latitude or longitude are REJECTED. ... ok
+test_non_finite_numbers_rejected (test_example.TestGeofenceMembershipRefactor.test_non_finite_numbers_rejected)
+Verify that NaN and Infinity values are rejected. ... ok
+test_record_identity_preserved (test_example.TestGeofenceMembershipRefactor.test_record_identity_preserved)
+Verify that record IDs are strictly preserved in the classification results. ... ok
+test_required_fixture_records (test_example.TestGeofenceMembershipRefactor.test_required_fixture_records)
+Verify the exact required 4-record fixture against refactored classifier. ... ok
+test_required_fixture_records_baseline (test_example.TestGeofenceMembershipRefactor.test_required_fixture_records_baseline)
+Verify the exact required 4-record fixture against baseline classifier. ... ok
+test_string_coordinates_rejected (test_example.TestGeofenceMembershipRefactor.test_string_coordinates_rejected)
+Verify that string representations are not silently converted to floats. ... ok
+test_valid_zero_coordinates_accepted (test_example.TestGeofenceMembershipRefactor.test_valid_zero_coordinates_accepted)
+Verify that 0.0 is treated as a valid numeric coordinate, not missing or falsy. ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.001s
+
+OK
+
+Exit Code: 0

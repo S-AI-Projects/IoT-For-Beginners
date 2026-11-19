@@ -1,0 +1,49 @@
+Task R15-T026: Sample Execution Results
+========================================
+Command Executed:
+$ python3 3-transport/lessons/3-visualize-location-data/applied-labs/r15-t026/example.py
+
+Output:
+================================================================================
+Task R15-T026: Geofence Membership — Refactor Teaching Example
+Context: Lesson 3-3 GPS Location Data & GeoJSON Visualization
+================================================================================
+
+GEOFENCE DEFINITION:
+--------------------------------------------------------------------------------
+  Latitude Range:  [10.0, 20.0] (inclusive)
+  Longitude Range: [70.0, 80.0] (inclusive)
+  Note: Coordinate order is (latitude, longitude) in local Python code.
+        In GeoJSON (RFC 7946), coordinates are formatted [longitude, latitude].
+
+INPUT FIXTURE RECORDS:
+--------------------------------------------------------------------------------
+  Record A: Latitude = 15, Longitude = 75
+  Record B: Latitude = 10, Longitude = 70
+  Record C: Latitude = 21, Longitude = 75
+  Record D: Latitude = 100, Longitude = 75
+
+CLASSIFICATION RESULTS & EQUIVALENCE COMPARISON:
+--------------------------------------------------------------------------------
+Record   (Lat, Lon)         Baseline     Refactored   Match?   Reason
+--------------------------------------------------------------------------------
+A        (15, 75)           INSIDE       INSIDE       YES      Coordinate is within geofence.
+B        (10, 70)           INSIDE       INSIDE       YES      Coordinate is within geofence.
+C        (21, 75)           OUTSIDE      OUTSIDE      YES      Coordinate is outside geofence.
+D        (100, 75)          REJECTED     REJECTED     YES      Latitude 100 out of valid range [-90, 90].
+
+EQUIVALENCE PROOF:
+--------------------------------------------------------------------------------
+✓ Equivalence Check PASSED: Baseline and refactored implementations return identical results.
+
+DEMONSTRATION: Intentional Failure Detection
+--------------------------------------------------------------------------------
+✓ Confirmed: Deliberately incorrect expected classification caught successfully:
+  -> Deliberate check failed as expected: Record C is OUTSIDE, not INSIDE.
+
+EDUCATIONAL DISCLAIMER:
+--------------------------------------------------------------------------------
+This simulation demonstrates local rectangular geofencing in decimal degrees.
+It is NOT a spherical-distance model (Haversine/geodesic) and does NOT connect
+to real GPS sensors, Azure Maps services, or cloud infrastructure.
+================================================================================
