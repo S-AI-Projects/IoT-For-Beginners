@@ -1,0 +1,103 @@
+Task R15-T026: Comparison, Baseline/Refactored Equivalence, and Verification Evidence
+======================================================================================
+
+1. REQUIRED FIXTURE INPUTS AND EXPECTED VS. ACTUAL RESULTS
+----------------------------------------------------------
+Geofence Definition (Inclusive Rectangular):
+  Latitude Range:  [10.0, 20.0]
+  Longitude Range: [70.0, 80.0]
+
+Fixture Inputs (in exact execution sequence):
+  Record A: {"id": "A", "latitude": 15, "longitude": 75}
+  Record B: {"id": "B", "latitude": 10, "longitude": 70}
+  Record C: {"id": "C", "latitude": 21, "longitude": 75}
+  Record D: {"id": "D", "latitude": 100, "longitude": 75}
+
+Summary Comparison Table:
+---------------------------------------------------------------------------------------------------------------------
+Record   (Lat, Lon)  Expected Outcome        Baseline Status  Refactored Status  Match?   Reason
+---------------------------------------------------------------------------------------------------------------------
+A        (15, 75)    INSIDE                  INSIDE           INSIDE             YES      Coordinate is within geofence.
+B        (10, 70)    INSIDE (Inclusive)      INSIDE           INSIDE             YES      Coordinate is within geofence.
+C        (21, 75)    OUTSIDE                 OUTSIDE          OUTSIDE            YES      Coordinate is outside geofence.
+D        (100, 75)   REJECTED (Lat > 90)     REJECTED         REJECTED           YES      Latitude 100 out of valid range [-90, 90].
+---------------------------------------------------------------------------------------------------------------------
+
+Equivalence Check:
+  Baseline and Refactored return identical results for all 4 fixture records: PASSED (Match: 100%).
+
+
+2. BASELINE AND REFACTORED ARCHITECTURAL COMPARISON
+---------------------------------------------------
+Baseline Architecture (Monolithic):
+  Function: `classify_record_baseline(record, bounds) -> ClassificationResult`
+  Behavior: Combines input extraction, latitude/longitude type validation, range checks,
+            and bounding box containment within one large function.
+
+Refactored Architecture (Separation of Concerns):
+  Function 1: `validate_coordinate_fields(record) -> (is_valid, lat, lon, reason)`
+              Handles field extraction, type enforcement (no booleans, no strings, no non-finite values),
+              and geographic bounds [-90, 90] and [-180, 180].
+  Function 2 (Extracted Responsibility):
+              `is_inside_geofence(latitude, longitude, bounds) -> bool`
+              Pure geometric boundary test verifying that latitude and longitude fall within the
+              inclusive bounding box.
+  Function 3: `classify_record_refactored(record, bounds) -> ClassificationResult`
+              Orchestrates validation and boundary testing, returning structured ClassificationResult.
+
+
+3. EQUIVALENCE VERIFICATION
+---------------------------
+Executed: `verify_equivalence(fixture, bounds)`
+Result: PASSED (Returns True)
+Guarantees verified:
+  1. Record count from baseline and refactored classifiers is identical.
+  2. Compares the complete `ClassificationResult` for every record, including:
+     - Record ID
+     - Latitude
+     - Longitude
+     - Classification status
+     - Rejection or classification reason
+  3. Raises a descriptive AssertionError if any field differs between baseline and refactored results.
+
+
+4. DELIBERATE WRONG-RESULT / CONTRACT FAILURE DETECTION EVIDENCE
+----------------------------------------------------------------
+
+Case 4.1: Deliberate Wrong Expected Classification (Record C claimed INSIDE instead of OUTSIDE)
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '3-transport/lessons/3-visualize-location-data/applied-labs/r15-t026')
+      from example import classify_record_refactored, GeofenceBounds
+      bounds = GeofenceBounds()
+      rec = {'id': 'C', 'latitude': 21.0, 'longitude': 75.0}
+      res = classify_record_refactored(rec, bounds)
+      assert res.status == 'INSIDE', f'Deliberate test failure: Record C is {res.status}, expected INSIDE.'
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    Traceback (most recent call last):
+      File "<string>", line 9, in <module>
+        assert res.status == 'INSIDE', f'Deliberate test failure: Record C is {res.status}, expected INSIDE.'
+               ^^^^^^^^^^^^^^^^^^^^^^
+    AssertionError: Deliberate test failure: Record C is OUTSIDE, expected INSIDE.
+
+Case 4.2: Equivalence Check Failure When An Implementation Is Tampered
+  Command Executed:
+    $ python3 -c "
+      import sys
+      sys.path.insert(0, '3-transport/lessons/3-visualize-location-data/applied-labs/r15-t026')
+      from example import get_required_fixture, verify_equivalence
+      import example
+      example.classify_record_baseline = lambda rec, bounds: example.ClassificationResult(id=rec['id'], latitude=rec.get('latitude'), longitude=rec.get('longitude'), status='TAMPERED')
+      verify_equivalence(get_required_fixture())
+    "
+  Exit Code: 1 (Nonzero failure confirmed)
+  Captured Traceback:
+    Traceback (most recent call last):
+      File "<string>", line 7, in <module>
+        verify_equivalence(get_required_fixture())
+      File ".../example.py", line 274, in verify_equivalence
+        raise AssertionError(...)
+    AssertionError: Equivalence mismatch for record A: baseline=TAMPERED, refactored=INSIDE.

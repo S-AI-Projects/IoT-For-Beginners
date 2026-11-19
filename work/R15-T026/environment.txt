@@ -1,0 +1,10 @@
+Task R15-T026: Environment Information
+========================================
+Execution Timestamp: 2026-11-19T23:06:20+05:30
+Branch: R15-T026
+Python Version: Python 3.14.3
+Git Version: git version 2.56.0
+Operating System / Platform: macOS (Darwin 27.0.0 arm64)
+External Packages: None (Python 3 standard library only; no external packages, cloud APIs, GIS libraries, or hardware required)
+Test Framework: unittest (Python standard library)
+Simulation Constraints: Local planar bounding box simulation in decimal degrees; no GPS hardware or Azure Maps network calls
