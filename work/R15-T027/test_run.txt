@@ -1,0 +1,52 @@
+Task R15-T027: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 5-retail/lessons/1-train-stock-detector/applied-labs/r15-t027 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_boolean_coordinates_rejected (test_example.TestBoundingBoxIoU.test_boolean_coordinates_rejected)
+Booleans must be explicitly rejected despite being int subclasses in Python. ... ok
+test_cli_boundary_scenario_subprocess (test_example.TestBoundingBoxIoU.test_cli_boundary_scenario_subprocess)
+Run the 'boundary' CLI scenario in a fresh process and verify exit 0. ... ok
+test_cli_failure_scenario_subprocess (test_example.TestBoundingBoxIoU.test_cli_failure_scenario_subprocess)
+Run the deliberate 'failure' CLI scenario in a fresh process and verify non-zero exit. ... ok
+test_cli_normal_scenario_subprocess (test_example.TestBoundingBoxIoU.test_cli_normal_scenario_subprocess)
+Run the default / 'normal' CLI scenario in a fresh process and verify exit 0. ... ok
+test_containment (test_example.TestBoundingBoxIoU.test_containment)
+When one box completely contains another, intersection equals smaller box area. ... ok
+test_corner_touching_boxes (test_example.TestBoundingBoxIoU.test_corner_touching_boxes)
+Boxes touching only at a single vertex point must have 0.0 IoU. ... ok
+test_disjoint_boxes (test_example.TestBoundingBoxIoU.test_disjoint_boxes)
+Non-overlapping, disjoint bounding boxes must produce an IoU of 0.0. ... ok
+test_edge_touching_boxes_horizontal (test_example.TestBoundingBoxIoU.test_edge_touching_boxes_horizontal)
+Boxes that share a vertical edge boundary must have 0.0 intersection and 0.0 IoU. ... ok
+test_edge_touching_boxes_vertical (test_example.TestBoundingBoxIoU.test_edge_touching_boxes_vertical)
+Boxes that share a horizontal edge boundary must have 0.0 intersection and 0.0 IoU. ... ok
+test_identical_boxes (test_example.TestBoundingBoxIoU.test_identical_boxes)
+Identical bounding boxes must produce an IoU of exactly 1.0. ... ok
+test_inverted_x_coordinates_rejected (test_example.TestBoundingBoxIoU.test_inverted_x_coordinates_rejected)
+Boxes where x_min > x_max must raise ValueError. ... ok
+test_inverted_y_coordinates_rejected (test_example.TestBoundingBoxIoU.test_inverted_y_coordinates_rejected)
+Boxes where y_min > y_max must raise ValueError. ... ok
+test_mandatory_worked_fixture (test_example.TestBoundingBoxIoU.test_mandatory_worked_fixture)
+Verify the exact mandatory worked fixture: Box A [0,0,2,2], Box B [1,1,3,3]. ... ok
+test_nan_and_infinity_rejected (test_example.TestBoundingBoxIoU.test_nan_and_infinity_rejected)
+NaN and positive/negative infinity coordinates must raise ValueError. ... ok
+test_non_numeric_coordinates_rejected (test_example.TestBoundingBoxIoU.test_non_numeric_coordinates_rejected)
+Non-numeric coordinate types (e.g. strings, None) must raise TypeError. ... ok
+test_non_sequence_box_rejected (test_example.TestBoundingBoxIoU.test_non_sequence_box_rejected)
+Non-sequence inputs must raise TypeError. ... ok
+test_partial_overlap (test_example.TestBoundingBoxIoU.test_partial_overlap)
+Verify standard rectangular partial overlap. ... ok
+test_wrong_coordinate_count_rejected (test_example.TestBoundingBoxIoU.test_wrong_coordinate_count_rejected)
+Boxes with fewer or more than 4 coordinates must raise ValueError. ... ok
+test_zero_area_boxes_behavior (test_example.TestBoundingBoxIoU.test_zero_area_boxes_behavior)
+Zero-width and zero-height boxes must be permitted and yield 0.0 intersection. ... ok
+test_zero_union_area_returns_zero (test_example.TestBoundingBoxIoU.test_zero_union_area_returns_zero)
+When both boxes have zero area, union area is 0.0 and IoU must return 0.0. ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.192s
+
+OK
+Exit Code: 0

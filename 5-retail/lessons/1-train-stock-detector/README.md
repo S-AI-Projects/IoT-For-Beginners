@@ -171,6 +171,39 @@ Every time you make a prediction using the quick test option, the image and resu
 
 1. Retrain and re-test the model.
 
+## Applied Lab - Bounding-Box Intersection over Union (IoU)
+
+Evaluate bounding-box overlap geometry used in object detection evaluation and Non-Maximum Suppression (NMS):
+
+* [Applied Lab: Bounding-box Intersection over Union (IoU)](applied-labs/r15-t027/README.md)
+
+### Overview & Convention
+Bounding boxes use the axis-aligned coordinate format:
+```text
+[x_min, y_min, x_max, y_max]
+```
+where $x$ increases to the right and $y$ increases downward in digital image pixel space.
+
+### Mandatory Fixture & Expected IoU
+- **Box A**: `[0, 0, 2, 2]` (Area = 4)
+- **Box B**: `[1, 1, 3, 3]` (Area = 4)
+- **Intersection Area**: 1
+- **Union Area**: 4 + 4 - 1 = 7
+- **Expected IoU**: 1 / 7 ≈ 0.142857142857
+
+### Run & Test Commands
+Run the simulation:
+```bash
+python3 5-retail/lessons/1-train-stock-detector/applied-labs/r15-t027/example.py
+```
+
+Run the unit tests:
+```bash
+python3 -m unittest discover -s 5-retail/lessons/1-train-stock-detector/applied-labs/r15-t027 -p "test_*.py"
+```
+
+> 💁 **Scope & Limitations**: This is a local 2D planar geometry simulation using numeric coordinate arrays. It does not load or process images, train or run object detectors, generate neural predictions, or interact with Azure Custom Vision.
+
 ---
 
 ## 🚀 Challenge
