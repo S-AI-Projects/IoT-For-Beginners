@@ -1,0 +1,10 @@
+Task R15-T029: Execution Environment
+======================================
+Execution Timestamp: 2026-11-21T22:48:47+05:30
+Current Git Branch: R15-T029
+Python Version: Python 3.14.3
+Git Version: git version 2.56.0
+Operating System / Platform: Darwin 27.0.0 arm64 (macOS)
+Standard Library Requirement: Standard library only (argparse, dataclasses, json, math, os, statistics, subprocess, sys, time, typing, unittest).
+External Dependencies: None (no external pip packages, network calls, hardware sensors, or cloud APIs).
+Simulation Scope: Local synthetic message parsing, deduplication, sorting, and performance benchmarking.

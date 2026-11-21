@@ -1,0 +1,76 @@
+Task R15-T029: Sample Execution Results
+========================================
+
+1. NORMAL SCENARIO (Mandatory Fixture & Evaluation Experiment)
+--------------------------------------------------------------
+Command Executed:
+$ python3 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029/example.py --scenario normal
+
+Captured Output:
+================================================================================
+Task R15-T029: Sensor-Message Validation & Evaluation Experiment
+Scenario: normal (Mandatory Fixture & Evaluation Benchmark)
+================================================================================
+
+1. MANDATORY LOGICAL FIXTURE (4 Messages):
+--------------------------------------------------------------------------------
+  Input 1: {"device_id": "A", "timestamp": 2, "reading": 42}
+  Input 2: {"device_id": "A", "timestamp": 1, "reading": 40}
+  Input 3: {"device_id": "A", "timestamp": 1, "reading": 41}
+  Input 4: {"device_id": "B", "timestamp": 3, "reading": "bad"}
+
+PROCESSING OUTCOME:
+  Total Processed: 4
+  Accepted Count:  2 (Expected: 2)
+  Duplicate Count: 1 (Expected: 1)
+  Rejected Count:  1 (Expected: 1)
+
+ACCEPTED MESSAGES (Sorted by timestamp ascending):
+  Device: A    | Timestamp: 1.0   | Reading: 40.0  | Original Index: 1
+  Device: A    | Timestamp: 2.0   | Reading: 42.0  | Original Index: 0
+
+DUPLICATE MESSAGES:
+  Device: A    | Timestamp: 1.0   | Reading: 41.0  | First Seen Index: 1
+
+REJECTED MESSAGES:
+  Input: {"device_id": "B", "timestamp": 3, "reading": "bad"} | Reason: Field 'reading' must be numeric, got str ('bad').
+
+✓ Mandatory Fixture Verification: PASSED (Exact match with contract requirements)
+
+2. EVALUATION EXPERIMENT (Synthetic Scaled Benchmarks):
+--------------------------------------------------------------------------------
+Input Size   Accepted   Duplicates   Rejected   Sorted?  Median Time (s)    Throughput (msg/s)
+----------------------------------------------------------------------------------------
+10           7          2            1          YES      0.000021           469659.7
+100          70         20           10         YES      0.000175           570477.0
+1000         700        200          100        YES      0.001634           611839.0
+----------------------------------------------------------------------------------------
+
+Notice: Timings are local synthetic measurements and do not reflect real cloud/hardware performance.
+================================================================================
+Exit Code: 0
+
+
+2. BOUNDARY SCENARIO (Edge Cases & Invariants)
+----------------------------------------------
+Command Executed:
+$ python3 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029/example.py --scenario boundary
+
+Captured Output:
+================================================================================
+Task R15-T029: Sensor-Message Validation & Evaluation Experiment
+Scenario: boundary (Edge Cases & Fault Invariant Verifications)
+================================================================================
+✓ Empty input handled cleanly (0 accepted, 0 duplicate, 0 rejected).
+✓ Same timestamp across different devices is allowed (both accepted).
+✓ Equal timestamps preserve original input order (stable sorting).
+✓ Malformed JSON string rejected with clear diagnostic.
+✓ Invalid messages do NOT reserve an identity (subsequent valid message accepted).
+✓ Boolean values rejected as timestamps and readings.
+✓ Empty and whitespace-only device IDs rejected.
+✓ Non-finite (NaN, inf) numbers rejected.
+✓ Enormous integer overflow rejected cleanly without reserving identity.
+================================================================================
+All Boundary Checks PASSED.
+================================================================================
+Exit Code: 0

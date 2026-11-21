@@ -133,6 +133,31 @@ To improve the model, you can retrain it using the images captured from the IoT 
 
 1. Repeat these steps until you are happy with the results of the predictions.
 
+## Applied Lab - Sensor-Message Validation: Evaluation Experiment
+
+Learn how to validate, deduplicate, and order incoming IoT telemetry messages before analysis, and evaluate pipeline performance across synthetic workloads:
+
+* [Applied Lab: Sensor-Message Validation — Evaluation Experiment](applied-labs/r15-t029/README.md)
+
+### Overview & Contract
+The lab demonstrates local validation of JSON sensor telemetry containing `device_id`, numeric `timestamp`, and numeric `reading`. Messages are deduplicated on `(device_id, timestamp)` pairs and sorted in ascending timestamp order with stable tie-breaking.
+
+### Evaluation Experiment
+Compares correctness and throughput across synthetic datasets of 10, 100, and 1,000 messages with controlled proportions of valid, duplicate, and invalid readings.
+
+### Run & Test Commands
+Run the simulation and benchmarks:
+```bash
+python3 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029/example.py --scenario normal
+```
+
+Run the unit tests:
+```bash
+python3 -m unittest discover -s 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029 -p "test_*.py" -v
+```
+
+> 💁 **Scope & Limitations**: This is a local algorithmic simulation of message validation, deduplication, and sorting. It does not connect to camera hardware, transmit over MQTT, call Azure Custom Vision, or evaluate image classification model accuracy.
+
 ---
 
 ## 🚀 Challenge
