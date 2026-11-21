@@ -1,0 +1,87 @@
+Task R15-T030: Sample Execution Results
+========================================
+
+1. NORMAL SCENARIO (Three Complete Security Scenarios)
+------------------------------------------------------
+Command Executed:
+$ python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario normal
+
+Captured Output:
+================================================================================
+Task R15-T030: Security-Scenario Rubric — Scenario Assessment
+Scenario: normal (Three Complete Lesson Scenarios)
+================================================================================
+
+[SCENARIO_1_VOICE] Voice Impersonation & Replay Attack
+--------------------------------------------------------------------------------
+  Asset:         Trust in spoken timer feedback and authorized user commands
+  Threat:        Replay attacks or synthetic-voice impersonation of the user using cloned audio
+  Control:       Avoid voice-only authentication and require separate authenticated confirmation on a companion device
+  Residual Risk: Compromised companion device or social engineering via misleading audio output in shared environments
+  Verdict:       PASS
+  Explanation:   All required fields populated and control matched predefined control keywords for 'voice_impersonation' (predefined keyword heuristic; does not prove control effectiveness).
+
+[SCENARIO_2_TIMER] REST Timer Endpoint Manipulation
+--------------------------------------------------------------------------------
+  Asset:         Integrity and accuracy of timer duration seconds
+  Threat:        Unauthorized or manipulated REST requests or responses altering duration
+  Control:       Enforce mutual request authentication (HTTPS/tokens) and server-side duration bounds validation
+  Residual Risk: Compromised API credentials or denial of service against the REST timer endpoint
+  Verdict:       PASS
+  Explanation:   All required fields populated and control matched predefined control keywords for 'timer_request' (predefined keyword heuristic; does not prove control effectiveness).
+
+[SCENARIO_3_SSML] SSML Markup Injection
+--------------------------------------------------------------------------------
+  Asset:         Integrity and safety of spoken audio feedback
+  Threat:        Untrusted markup altering speech output or injecting unauthorized SSML elements
+  Control:       Sanitize input by escaping untrusted text and enforce an allow-list of approved SSML elements
+  Residual Risk: Syntactically valid but contextually misleading or socially engineered spoken phrasing
+  Verdict:       PASS
+  Explanation:   All required fields populated and control matched predefined control keywords for 'ssml_manipulation' (predefined keyword heuristic; does not prove control effectiveness).
+
+--------------------------------------------------------------------------------
+VERIFICATION SUMMARY:
+  ✓ SCENARIO_1_VOICE             Expected: PASS   Actual: PASS   (MATCH)
+  ✓ SCENARIO_2_TIMER             Expected: PASS   Actual: PASS   (MATCH)
+  ✓ SCENARIO_3_SSML              Expected: PASS   Actual: PASS   (MATCH)
+All normal scenarios successfully passed the rubric check.
+================================================================================
+Exit Code: 0
+
+
+2. BOUNDARY SCENARIO (Missing Asset & Unrelated Control Checks)
+---------------------------------------------------------------
+Command Executed:
+$ python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario boundary
+
+Captured Output:
+================================================================================
+Task R15-T030: Security-Scenario Rubric — Scenario Assessment
+Scenario: boundary (Missing Asset & Unrelated Control Checks)
+================================================================================
+
+[SCENARIO_4_MISSING_ASSET] Timer Scenario with Missing Asset Field
+--------------------------------------------------------------------------------
+  Asset:         <MISSING>
+  Threat:        Unauthorized or manipulated REST requests or responses
+  Control:       Enforce request authentication and duration bounds validation
+  Residual Risk: Compromised API credentials
+  Verdict:       FAIL
+  Explanation:   Missing required field: 'asset'.
+
+[SCENARIO_5_UNRELATED_CONTROL] SSML Scenario with Unrelated Physical Control
+--------------------------------------------------------------------------------
+  Asset:         Integrity and safety of spoken audio feedback
+  Threat:        Untrusted markup altering speech output
+  Control:       Paint the device casing with water-resistant enamel to protect against moisture
+  Residual Risk: Scratches on the casing enamel over prolonged usage
+  Verdict:       REVIEW
+  Explanation:   All fields populated, but control lacks relevant predefined keywords addressing 'ssml_manipulation' (requires human reviewer assessment).
+
+--------------------------------------------------------------------------------
+BOUNDARY VERIFICATION SUMMARY:
+  ✓ SCENARIO_4_MISSING_ASSET         Expected: FAIL   Actual: FAIL   (MATCH)
+  ✓ SCENARIO_5_UNRELATED_CONTROL     Expected: REVIEW Actual: REVIEW (MATCH)
+All boundary conditions handled cleanly and correctly.
+================================================================================
+Exit Code: 0

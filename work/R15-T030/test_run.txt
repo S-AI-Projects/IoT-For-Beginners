@@ -1,0 +1,50 @@
+Task R15-T030: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_applied_question_1_predict_output (test_example.TestSecurityScenarioRubric.test_applied_question_1_predict_output)
+Q1: What status does the complete voice-impersonation scenario receive? Expected: PASS. ... ok
+test_applied_question_2_diagnose_failure (test_example.TestSecurityScenarioRubric.test_applied_question_2_diagnose_failure)
+Q2: Why does a timer scenario with no asset fail? Expected: FAIL with missing-field explanation. ... ok
+test_applied_question_3_choose_boundary_policy (test_example.TestSecurityScenarioRubric.test_applied_question_3_choose_boundary_policy)
+Q3: What should happen when an SSML scenario proposes an unrelated control? Expected: REVIEW. ... ok
+test_blank_field_fails (test_example.TestSecurityScenarioRubric.test_blank_field_fails)
+Scenario with whitespace-only required field must return FAIL. ... ok
+test_cli_boundary_scenario_subprocess (test_example.TestSecurityScenarioRubric.test_cli_boundary_scenario_subprocess)
+CLI --scenario boundary runs in fresh process, exits 0, and reports boundary checks pass. ... ok
+test_cli_failure_scenario_subprocess (test_example.TestSecurityScenarioRubric.test_cli_failure_scenario_subprocess)
+CLI --scenario failure runs in fresh process and exits non-zero with intentional failure message. ... ok
+test_cli_normal_scenario_subprocess (test_example.TestSecurityScenarioRubric.test_cli_normal_scenario_subprocess)
+CLI --scenario normal runs in fresh process, exits 0, and reports all normal scenarios pass. ... ok
+test_deliberate_wrong_expected_result_detected (test_example.TestSecurityScenarioRubric.test_deliberate_wrong_expected_result_detected)
+verify_scenario_expectations raises AssertionError when an outcome differs from expected. ... ok
+test_missing_asset_scenario_fails (test_example.TestSecurityScenarioRubric.test_missing_asset_scenario_fails)
+Scenario missing the required 'asset' field must return FAIL. ... ok
+test_missing_control_fails (test_example.TestSecurityScenarioRubric.test_missing_control_fails)
+Scenario missing 'control' must return FAIL. ... ok
+test_missing_residual_risk_fails (test_example.TestSecurityScenarioRubric.test_missing_residual_risk_fails)
+Scenario missing 'residual_risk' must return FAIL. ... ok
+test_ssml_manipulation_scenario_passes (test_example.TestSecurityScenarioRubric.test_ssml_manipulation_scenario_passes)
+Complete SSML manipulation scenario with escaping and allow-listing must PASS. ... ok
+test_timer_request_scenario_passes (test_example.TestSecurityScenarioRubric.test_timer_request_scenario_passes)
+Complete timer request manipulation scenario with validation must PASS. ... ok
+test_unrecognized_threat_triggers_review (test_example.TestSecurityScenarioRubric.test_unrecognized_threat_triggers_review)
+Complete scenario with an unknown threat domain must return REVIEW. ... ok
+test_unrelated_control_triggers_review (test_example.TestSecurityScenarioRubric.test_unrelated_control_triggers_review)
+Complete scenario with unrelated control (e.g. painting casing) must return REVIEW. ... ok
+test_verify_scenario_expectations_success (test_example.TestSecurityScenarioRubric.test_verify_scenario_expectations_success)
+verify_scenario_expectations succeeds when all outcomes match expected table. ... ok
+test_verify_scenario_missing_from_expected_table (test_example.TestSecurityScenarioRubric.test_verify_scenario_missing_from_expected_table)
+verify_scenario_expectations raises AssertionError when a scenario is missing from expected_table. ... ok
+test_verify_unexpected_extra_id_in_expected_table (test_example.TestSecurityScenarioRubric.test_verify_unexpected_extra_id_in_expected_table)
+verify_scenario_expectations raises AssertionError when expected_table has IDs not supplied. ... ok
+test_voice_impersonation_scenario_passes (test_example.TestSecurityScenarioRubric.test_voice_impersonation_scenario_passes)
+Complete voice impersonation scenario with out-of-band confirmation must PASS. ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.195s
+
+OK
+Exit Code: 0

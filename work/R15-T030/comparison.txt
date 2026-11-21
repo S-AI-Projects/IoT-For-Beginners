@@ -1,0 +1,69 @@
+Task R15-T030: Value Comparison & Evaluation Evidence
+======================================================
+
+1. SCENARIO EVALUATION COMPARISON
+---------------------------------
++---------------------------+-------------------+----------------+--------------+--------+-------------------------------------------------------------+
+| Scenario ID               | Domain            | Expected Class | Actual Class | Match? | Rubric Assessment Reason                                    |
++---------------------------+-------------------+----------------+--------------+--------+-------------------------------------------------------------+
+| SCENARIO_1_VOICE          | Voice Impersonat. | PASS           | PASS         | EXACT  | Populated; matched predefined keywords (heuristic check).   |
+| SCENARIO_2_TIMER          | REST Timer Request| PASS           | PASS         | EXACT  | Populated; matched predefined keywords (heuristic check).   |
+| SCENARIO_3_SSML           | SSML Injection    | PASS           | PASS         | EXACT  | Populated; matched predefined keywords (heuristic check).   |
+| SCENARIO_4_MISSING_ASSET  | REST Timer Request| FAIL           | FAIL         | EXACT  | Missing required field: 'asset'.                            |
+| SCENARIO_5_UNRELATED_CTRL | SSML Injection    | REVIEW         | REVIEW       | EXACT  | Populated; control (paint casing) lacks relevant keywords.  |
++---------------------------+-------------------+----------------+--------------+--------+-------------------------------------------------------------+
+
+
+2. APPLIED QUESTIONS VERIFICATION SUMMARY
+-----------------------------------------
+Q1: Predict an Output (Voice Impersonation Scenario Status)
+  - Question: What status does the complete voice-impersonation scenario receive?
+  - Expected: PASS
+  - Actual:   PASS
+  - Rationale: All four required fields are populated with substantive text, and the control explicitly addresses voice impersonation by avoiding voice-only authentication and requiring separate authenticated confirmation on a companion device. It matches predefined control keywords under a heuristic rubric check (does not prove real-world control effectiveness).
+  - Test: test_applied_question_1_predict_output (PASSED)
+
+Q2: Diagnose a Failure (Missing Asset in Timer Scenario)
+  - Question: Why does a timer scenario with no asset fail?
+  - Expected: FAIL
+  - Actual:   FAIL
+  - Rationale: The rubric enforces that every threat model must identify what is being protected. Omitting the asset field violates this baseline schema requirement, triggering a deterministic FAIL with diagnostic "Missing required field: 'asset'".
+  - Test: test_applied_question_2_diagnose_failure (PASSED)
+
+Q3: Choose a Boundary Policy (Unrelated Control for SSML Threat)
+  - Question: What should happen when an SSML scenario proposes an unrelated control (e.g. painting the device casing)?
+  - Expected: REVIEW
+  - Actual:   REVIEW
+  - Rationale: An unrelated physical control does not address software-level SSML markup injection. However, because all fields are grammatically present, automatically failing or accepting it would be inappropriate; routing it to REVIEW alerts human security evaluators to inspect the proposed control.
+  - Test: test_applied_question_3_choose_boundary_policy (PASSED)
+
+
+3. DELIBERATE WRONG-RESULT / MISMATCH DETECTION EVIDENCE
+--------------------------------------------------------
+Command Executed:
+$ python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario failure
+
+Captured Non-Zero Exit Status:
+  Exit Code: 1 (Confirmed non-zero)
+
+Captured Output and Traceback:
+================================================================================
+Task R15-T030: Security-Scenario Rubric — Scenario Assessment
+Scenario: failure (Intentional Mismatch Failure Demonstration)
+================================================================================
+Notice: This scenario intentionally asserts an incorrect expected outcome.
+It demonstrates that verification checks properly fail with a non-zero exit code.
+This is an intentional demonstration, not a real security incident.
+
+Target Scenario:            SCENARIO_1_VOICE
+Actual Assessed Verdict:    PASS
+Deliberately False Expected: FAIL
+
+Triggering deliberate expectation assertion failure now...
+INTENTIONAL FAILURE: Expected 'FAIL' but actual is 'PASS'.
+Traceback (most recent call last):
+  ...
+AssertionError: Outcome mismatch for scenario 'SCENARIO_1_VOICE': expected 'FAIL', got 'PASS'. Detail: All required fields populated and control matched predefined control keywords for 'voice_impersonation' (predefined keyword heuristic; does not prove control effectiveness).
+
+Verification Guarantee:
+The failure scenario was executed and captured in fresh-process isolation, confirming that incorrect expected outcomes raise AssertionError and terminate with a non-zero exit code without causing the automated test suite to fail.
