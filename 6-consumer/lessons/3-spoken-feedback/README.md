@@ -107,6 +107,37 @@ Work through the relevant guide to convert text to speech using your IoT device:
 * [Single-board computer - Raspberry Pi](pi-text-to-speech.md)
 * [Single-board computer - Virtual device](virtual-device-text-to-speech.md)
 
+## Applied Lab - Security-Scenario Rubric: Scenario Assessment
+
+Assess security scenarios and threat mitigation controls for IoT spoken feedback systems:
+
+* [Applied Lab: Security-Scenario Rubric — Scenario Assessment](applied-labs/r15-t030/README.md)
+
+### Overview & Threat Concepts
+The applied lab illustrates threat modeling across three core concepts taught in this lesson:
+- **Voice Impersonation**: Evaluating risks from cloned audio recordings and why voice-only authentication must be avoided.
+- **Timer REST Endpoint Manipulation**: Assessing request authentication and server-side duration bounds checks.
+- **SSML Injection**: Evaluating escaping of untrusted text and allow-listing approved Speech Synthesis Markup Language elements.
+
+### Run & Test Commands
+Run the simulation:
+```bash
+python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario normal
+```
+
+Run boundary and failure checks:
+```bash
+python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario boundary
+python3 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030/example.py --scenario failure
+```
+
+Run unit tests:
+```bash
+python3 -m unittest discover -s 6-consumer/lessons/3-spoken-feedback/applied-labs/r15-t030 -p "test_*.py"
+```
+
+> 💁 **Scope & Limitations**: This is a fictional, local rule-based simulation using deterministic keyword matching. It does not test actual IoT hardware devices, REST services, cloud speech synthesis providers, or machine learning models.
+
 ---
 
 ## 🚀 Challenge
