@@ -1,0 +1,83 @@
+Task R15-T029: Value Comparison & Evaluation Evidence
+======================================================
+
+1. MANDATORY LOGICAL FIXTURE COMPARISON
+---------------------------------------
+Input Sequence:
+  Input 1: {"device_id": "A", "timestamp": 2, "reading": 42}
+  Input 2: {"device_id": "A", "timestamp": 1, "reading": 40}
+  Input 3: {"device_id": "A", "timestamp": 1, "reading": 41}
+  Input 4: {"device_id": "B", "timestamp": 3, "reading": "bad"}
+
+Validation & Classification Outcome:
++-------+--------------------+----------------+-------------------+-----------------------------------------+
+| Index | Raw Input          | Expected Class | Actual Class      | Verification Note                       |
++-------+--------------------+----------------+-------------------+-----------------------------------------+
+| 0     | Dev A, ts 2, rd 42 | ACCEPTED       | ACCEPTED          | Valid message                           |
+| 1     | Dev A, ts 1, rd 40 | ACCEPTED       | ACCEPTED          | Valid message                           |
+| 2     | Dev A, ts 1, rd 41 | DUPLICATE      | DUPLICATE         | Duplicate of identity ('A', 1.0)        |
+| 3     | Dev B, ts 3, "bad" | REJECTED       | REJECTED          | String reading rejected                 |
++-------+--------------------+----------------+-------------------+-----------------------------------------+
+
+Summary Counts:
++-------------------+----------------+--------------+---------+
+| Metric            | Expected Count | Actual Count | Match?  |
++-------------------+----------------+--------------+---------+
+| Total Processed   | 4              | 4            | EXACT   |
+| Accepted Messages | 2              | 2            | EXACT   |
+| Duplicate Messages| 1              | 1            | EXACT   |
+| Rejected Messages | 1              | 1            | EXACT   |
++-------------------+----------------+--------------+---------+
+
+Accepted Messages Chronological Sorting:
+  Expected Order: Timestamp 1.0 (reading 40.0), then Timestamp 2.0 (reading 42.0)
+  Actual Order:   Timestamp 1.0 (reading 40.0), then Timestamp 2.0 (reading 42.0)
+  Verification:   PASSED (Sorted ascending, original reading-message association strictly preserved)
+
+
+2. EVALUATION EXPERIMENT: THREE-SIZE SYNTHETIC SCALING
+------------------------------------------------------
+Controlled Synthetic Ratio: 70% Valid / Accepted, 20% Duplicate, 10% Invalid / Rejected.
+Repeated Trials: 5 runs per scale using time.perf_counter().
+
++------------+------------------+------------------+------------------+---------+-----------------+--------------------+
+| Input Size | Accepted (Exp/Act)| Duplicate (Exp/Act)| Rejected (Exp/Act)| Sorted? | Median Time (s) | Throughput (msg/s) |
++------------+------------------+------------------+------------------+---------+-----------------+--------------------+
+| 10         | 7 / 7            | 2 / 2            | 1 / 1            | YES     | 0.000021        | 469,659.7          |
+| 100        | 70 / 70          | 20 / 20          | 10 / 10          | YES     | 0.000175        | 570,477.0          |
+| 1,000      | 700 / 700        | 200 / 200        | 100 / 100        | YES     | 0.001634        | 611,839.0          |
++------------+------------------+------------------+------------------+---------+-----------------+--------------------+
+
+Analysis & Observations:
+- Overall O(N log N) time complexity: expected O(N) validation and hash-based deduplication work, followed by stable O(N log N) sorting.
+- Correctness guarantees held perfectly across all sizes: exactly expected counts and strictly non-decreasing timestamps.
+- Note on Timings: These are local, in-memory synthetic measurements on Apple Silicon hardware. They do not simulate network latency, disk I/O, or cloud infrastructure.
+
+
+3. DELIBERATE WRONG-RESULT CLI CONFIRMATION
+-------------------------------------------
+Command Executed:
+$ python3 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029/example.py --scenario failure
+
+Captured Non-Zero Exit Status:
+  Exit Code: 1 (Confirmed non-zero)
+
+Captured Output and Traceback:
+================================================================================
+Task R15-T029: Sensor-Message Validation & Evaluation Experiment
+Scenario: failure (Intentional Failure Demonstration)
+================================================================================
+Notice: This scenario intentionally asserts an incorrect expected count.
+It demonstrates that verification checks properly fail with a non-zero exit code.
+
+Actual Accepted Count:        2
+False Expected Accepted Count: 999
+
+Triggering deliberate assertion failure now...
+INTENTIONAL FAILURE: Deliberately asserting actual_accepted == 999
+Traceback (most recent call last):
+  ...
+AssertionError: INTENTIONAL FAILURE: Actual accepted count (2) != Expected (999)
+
+Verification Guarantee:
+The failure scenario was executed and captured in fresh-process isolation, confirming that incorrect assertions terminate with a non-zero exit code without causing the automated test suite to fail.

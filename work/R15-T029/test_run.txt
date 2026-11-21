@@ -1,0 +1,48 @@
+Task R15-T029: Test Run Execution Log
+======================================
+Command Executed:
+$ python3 -m unittest discover -s 4-manufacturing/lessons/2-check-fruit-from-device/applied-labs/r15-t029 -p "test_*.py" -v
+
+Verbose Test Runner Output:
+test_boolean_numeric_values_rejected (test_example.TestSensorMessageValidation.test_boolean_numeric_values_rejected)
+Booleans must be rejected as timestamps and readings. ... ok
+test_cli_boundary_scenario_subprocess (test_example.TestSensorMessageValidation.test_cli_boundary_scenario_subprocess)
+Run --scenario boundary in a fresh process and verify exit 0. ... ok
+test_cli_failure_scenario_subprocess (test_example.TestSensorMessageValidation.test_cli_failure_scenario_subprocess)
+Run --scenario failure in a fresh process and verify non-zero exit. ... ok
+test_cli_normal_scenario_subprocess (test_example.TestSensorMessageValidation.test_cli_normal_scenario_subprocess)
+Run --scenario normal in a fresh process and verify exit 0 and expected output. ... ok
+test_duplicate_device_timestamp_detection (test_example.TestSensorMessageValidation.test_duplicate_device_timestamp_detection)
+Verify that identical (device_id, timestamp) pairs are reported as duplicates. ... ok
+test_empty_and_whitespace_device_id_rejected (test_example.TestSensorMessageValidation.test_empty_and_whitespace_device_id_rejected)
+Empty or whitespace-only device_id must be rejected. ... ok
+test_empty_input (test_example.TestSensorMessageValidation.test_empty_input)
+Empty input stream returns empty accepted, duplicate, and rejected lists. ... ok
+test_evaluation_synthetic_dataset_sizes_and_ordering (test_example.TestSensorMessageValidation.test_evaluation_synthetic_dataset_sizes_and_ordering)
+Verify each evaluation input size (10, 100, 1000) has correct counts and sorted output. ... ok
+test_invalid_message_does_not_reserve_identity (test_example.TestSensorMessageValidation.test_invalid_message_does_not_reserve_identity)
+An invalid message must not prevent a subsequent valid message from being accepted. ... ok
+test_malformed_json_rejected (test_example.TestSensorMessageValidation.test_malformed_json_rejected)
+Malformed JSON strings must be rejected cleanly. ... ok
+test_mandatory_fixture_counts_and_order (test_example.TestSensorMessageValidation.test_mandatory_fixture_counts_and_order)
+Verify the exact mandatory 4-message fixture requirements. ... ok
+test_missing_required_fields (test_example.TestSensorMessageValidation.test_missing_required_fields)
+Missing device_id, timestamp, or reading must be rejected with clear reasons. ... ok
+test_nan_and_infinity_rejected (test_example.TestSensorMessageValidation.test_nan_and_infinity_rejected)
+NaN and positive/negative infinity values must be rejected. ... ok
+test_overflow_enormous_integer_rejected (test_example.TestSensorMessageValidation.test_overflow_enormous_integer_rejected)
+Enormous integers causing OverflowError on float conversion must be rejected. ... ok
+test_same_timestamp_across_different_devices_allowed (test_example.TestSensorMessageValidation.test_same_timestamp_across_different_devices_allowed)
+Different devices may share the exact same timestamp without collision. ... ok
+test_stable_order_for_equal_timestamps (test_example.TestSensorMessageValidation.test_stable_order_for_equal_timestamps)
+Ties in timestamp must preserve original arrival order (stable sort). ... ok
+test_string_reading_rejected (test_example.TestSensorMessageValidation.test_string_reading_rejected)
+String readings must not be silently coerced into numbers. ... ok
+test_string_timestamp_rejected (test_example.TestSensorMessageValidation.test_string_timestamp_rejected)
+String timestamps must not be silently coerced into numbers. ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.239s
+
+OK
+Exit Code: 0
