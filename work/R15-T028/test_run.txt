@@ -1,0 +1,46 @@
+Task R15-T028: Final Test Run Execution Log
+===========================================
+Command:
+python3 -m unittest discover -s 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028 -p "test_*.py" -v
+
+test_average_below_base (test_example.TestGrowingDegreeDays.test_average_below_base)
+When average temperature is below base temperature, GDD must clamp to 0.0. ... ok
+test_average_equal_to_base (test_example.TestGrowingDegreeDays.test_average_equal_to_base)
+When average temperature equals base temperature, GDD must be exactly 0.0. ... ok
+test_boolean_values_rejected (test_example.TestGrowingDegreeDays.test_boolean_values_rejected)
+Booleans must be explicitly rejected despite being int subclasses in Python. ... ok
+test_boundary_cli_exits_zero (test_example.TestGrowingDegreeDays.test_boundary_cli_exits_zero)
+Subprocess test: CLI --scenario boundary must exit 0 and verify zero GDD and recovery. ... ok
+test_calculation_overflow_non_finite_rejected (test_example.TestGrowingDegreeDays.test_calculation_overflow_non_finite_rejected)
+Individually finite temperatures whose sum or average overflows must raise ValueError. ... ok
+test_deliberate_wrong_result_cli_exits_nonzero (test_example.TestGrowingDegreeDays.test_deliberate_wrong_result_cli_exits_nonzero)
+Subprocess test: CLI --scenario failure must exit non-zero with intentional failure message. ... ok
+test_invalid_records_not_changing_total (test_example.TestGrowingDegreeDays.test_invalid_records_not_changing_total)
+An invalid record must contribute exactly 0.0 GDD to the accumulated total. ... ok
+test_mandatory_accumulated_total (test_example.TestGrowingDegreeDays.test_mandatory_accumulated_total)
+Verify that mandatory 3-day fixture produces an accumulated total of exactly 8. ... ok
+test_mandatory_daily_values (test_example.TestGrowingDegreeDays.test_mandatory_daily_values)
+Verify the mandatory daily values: Day 1 -> 2, Day 2 -> 6, Day 3 -> 0. ... ok
+test_minimum_greater_than_maximum (test_example.TestGrowingDegreeDays.test_minimum_greater_than_maximum)
+Minimum temperature greater than maximum temperature must be rejected. ... ok
+test_missing_maximum (test_example.TestGrowingDegreeDays.test_missing_maximum)
+A record missing 'maximum' must be rejected with a clear error. ... ok
+test_missing_minimum (test_example.TestGrowingDegreeDays.test_missing_minimum)
+A record missing 'minimum' must be rejected with a clear error. ... ok
+test_nan_and_infinity_rejected (test_example.TestGrowingDegreeDays.test_nan_and_infinity_rejected)
+NaN and infinite values must raise ValueError. ... ok
+test_non_numeric_values_rejected (test_example.TestGrowingDegreeDays.test_non_numeric_values_rejected)
+String, list, or None temperature values must be rejected. ... ok
+test_normal_cli_exits_zero (test_example.TestGrowingDegreeDays.test_normal_cli_exits_zero)
+Subprocess test: CLI --scenario normal must exit 0 and output expected total 8.0. ... ok
+test_overflow_integer_rejected (test_example.TestGrowingDegreeDays.test_overflow_integer_rejected)
+Extremely large integers causing OverflowError on float conversion must raise ValueError. ... ok
+test_recovery_after_invalid_record (test_example.TestGrowingDegreeDays.test_recovery_after_invalid_record)
+Processing must continue after an invalid record, demonstrating recovery. ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.207s
+
+OK
+
+Exit Code: 0

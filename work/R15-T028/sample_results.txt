@@ -1,0 +1,65 @@
+Task R15-T028: Sample Execution Results
+========================================
+
+1. NORMAL SCENARIO (Mandatory Three-Record Fixture)
+--------------------------------------------------
+Command Executed:
+$ python3 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028/example.py --scenario normal
+
+Captured Output:
+================================================================================
+Task R15-T028: Growing Degree Days (GDD) Calculation
+Scenario: normal (Mandatory Normal Fixture)
+================================================================================
+Base Temperature: 10.0°C
+Formula: GDD = max(0, (min + max) / 2 - base_temp)
+--------------------------------------------------------------------------------
+Day 1: min=8.0°C, max=16.0°C | Avg=12.0°C | Daily GDD=2.0 | Accumulated GDD=2.0 | Calc: max(0, (8.0 + 16.0)/2 - 10.0) = max(0, 12.0°C - 10.0°C) = 2.0
+Day 2: min=12.0°C, max=20.0°C | Avg=16.0°C | Daily GDD=6.0 | Accumulated GDD=8.0 | Calc: max(0, (12.0 + 20.0)/2 - 10.0) = max(0, 16.0°C - 10.0°C) = 6.0
+Day 3: min=2.0°C, max=8.0°C | Avg=5.0°C | Daily GDD=0.0 | Accumulated GDD=8.0 | Calc: max(0, (2.0 + 8.0)/2 - 10.0) = max(0, 5.0°C - 10.0°C) = 0.0
+--------------------------------------------------------------------------------
+Final Accumulated GDD: 8.0 (Expected: 8.0)
+Verification: PASSED (Exact match with expected value 8.0)
+================================================================================
+Exit Code: 0
+
+
+2. BOUNDARY SCENARIO (Zero GDD, Inverted Validation, & Failure Recovery)
+------------------------------------------------------------------------
+Command Executed:
+$ python3 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028/example.py --scenario boundary
+
+Captured Output:
+================================================================================
+Task R15-T028: Growing Degree Days (GDD) Calculation
+Scenario: boundary (Zero GDD, Inverted Validation, & Failure Recovery)
+================================================================================
+1. ZERO GDD DEMONSTRATIONS (Average at or below base temperature):
+--------------------------------------------------------------------------------
+  Average equal to base (min 10, max 10): Avg = 10.0°C -> GDD = 0.0 (Expected: 0.0)
+  Average equal to base (min 8, max 12): Avg = 10.0°C -> GDD = 0.0 (Expected: 0.0)
+  Average below base (min 2, max 8): Avg = 5.0°C -> GDD = 0.0 (Expected: 0.0)
+  Freezing conditions (min -5, max 1): Avg = -2.0°C -> GDD = 0.0 (Expected: 0.0)
+  Verification: PASSED (All non-growth conditions yield exactly 0.0 GDD)
+
+2. INVERTED TEMPERATURE VALIDATION (Minimum > Maximum):
+--------------------------------------------------------------------------------
+  Input: {'minimum': 18, 'maximum': 14}
+  Valid: False
+  Error Caught: Minimum temperature (18.0°C) cannot exceed maximum temperature (14.0°C).
+  Verification: PASSED (Inverted temperatures rejected with descriptive error)
+
+3. FAILURE AND RECOVERY STREAM DEMONSTRATION:
+--------------------------------------------------------------------------------
+Sequence: [Valid Day 1] -> [Missing 'maximum' Day 2] -> [Valid Day 3]
+  Day 1: raw={'minimum': 8, 'maximum': 16} -> ACCEPTED | Daily GDD=2.0 | Running Total=2.0
+  Day 2: raw={'minimum': 8} -> REJECTED (Missing required 'maximum' temperature field.) | Daily GDD=0.0 | Running Total=2.0
+  Day 3: raw={'minimum': 12, 'maximum': 20} -> ACCEPTED | Daily GDD=6.0 | Running Total=8.0
+
+  Recovery Guarantees Verified:
+    ✓ Record 2 failed due to missing maximum temperature.
+    ✓ Invalid record contributed exactly 0.0 GDD to the accumulated total.
+    ✓ Processing continued seamlessly without terminating.
+    ✓ Record 3 was accepted, reaching the expected final accumulated GDD of 8.0.
+================================================================================
+Exit Code: 0
