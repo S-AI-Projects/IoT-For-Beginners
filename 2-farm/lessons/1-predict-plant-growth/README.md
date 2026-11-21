@@ -247,6 +247,39 @@ For example, if the highest temperature for the day is 25°C, and the lowest is 
 
 Therefore the strawberries have received **8.5** GDD. Strawberries need about 250 GDD to bear fruit, so still a while to go.
 
+## Applied Lab - Growing-Degree Calculation: Failure and Recovery
+
+Learn how to calculate and accumulate Growing Degree Days (GDD) with input validation, error handling, and stream recovery:
+
+* [Applied Lab: Growing-Degree Calculation — Failure and Recovery Example](applied-labs/r15-t028/README.md)
+
+### Overview & Formula
+The lab demonstrates local GDD calculation using daily minimum and maximum temperatures in Celsius:
+```text
+GDD = max(0, (minimum + maximum) / 2 - base_temperature)
+```
+
+### Mandatory Fixture & Recovery
+- **Normal Fixture** ($T_{\text{base}} = 10^\circ\text{C}$):
+  - Day 1: min 8, max 16 → GDD 2
+  - Day 2: min 12, max 20 → GDD 6
+  - Day 3: min 2, max 8 → GDD 0
+  - Accumulated Total = 8 GDD
+- **Fault Tolerance & Recovery**: If an intermediate record has missing data (e.g., missing maximum) or inverted temperatures ($T_{\min} > T_{\max}$), it is rejected with a descriptive error and contributes 0 GDD, while subsequent valid records continue accumulating normally.
+
+### Run & Test Commands
+Run the simulation:
+```bash
+python3 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028/example.py --scenario normal
+```
+
+Run the unit tests:
+```bash
+python3 -m unittest discover -s 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028 -p "test_*.py"
+```
+
+> 💁 **Scope & Limitations**: This is a local mathematical simulation on synthetic temperature data. It does not connect to real IoT temperature sensors, MQTT brokers, or external databases, nor does it model upper-temperature heat cutoffs.
+
 ---
 
 ## 🚀 Challenge

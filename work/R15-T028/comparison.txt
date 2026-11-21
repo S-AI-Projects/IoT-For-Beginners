@@ -1,0 +1,63 @@
+Task R15-T028: Value Comparison & Verification Evidence
+=======================================================
+
+1. MANDATORY NORMAL FIXTURE COMPARISON
+--------------------------------------
+Base Temperature: 10.0°C
+Formula: GDD = max(0, (min + max) / 2 - base_temp)
+
++-------+---------------+---------------+---------------+-------------------+------------------+---------+
+| Day   | Min Temp (°C) | Max Temp (°C) | Avg Temp (°C) | Expected GDD      | Actual GDD       | Match?  |
++-------+---------------+---------------+---------------+-------------------+------------------+---------+
+| Day 1 | 8.0           | 16.0          | 12.0          | 2.0 (12 - 10)     | 2.0              | EXACT   |
+| Day 2 | 12.0          | 20.0          | 16.0          | 6.0 (16 - 10)     | 6.0              | EXACT   |
+| Day 3 | 2.0           | 8.0           | 5.0           | 0.0 (max(0, 5-10))| 0.0              | EXACT   |
++-------+---------------+---------------+---------------+-------------------+------------------+---------+
+| TOTAL ACCUMULATED GDD (Day 1 + Day 2 + Day 3)         | 8.0               | 8.0              | EXACT   |
++-------------------------------------------------------+-------------------+------------------+---------+
+
+
+2. FAILURE AND RECOVERY FIXTURE COMPARISON
+------------------------------------------
+Stream Sequence with Missing Data:
++-------+--------------------+----------------+-------------------+------------------+---------------------+
+| Step  | Raw Record Input   | Status         | Error Reported    | Daily GDD Impact | Running Accumulated |
++-------+--------------------+----------------+-------------------+------------------+---------------------+
+| Day 1 | {"minimum": 8, "maximum": 16}| ACCEPTED       | None              | +2.0 GDD         | 2.0 GDD             |
+| Day 2 | {"minimum": 8} (no max) | REJECTED       | Missing 'maximum' | +0.0 GDD         | 2.0 GDD (Preserved) |
+| Day 3 | {"minimum": 12, "maximum": 20}| ACCEPTED       | None (Recovered)  | +6.0 GDD         | 8.0 GDD             |
++-------+--------------------+----------------+-------------------+------------------+---------------------+
+
+Guarantees Verified:
+- Record 2 was rejected without terminating stream execution.
+- Record 2 contributed 0.0 GDD to the total.
+- Record 3 recovered and processed successfully, yielding the final accumulated total of 8.0 GDD.
+
+
+3. DELIBERATE WRONG-RESULT CLI CONFIRMATION
+-------------------------------------------
+Command Executed:
+$ python3 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t028/example.py --scenario failure
+
+Captured Non-Zero Exit Status:
+  Exit Code: 1 (Confirmed non-zero)
+
+Captured Output and Traceback:
+================================================================================
+Task R15-T028: Growing Degree Days (GDD) Calculation
+Scenario: failure (Intentional Failure Demonstration)
+================================================================================
+Notice: This scenario intentionally asserts an incorrect expected GDD total.
+It demonstrates that verification checks properly fail with a non-zero exit code.
+
+Actual Calculated GDD Total: 8.0
+False Expected GDD Total:     999.0
+
+Triggering deliberate assertion failure now...
+INTENTIONAL FAILURE: Deliberately asserting actual_total == 999.0
+Traceback (most recent call last):
+  ...
+AssertionError: INTENTIONAL FAILURE: Actual GDD total (8.0) != Expected (999.0)
+
+Verification Guarantee:
+The failure scenario was executed and captured in fresh-process isolation, confirming that incorrect assertions terminate with a non-zero exit code without causing the automated test suite to fail.
