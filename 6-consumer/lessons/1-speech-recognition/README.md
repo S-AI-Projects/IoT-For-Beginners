@@ -221,3 +221,24 @@ What do you think the future holds for speech recognition?
 ## Assignment
 
 [](assignment.md)
+
+---
+
+## Applied Lab: Sensor-Message Validation — Failure and Recovery Example (R15-T018)
+
+An applied lesson extension demonstrating error diagnostics, duplicate detection, and state recovery in telemetry processing is available in [applied-labs/r15-t018/README.md](applied-labs/r15-t018/README.md).
+
+### Summary & Verification
+- **Concept:** Fault-tolerant ingestion pipeline handling corrupted frames, missing fields, and type errors with immediate recovery on valid data.
+- **Fixture:** Evaluates packets for device `A` at times 2, 1, duplicate `A/1`, and string reading on `B`.
+- **Expected Results:**
+  - Messages for `A` at times 2 then 1 are ordered to 1, 2.
+  - Duplicate `A/1` is reported and rejected.
+  - String reading is rejected.
+  - Pipeline isolates missing data and resumes processing valid frames without state corruption.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 6-consumer/lessons/1-speech-recognition/applied-labs/r15-t018 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local Python simulation; requires no live microphone hardware or cloud speech services.
+
