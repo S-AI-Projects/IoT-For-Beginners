@@ -1,0 +1,12 @@
+test_compare_two_approaches_equivalence (test_example.TestSensorMessageValidation.test_compare_two_approaches_equivalence)
+Both direct and reference approaches produce identical results across diverse inputs. ... ok
+test_ordering_and_duplicates_and_string_rejection (test_example.TestSensorMessageValidation.test_ordering_and_duplicates_and_string_rejection)
+Messages for A at times 2 then 1 are returned in order 1,2; duplicate reported; string reading rejected. ... ok
+test_schema_validations (test_example.TestSensorMessageValidation.test_schema_validations)
+Unit checks on validate_message. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+exit=0

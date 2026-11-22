@@ -207,6 +207,12 @@ All these types of devices have sensors and/or actuators and talk to the Interne
 
 ---
 
+## Applied Lab: Sensor-Message Validation & Deduplication
+
+When IoT devices publish sensor telemetry, network lag and transmission retries can cause messages to arrive out-of-order or duplicate. The [sensor-message validation example](applied-labs/r15-t003/README.md) validates incoming JSON payloads, rejects non-numeric readings (such as strings), deduplicates on `(device_id, timestamp)`, and reorders accepted messages chronologically. It demonstrates equivalence between procedural and functional validation architectures. Run: `python3 -m unittest discover -s 1-getting-started/lessons/1-introduction-to-iot/applied-labs/r15-t003 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not connect to real cloud brokers or IoT hardware.
+
+---
+
 ## 🚀 Challenge
 
 List as many IoT devices as you can that are in your home, school or workplace - there may be more than you think!
