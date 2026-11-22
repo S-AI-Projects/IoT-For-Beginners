@@ -540,6 +540,12 @@ Rather than calling LUIS from the IoT device, you can use serverless code with a
 
 ---
 
+## Applied Lab: Access-Policy Evaluation & Error Recovery
+
+After speech recognition extracts intents from spoken utterances, the application must evaluate access policies to decide whether the user is permitted to perform the action. The [access-policy evaluation lab](applied-labs/r15-t008/README.md) models a local role/action/resource policy engine with default deny and explicit deny overrides. It exercises invalid and missing-data inputs, demonstrates error logging, and verifies immediate recovery upon receiving subsequent valid requests. Run: `python3 -m unittest discover -s 6-consumer/lessons/2-language-understanding/applied-labs/r15-t008 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not require cloud cognitive services or smart hardware.
+
+---
+
 ## 🚀 Challenge
 
 There are many ways to request the same thing, such as setting a timer. Think of different ways to do this, and use them as examples in your LUIS app. Test these out, to see how well your model can cope with multiple ways to request a timer.

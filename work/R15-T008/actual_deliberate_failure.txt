@@ -1,0 +1,68 @@
+FFFFF
+======================================================================
+FAIL: test_explicit_deny_overrides_matching_allow (test_example.TestAccessPolicyEvaluation.test_explicit_deny_overrides_matching_allow)
+an explicit deny overrides a matching allow.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/6-consumer/lessons/2-language-understanding/applied-labs/r15-t008/test_example.py", line 31, in test_explicit_deny_overrides_matching_allow
+    self.assertEqual(decision, "deny")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'allow' != 'deny'
+- allow
++ deny
+
+
+======================================================================
+FAIL: test_failure_and_recovery_sequence (test_example.TestAccessPolicyEvaluation.test_failure_and_recovery_sequence)
+Exercise documented invalid/missing-data case and demonstrate recovery on next input.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/6-consumer/lessons/2-language-understanding/applied-labs/r15-t008/test_example.py", line 47, in test_failure_and_recovery_sequence
+    self.assertEqual(decision, "deny")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'allow' != 'deny'
+- allow
++ deny
+
+
+======================================================================
+FAIL: test_reader_cannot_write (test_example.TestAccessPolicyEvaluation.test_reader_cannot_write)
+reader cannot write.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/6-consumer/lessons/2-language-understanding/applied-labs/r15-t008/test_example.py", line 22, in test_reader_cannot_write
+    self.assertEqual(decision, "deny")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'allow' != 'deny'
+- allow
++ deny
+
+
+======================================================================
+FAIL: test_reader_may_read_public (test_example.TestAccessPolicyEvaluation.test_reader_may_read_public)
+reader may read public.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/6-consumer/lessons/2-language-understanding/applied-labs/r15-t008/test_example.py", line 17, in test_reader_may_read_public
+    self.assertIn("allow", reason.lower())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'allow' not found in 'deliberately broken'
+
+======================================================================
+FAIL: test_unknown_role_is_denied (test_example.TestAccessPolicyEvaluation.test_unknown_role_is_denied)
+an unknown role is denied.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/6-consumer/lessons/2-language-understanding/applied-labs/r15-t008/test_example.py", line 37, in test_unknown_role_is_denied
+    self.assertEqual(decision, "deny")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'allow' != 'deny'
+- allow
++ deny
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=5)
+exit=1

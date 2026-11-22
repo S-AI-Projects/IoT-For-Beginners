@@ -1,0 +1,16 @@
+test_explicit_deny_overrides_matching_allow (test_example.TestAccessPolicyEvaluation.test_explicit_deny_overrides_matching_allow)
+an explicit deny overrides a matching allow. ... ok
+test_failure_and_recovery_sequence (test_example.TestAccessPolicyEvaluation.test_failure_and_recovery_sequence)
+Exercise documented invalid/missing-data case and demonstrate recovery on next input. ... ok
+test_reader_cannot_write (test_example.TestAccessPolicyEvaluation.test_reader_cannot_write)
+reader cannot write. ... ok
+test_reader_may_read_public (test_example.TestAccessPolicyEvaluation.test_reader_may_read_public)
+reader may read public. ... ok
+test_unknown_role_is_denied (test_example.TestAccessPolicyEvaluation.test_unknown_role_is_denied)
+an unknown role is denied. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+exit=0
