@@ -1,0 +1,25 @@
+{
+  "approach_comparison": [
+    {
+      "id": "SC-01-MISSING-ASSET",
+      "direct_status": "FAIL",
+      "simple_table_status": "FAIL",
+      "match": true,
+      "reason": "Missing required field(s): ['asset']"
+    },
+    {
+      "id": "SC-02-COMPLETE-PASS",
+      "direct_status": "PASS",
+      "simple_table_status": "PASS",
+      "match": true,
+      "reason": "All required fields present and control aligns with named threat."
+    },
+    {
+      "id": "SC-03-UNRELATED-CONTROL",
+      "direct_status": "FLAG_FOR_REVIEW",
+      "simple_table_status": "FLAG_FOR_REVIEW",
+      "match": true,
+      "reason": "Control does not address named threat (model_tampering); human review required."
+    }
+  ]
+}
