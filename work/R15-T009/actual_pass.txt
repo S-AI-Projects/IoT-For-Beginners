@@ -1,0 +1,12 @@
+test_experiment_configurations_and_invariants (test_example.TestStockMessageValidationExperiment.test_experiment_configurations_and_invariants)
+Compare three small controlled configurations and verify correctness invariants. ... ok
+test_required_ordering_and_duplicates_and_string_rejection (test_example.TestStockMessageValidationExperiment.test_required_ordering_and_duplicates_and_string_rejection)
+Messages for A at times 2 then 1 are returned in order 1,2; duplicate reported; string reading rejected. ... ok
+test_schema_validations (test_example.TestStockMessageValidationExperiment.test_schema_validations)
+Verify schema edge cases. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+exit=0

@@ -157,6 +157,12 @@ Follow the relevant guide below to count stock using the results from the object
 
 ---
 
+## Applied Lab: Stock Telemetry Validation & Batch Evaluation Experiment
+
+In retail IoT architectures, smart shelf sensors transmit stock level observations in variable batches. The [stock telemetry validation lab](applied-labs/r15-t009/README.md) validates message payloads, isolates duplicate sensor readings, rejects invalid string data, and orders records chronologically. It conducts a controlled evaluation experiment comparing small, medium, and large batch workloads to report correctness invariants and performance trade-offs. Run: `python3 -m unittest discover -s 5-retail/lessons/2-check-stock-device/applied-labs/r15-t009 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not require physical smart shelves or cloud vision endpoints.
+
+---
+
 ## 🚀 Challenge
 
 Can you detect incorrect stock? Train your model on multiple objects, then update your app to alert you if the wrong stock is detected.

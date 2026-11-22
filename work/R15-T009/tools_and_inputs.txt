@@ -1,0 +1,3 @@
+python: Python 3.14 (or standard library unittest)
+unittest: stdlib
+inputs/expected: see 5-retail/lessons/2-check-stock-device/applied-labs/r15-t009/README.md controlled experiment configurations table
