@@ -1,0 +1,8 @@
+test_applied_questions_executable_checks (test_example.TestSensorMessageScenarioAssessment) ... ok
+test_malformed_json_and_boolean_rejected (test_example.TestSensorMessageScenarioAssessment) ... ok
+test_ordering_deduplication_and_string_rejection (test_example.TestSensorMessageScenarioAssessment) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

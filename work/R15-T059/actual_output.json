@@ -1,0 +1,65 @@
+{
+  "validation_result": {
+    "accepted": [
+      {
+        "device_id": "A",
+        "timestamp": 1,
+        "reading": 22.0
+      },
+      {
+        "device_id": "A",
+        "timestamp": 2,
+        "reading": 24.5
+      }
+    ],
+    "rejected": [
+      {
+        "index": 2,
+        "message": {
+          "device_id": "A",
+          "timestamp": 1,
+          "reading": 22.0
+        },
+        "reason": "Duplicate device_id/timestamp pair: A/1"
+      },
+      {
+        "index": 3,
+        "message": {
+          "device_id": "B",
+          "timestamp": 3,
+          "reading": "bad_string"
+        },
+        "reason": "Reading must be numeric (int or float)"
+      }
+    ]
+  },
+  "applied_questions": [
+    {
+      "id": "Q1-PREDICT-OUTPUT",
+      "type": "predict_output",
+      "question": "Given messages for device A arriving out-of-order at timestamps 2 then 1, what timestamp order is returned?",
+      "answer": [
+        1,
+        2
+      ],
+      "rationale": "Accepted messages are sorted chronologically by timestamp so downstream telemetry consumers process events in event-time order rather than arrival order.",
+      "check_passed": true
+    },
+    {
+      "id": "Q2-DIAGNOSE-FAILURE",
+      "type": "diagnose_failure",
+      "question": "Why is the first message {device_id: A, timestamp: 1, reading: '42.0'} rejected while the second identical-key numeric message succeeds?",
+      "answer": "String reading rejected before deduplication key registration",
+      "rationale": "Schema validation runs prior to recording (device_id, timestamp) in seen_pairs, so a malformed string reading fails type checking without poisoning the deduplication set for a subsequent valid retry.",
+      "check_passed": true
+    },
+    {
+      "id": "Q3-BOUNDARY-POLICY",
+      "type": "choose_boundary_policy",
+      "question": "When two valid messages share the exact same (device_id, timestamp) key (A/1), which boundary policy is enforced?",
+      "answer": "First-seen wins; subsequent duplicate (device_id, timestamp) pairs are rejected",
+      "rationale": "Enforcing idempotent first-seen retention prevents duplicate telemetry packets from double-counting readings while reporting duplicates explicitly for auditability.",
+      "check_passed": true
+    }
+  ]
+}
