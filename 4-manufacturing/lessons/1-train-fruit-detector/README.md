@@ -230,3 +230,20 @@ Try it out and see what the predictions are. You can find images to try with usi
 ## Assignment
 
 [Train your classifier for multiple fruits and vegetables](assignment.md)
+
+---
+
+## Applied Lab: Classification Evaluation — Offline Service Adapter (R15-T015)
+
+An applied lesson extension demonstrating offline classification evaluation, zero-denominator handling, and service adapters is available in [applied-labs/r15-t015/README.md](applied-labs/r15-t015/README.md).
+
+### Summary & Verification
+- **Concept:** Deterministic binary classification metrics and zero-denominator policy ($TP=0, FP=0 \implies \text{Precision}=0.0$).
+- **Fixture:** Evaluates $y_{\text{true}}=[1,1,0,0]$ and $y_{\text{pred}}=[1,0,1,0]$, producing $TP=1, FN=1, FP=1, TN=1$ and $\text{Precision}=\text{Recall}=0.5$.
+- **Offline Adapter:** Decouples evaluation from external cloud vision services via a callable adapter.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 4-manufacturing/lessons/1-train-fruit-detector/applied-labs/r15-t015 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Focuses on evaluation logic and error boundaries; does not establish real-world vision model accuracy or latency.
+

@@ -1,0 +1,20 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_deliberate_wrong_result_fails (test_example.TestClassificationEvaluation.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_length_mismatch_raises_error (test_example.TestClassificationEvaluation.test_length_mismatch_raises_error) ... ok
+test_offline_adapter_service (test_example.TestClassificationEvaluation.test_offline_adapter_service) ... ok
+test_required_benchmark_fixture (test_example.TestClassificationEvaluation.test_required_benchmark_fixture)
+y_true=[1,1,0,0], y_pred=[1,0,1,0] -> TP=1,FN=1,FP=1,TN=1, precision=recall=0.5 ... ok
+test_run_demo (test_example.TestClassificationEvaluation.test_run_demo) ... ok
+test_zero_denominator_no_positive_ground_truth (test_example.TestClassificationEvaluation.test_zero_denominator_no_positive_ground_truth)
+No ground-truth positives gives recall=0 under the documented policy. ... ok
+test_zero_denominator_no_positive_predictions (test_example.TestClassificationEvaluation.test_zero_denominator_no_positive_predictions)
+No positive predictions gives precision=0 under the documented policy. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+y_true: [1, 1, 0, 0], y_pred: [1, 0, 1, 0]
+TP=1, FN=1, FP=1, TN=1
+Precision=0.5, Recall=0.5
