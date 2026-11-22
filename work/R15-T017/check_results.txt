@@ -1,0 +1,20 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_deliberate_wrong_result_fails (test_example.TestSensorMessageWorkedExample.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_exact_regression_example (test_example.TestSensorMessageWorkedExample.test_exact_regression_example)
+Exact worked example regression test. ... ok
+test_run_demo (test_example.TestSensorMessageWorkedExample.test_run_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+=== Worked Input-to-Output Walkthrough ===
+[ACCEPTED] Index 0: {'device_id': 'A', 'timestamp': 2, 'reading': 25.1} -> Valid message queued (timestamp 2)
+[ACCEPTED] Index 1: {'device_id': 'A', 'timestamp': 1, 'reading': 24.8} -> Valid message queued (timestamp 1)
+[DUPLICATE] Index 2: {'device_id': 'A', 'timestamp': 1, 'reading': 24.9} -> Duplicate detected for device 'A' at timestamp 1
+[INVALID] Index 3: {'device_id': 'B', 'timestamp': 3, 'reading': 'bad_reading'} -> reading must be numeric (strings and booleans rejected)
+
+Final Sorted Accepted Telemetry:
+  {'device_id': 'A', 'timestamp': 1, 'reading': 24.8}
+  {'device_id': 'A', 'timestamp': 2, 'reading': 25.1}

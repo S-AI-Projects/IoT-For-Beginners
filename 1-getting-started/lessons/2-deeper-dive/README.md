@@ -264,3 +264,23 @@ The challenge in the last lesson was to list as many IoT devices as you can that
 ## Assignment
 
 [Compare and contrast microcontrollers and single-board computers](assignment.md)
+
+---
+
+## Applied Lab: Sensor-Message Validation — Worked Example with Checks (R15-T017)
+
+An applied lesson extension providing a worked input-to-output validation walkthrough and regression test suite is available in [applied-labs/r15-t017/README.md](applied-labs/r15-t017/README.md).
+
+### Summary & Verification
+- **Concept:** Step-by-step telemetry validation, schema typing, deduplication, and chronological ordering.
+- **Fixture:** Evaluates batch for device `A` at times 2, 1, duplicate `A/1`, and string reading on device `B`.
+- **Expected Results:**
+  - Messages for `A` at times 2 then 1 are re-ordered to 1, 2.
+  - Duplicate `A/1` is reported and rejected.
+  - String reading is rejected.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t017 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local Python regression suite; requires no physical hardware or cloud brokers.
+
