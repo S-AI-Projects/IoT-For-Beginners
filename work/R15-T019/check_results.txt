@@ -1,0 +1,15 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_deliberate_wrong_result_fails (test_example.TestValidationExperiment.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_required_benchmark_fixture (test_example.TestValidationExperiment.test_required_benchmark_fixture) ... ok
+test_three_configurations_experiment (test_example.TestValidationExperiment.test_three_configurations_experiment)
+Validates that all three configurations run, preserve sort invariants, and produce metrics. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+=== Evaluation Experiment: Telemetry Batch Configurations ===
+[Small] Total: 4, Accepted: 2 (50.0%), Duplicates: 1 (25.0%), Sorted: True
+[Medium] Total: 16, Accepted: 9 (56.2%), Duplicates: 3 (18.8%), Sorted: True
+[Large] Total: 64, Accepted: 49 (76.6%), Duplicates: 7 (10.9%), Sorted: True
