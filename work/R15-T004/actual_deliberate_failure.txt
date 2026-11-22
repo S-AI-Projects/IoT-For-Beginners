@@ -1,0 +1,33 @@
+..FF.
+======================================================================
+FAIL: test_rejection_of_minimum_greater_than_maximum (test_example.TestGrowingDegreeCalculation.test_rejection_of_minimum_greater_than_maximum)
+Reject records where minimum > maximum.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t004/test_example.py", line 44, in test_rejection_of_minimum_greater_than_maximum
+    with self.assertRaises(ValueError):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_days_and_accumulation (test_example.TestGrowingDegreeCalculation.test_sample_days_and_accumulation)
+With base 10, days (8,16),(12,20),(2,8) contribute 2,6,0 and total 8.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t004/test_example.py", line 18, in test_sample_days_and_accumulation
+    self.assertEqual(res["contributions"], [2.0, 6.0, 0.0])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [99.0, 99.0, 99.0] != [2.0, 6.0, 0.0]
+
+First differing element 0:
+99.0
+2.0
+
+- [99.0, 99.0, 99.0]
++ [2.0, 6.0, 0.0]
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=2)
+exit=1

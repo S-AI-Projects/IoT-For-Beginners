@@ -249,6 +249,12 @@ Therefore the strawberries have received **8.5** GDD. Strawberries need about 25
 
 ---
 
+## Applied Lab: Growing-Degree Calculation & Invariant State Trace
+
+To explore cumulative agricultural calculations and verify numerical invariants, the [growing-degree calculation lab](applied-labs/r15-t004/README.md) demonstrates daily GDD calculation with state tracking across consecutive observations. It validates that daily contributions are non-negative, enforces prefix-sum invariants at each observation, and rejects anomalous temperature records where minimum exceeds maximum. Run: `python3 -m unittest discover -s 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t004 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not require physical temperature sensors or cloud databases.
+
+---
+
 ## 🚀 Challenge
 
 Plants need more than heat to grow. What other things are needed?

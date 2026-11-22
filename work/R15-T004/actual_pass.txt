@@ -1,0 +1,16 @@
+test_equal_min_and_max (test_example.TestGrowingDegreeCalculation.test_equal_min_and_max)
+Boundary condition: min == max is accepted. ... ok
+test_invalid_types_rejected (test_example.TestGrowingDegreeCalculation.test_invalid_types_rejected)
+Non-numeric values raise TypeError. ... ok
+test_rejection_of_minimum_greater_than_maximum (test_example.TestGrowingDegreeCalculation.test_rejection_of_minimum_greater_than_maximum)
+Reject records where minimum > maximum. ... ok
+test_sample_days_and_accumulation (test_example.TestGrowingDegreeCalculation.test_sample_days_and_accumulation)
+With base 10, days (8,16),(12,20),(2,8) contribute 2,6,0 and total 8. ... ok
+test_state_trace_and_invariants (test_example.TestGrowingDegreeCalculation.test_state_trace_and_invariants)
+Verify the state trace invariant: accumulated_gdd == sum(daily_gdd) at each step. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+exit=0
