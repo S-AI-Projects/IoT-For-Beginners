@@ -1,0 +1,18 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_boolean_rejection_boundary (test_example.TestSensorMessageValidation.test_boolean_rejection_boundary)
+In Python, bool is a subclass of int (True==1). Ensure booleans are rejected. ... ok
+test_deliberate_wrong_result_fails (test_example.TestSensorMessageValidation.test_deliberate_wrong_result_fails)
+Demonstrates deliberate test failure detection. ... ok
+test_ordering_and_duplicate_and_string_reading (test_example.TestSensorMessageValidation.test_ordering_and_duplicate_and_string_reading)
+Covers core requirement from issue description. ... ok
+test_run_demo (test_example.TestSensorMessageValidation.test_run_demo) ... ok
+test_smallest_valid_boundary (test_example.TestSensorMessageValidation.test_smallest_valid_boundary)
+Smallest valid fixture. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+Accepted & Sorted: [{'device_id': 'A', 'timestamp': 1, 'reading': 21.0}, {'device_id': 'A', 'timestamp': 2, 'reading': 22.4}]
+Invalid: [{'message': {'device_id': 'B', 'timestamp': 3, 'reading': 'invalid_string'}, 'reason': 'reading must be numeric (int or float), strings/booleans rejected'}]
+Duplicates: [{'message': {'device_id': 'A', 'timestamp': 1, 'reading': 21.5}, 'reason': 'Duplicate record for device A at timestamp 1'}]
