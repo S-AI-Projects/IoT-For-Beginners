@@ -454,6 +454,12 @@ Earlier in this lesson you used curl to query a geofence to see if a point was l
 
 ---
 
+## Applied Lab: Inclusive Rectangular Geofence Membership
+
+To understand how point-in-polygon and boundary checks work without requiring cloud GIS services, the [geofence membership example](applied-labs/r15-t002/README.md) demonstrates an inclusive rectangular teaching geofence (lat `[10, 20]`, lon `[70, 80]`). It classifies interior points and boundary points as inside, outside coordinates as outside, and rejects invalid spherical coordinates (e.g., latitude 100). Run: `python3 -m unittest discover -s 3-transport/lessons/4-geofences/applied-labs/r15-t002 -p "test_*.py"`. This is a **simulation** in standard-library Python; it uses a planar bounding box and is not a spherical-distance model.
+
+---
+
 ## 🚀 Challenge
 
 In this lesson you added one geofence using a GeoJSON file with a single polygon. You can upload multiple polygons at the same time, as long as they have different `geometryId` values in the `properties` section.

@@ -1,0 +1,22 @@
+test_all_four_corners_inclusive (test_example.TestGeofenceMembership.test_all_four_corners_inclusive)
+Inclusive geofence includes all four boundary corners. ... ok
+test_batch_records (test_example.TestGeofenceMembership.test_batch_records)
+Batch classification preserves sequence and decisions. ... ok
+test_boundary_edges (test_example.TestGeofenceMembership.test_boundary_edges)
+Points exactly on boundary lines are inside. ... ok
+test_invalid_latitude_rejected (test_example.TestGeofenceMembership.test_invalid_latitude_rejected)
+Invalid latitude 100 is rejected with ValueError. ... ok
+test_invalid_longitude_rejected (test_example.TestGeofenceMembership.test_invalid_longitude_rejected)
+Invalid longitude outside [-180, 180] raises ValueError. ... ok
+test_invalid_types_rejected (test_example.TestGeofenceMembership.test_invalid_types_rejected)
+Non-numeric coordinates raise TypeError. ... ok
+test_just_outside_boundary (test_example.TestGeofenceMembership.test_just_outside_boundary)
+Points just outside boundary edges are outside. ... ok
+test_required_examples (test_example.TestGeofenceMembership.test_required_examples)
+(15,75) and boundary (10,70) are inside; (21,75) is outside. ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK
+exit=0

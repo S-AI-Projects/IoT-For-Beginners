@@ -1,0 +1,66 @@
+FFF....F
+======================================================================
+FAIL: test_all_four_corners_inclusive (test_example.TestGeofenceMembership.test_all_four_corners_inclusive)
+Inclusive geofence includes all four boundary corners.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/3-transport/lessons/4-geofences/applied-labs/r15-t002/test_example.py", line 32, in test_all_four_corners_inclusive
+    self.assertEqual(classify_point(lat, lon), "inside")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+======================================================================
+FAIL: test_batch_records (test_example.TestGeofenceMembership.test_batch_records)
+Batch classification preserves sequence and decisions.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/3-transport/lessons/4-geofences/applied-labs/r15-t002/test_example.py", line 74, in test_batch_records
+    self.assertEqual(classify_records(records), ["inside", "inside", "outside"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['inside', 'outside', 'outside'] != ['inside', 'inside', 'outside']
+
+First differing element 1:
+'outside'
+'inside'
+
+- ['inside', 'outside', 'outside']
+?             ^^^
+
++ ['inside', 'inside', 'outside']
+?             ^^
+
+
+======================================================================
+FAIL: test_boundary_edges (test_example.TestGeofenceMembership.test_boundary_edges)
+Points exactly on boundary lines are inside.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/3-transport/lessons/4-geofences/applied-labs/r15-t002/test_example.py", line 36, in test_boundary_edges
+    self.assertEqual(classify_point(10, 75), "inside")  # southern edge
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+======================================================================
+FAIL: test_required_examples (test_example.TestGeofenceMembership.test_required_examples)
+(15,75) and boundary (10,70) are inside; (21,75) is outside.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/3-transport/lessons/4-geofences/applied-labs/r15-t002/test_example.py", line 20, in test_required_examples
+    self.assertEqual(classify_point(10, 70), "inside")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside' != 'inside'
+- outside
++ inside
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+FAILED (failures=4)
+exit=1
