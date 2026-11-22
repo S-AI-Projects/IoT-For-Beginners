@@ -1,0 +1,12 @@
+Fixture Inputs:
+1. {"device_id": "A", "timestamp": 2, "reading": 14}
+2. {"device_id": "A", "timestamp": 1, "reading": 15}
+3. {"device_id": "A", "timestamp": 1, "reading": 15}
+4. {"device_id": "A", "timestamp": 3, "reading": "fifteen"}
+
+Expected:
+- Accepted ordered by timestamp: [A/1 (15), A/2 (14)]
+- Rejected count: 2 (duplicate A/1 and non-numeric reading "fifteen")
+
+Actual:
+Matches expected output identically (see example-output.txt and passing-run.txt).

@@ -175,3 +175,11 @@ Maybe even take this further and detect stock side by side on the same shelf, an
 ## Assignment
 
 [Use your object detector on the edge](assignment.md)
+
+## Applied Lab: Sensor-Message Validation (`R15-T056`)
+
+See the [Worked Example: Sensor Message Validation](./applied-labs/r15-t056/README.md) for a local Python simulation demonstrating JSON schema validation, duplicate `(device_id, timestamp)` rejection, and chronological ordering.
+
+* **Scope & Limitations:** Runs purely on local mock JSON fixtures using the Python 3 standard library; does not connect to live IoT hardware or cloud services.
+* **Invocation:** `python3 5-retail/lessons/2-check-stock-device/applied-labs/r15-t056/example.py`
+* **Expected Output:** Accepts `A/1` (reading `12`) and `A/2` (reading `15`) in chronological order (`1, 2`), while rejecting the duplicate `A/1` payload and non-numeric string reading.

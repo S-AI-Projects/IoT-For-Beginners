@@ -1,0 +1,7 @@
+test_boundary_and_malformed_cases (test_example.TestSensorMessageValidation) ... ok
+test_exact_worked_example (test_example.TestSensorMessageValidation) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK

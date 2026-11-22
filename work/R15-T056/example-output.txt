@@ -1,0 +1,34 @@
+{
+  "accepted": [
+    {
+      "device_id": "A",
+      "timestamp": 1,
+      "reading": 15
+    },
+    {
+      "device_id": "A",
+      "timestamp": 2,
+      "reading": 14
+    }
+  ],
+  "rejected": [
+    {
+      "index": 2,
+      "payload": {
+        "device_id": "A",
+        "timestamp": 1,
+        "reading": 15
+      },
+      "reason": "duplicate device/timestamp pair: A/1"
+    },
+    {
+      "index": 3,
+      "payload": {
+        "device_id": "A",
+        "timestamp": 3,
+        "reading": "fifteen"
+      },
+      "reason": "reading must be numeric"
+    }
+  ]
+}

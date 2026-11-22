@@ -1,0 +1,32 @@
+{
+  "accepted": [
+    {
+      "device_id": "A",
+      "timestamp": 1,
+      "reading": 12
+    },
+    {
+      "device_id": "A",
+      "timestamp": 2,
+      "reading": 15
+    }
+  ],
+  "rejected": [
+    {
+      "message": {
+        "device_id": "A",
+        "timestamp": 1,
+        "reading": 99
+      },
+      "reason": "Duplicate device/timestamp pair: A/1"
+    },
+    {
+      "message": {
+        "device_id": "A",
+        "timestamp": 3,
+        "reading": "invalid_str"
+      },
+      "reason": "Reading must be numeric"
+    }
+  ]
+}
