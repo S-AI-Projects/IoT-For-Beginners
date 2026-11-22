@@ -1,0 +1,17 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_baseline_and_refactored_equivalence (test_example.TestGrowingDegreeCalculation.test_baseline_and_refactored_equivalence)
+Proves before/after refactoring equivalence on diverse test records. ... ok
+test_deliberate_wrong_result_fails (test_example.TestGrowingDegreeCalculation.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_reject_minimum_greater_than_maximum (test_example.TestGrowingDegreeCalculation.test_reject_minimum_greater_than_maximum) ... ok
+test_required_benchmark_fixture (test_example.TestGrowingDegreeCalculation.test_required_benchmark_fixture)
+With base 10, days (8,16),(12,20),(2,8) contribute 2,6,0 and total 8 ... ok
+test_run_demo (test_example.TestGrowingDegreeCalculation.test_run_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+Fixture: [(8, 16), (12, 20), (2, 8)], Base: 10.0
+Daily contributions: [2.0, 6.0, 0.0]
+Total accumulated GDD: 8.0

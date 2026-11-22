@@ -268,3 +268,20 @@ For these, find if there are sensors that can measure them. What about actuators
 ## Assignment
 
 [Visualize GDD data using a Jupyter Notebook](assignment.md)
+
+---
+
+## Applied Lab: Growing-Degree Calculation — Refactor the Teaching Example (R15-T016)
+
+An applied lesson extension demonstrating Growing Degree Day (GDD) calculation and clean code refactoring is available in [applied-labs/r15-t016/README.md](applied-labs/r15-t016/README.md).
+
+### Summary & Verification
+- **Concept:** Thermal accumulation calculation $\max(0, (T_{\min} + T_{\max})/2 - T_{\text{base}})$ and baseline vs refactored equivalence.
+- **Fixture:** With base 10, records `[(8,16), (12,20), (2,8)]` contribute 2, 6, 0 and total 8.
+- **Validation:** Rejects $T_{\min} > T_{\max}$ with `ValueError`.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 2-farm/lessons/1-predict-plant-growth/applied-labs/r15-t016 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local calculation logic and refactoring demonstration; no physical hardware or live weather feeds required.
+
