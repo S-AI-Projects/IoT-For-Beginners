@@ -264,3 +264,11 @@ Read up on the hardware and protocols used by sensors and actuators:
 ## Assignment
 
 [Calibrate your sensor](assignment.md)
+
+## Applied Lab: Moisture-Control Hysteresis (`R15-T057`)
+
+See the [Evaluation Experiment: Moisture-Control Hysteresis](./applied-labs/r15-t057/README.md) for a local Python simulation evaluating soil moisture threshold hysteresis (`< 300` -> `on`, `> 600` -> `off`, `300..600` -> retain state) and threshold band width trade-offs.
+
+* **Scope & Limitations:** Pure local simulation using Python 3 standard library fixtures (`0..1023`); does not connect to physical capacitive soil moisture sensors, relays, or Wio Terminal hardware, and makes no claims about real-world soil absorption or model accuracy.
+* **Invocation:** `python3 2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t057/example.py`
+* **Expected Output:** Starting `off`, readings `[700, 250, 400, 650]` produce `["off", "on", "on", "off"]`, while boundary readings `300` and `600` retain the previous actuator state.

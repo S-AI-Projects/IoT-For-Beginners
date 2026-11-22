@@ -1,0 +1,8 @@
+test_configuration_comparison_tradeoff (test_example.TestMoistureHysteresis) ... ok
+test_contract_sequence_and_boundary_retention (test_example.TestMoistureHysteresis) ... ok
+test_out_of_range_and_invalid_readings_rejected (test_example.TestMoistureHysteresis) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
