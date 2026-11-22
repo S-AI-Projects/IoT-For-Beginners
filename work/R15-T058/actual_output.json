@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "scenario_id": "SC-01-MISSING-ASSET",
+      "status": "FAIL",
+      "errors": [
+        "Missing or empty required field: asset"
+      ],
+      "review_note": "Rejected due to incomplete structural fields; fix missing fields to recover."
+    },
+    {
+      "scenario_id": "SC-02-COMPLETE-PASS",
+      "status": "PASS",
+      "errors": [],
+      "review_note": "Structural rubric passed; human reviewer still evaluates qualitative rationale."
+    },
+    {
+      "scenario_id": "SC-03-UNRELATED-CONTROL",
+      "status": "FLAG_FOR_REVIEW",
+      "errors": [],
+      "review_note": "Control does not reference expected mitigation terms for threat_category='voice_spoofing'; flagged for human review."
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 1,
+    "failed": 1,
+    "flagged_for_review": 1,
+    "recovered_on_subsequent_valid_input": true
+  }
+}

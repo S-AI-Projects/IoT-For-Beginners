@@ -172,3 +172,11 @@ How can machine translations benefit other IoT applications beyond smart devices
 ## Assignment
 
 [Build a universal translator](assignment.md)
+
+## Applied Lab: Security-Scenario Rubric (`R15-T058`)
+
+See the [Security-Scenario Rubric: Failure & Recovery Example](./applied-labs/r15-t058/README.md) for a local Python structural rubric checker evaluating multilingual smart-speaker security scenarios (`asset`, `threat`, `control`, `residual-risk`).
+
+* **Scope & Limitations:** Pure local simulation using Python 3 standard library fixtures; verifies structural field presence and threat-to-control keyword alignment, while human review remains required to judge qualitative security rationale. Makes no claims about live speech-to-text services, cloud translators, or physical hardware.
+* **Invocation:** `python3 6-consumer/lessons/4-multiple-language-support/applied-labs/r15-t058/example.py`
+* **Expected Output:** Evaluates three fixture scenarios: `SC-01-MISSING-ASSET` returns `"FAIL"`, `SC-02-COMPLETE-PASS` returns `"PASS"` (demonstrating recovery on the next valid input), and `SC-03-UNRELATED-CONTROL` returns `"FLAG_FOR_REVIEW"`.
