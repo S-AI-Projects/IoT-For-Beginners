@@ -264,3 +264,23 @@ The challenge in the last lesson was to list as many IoT devices as you can that
 ## Assignment
 
 [Compare and contrast microcontrollers and single-board computers](assignment.md)
+
+---
+
+## Applied Lab: Sensor-Message Validation — Boundary-Case Lesson Extension (R15-T012)
+
+An applied lesson extension for telemetry validation and chronological ordering is available in [applied-labs/r15-t012/README.md](applied-labs/r15-t012/README.md).
+
+### Summary & Verification
+- **Concept:** Ingestion-layer schema validation for IoT sensors. Enforces strict numeric types, rejects duplicates, and handles out-of-order message arrival.
+- **Fixture:** Evaluates message batches containing out-of-order timestamps, duplicates, and invalid string readings.
+- **Expected Results:**
+  - Messages for device `A` at times 2 then 1 are ordered to 1, 2.
+  - Duplicate `A/1` is reported and rejected.
+  - String reading is rejected.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 1-getting-started/lessons/2-deeper-dive/applied-labs/r15-t012 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local Python implementation; no cloud broker or physical hardware required.
+
