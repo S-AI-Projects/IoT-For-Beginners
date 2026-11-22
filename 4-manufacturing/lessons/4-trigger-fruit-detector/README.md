@@ -220,3 +220,23 @@ For example - a vehicle tracking device that combines GPS with sensors to monito
 ## Assignment
 
 [Build a fruit quality detector](assignment.md)
+
+---
+
+## Applied Lab: Capability Negotiation — Invariant and State Trace (R15-T014)
+
+An applied lesson extension demonstrating protocol capability negotiation and state tracing is available in [applied-labs/r15-t014/README.md](applied-labs/r15-t014/README.md).
+
+### Summary & Verification
+- **Concept:** Client-server capability negotiation and pre-dispatch validation for IoT vision triggers.
+- **Fixture:** Evaluates client `{"tools", "resources"}` against server `{"tools", "prompts"}` to negotiate `{"tools"}`.
+- **Expected Results:**
+  - Client `{"tools", "resources"}` and server `{"tools", "prompts"}` negotiate `{"tools"}`.
+  - Calling unnegotiated capability `resources` is rejected before dispatch.
+  - Intermediate state trace records every lifecycle transition and validates the state-output invariant.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 4-manufacturing/lessons/4-trigger-fruit-detector/applied-labs/r15-t014 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local simulation; requires no physical hardware or cloud inference services.
+
