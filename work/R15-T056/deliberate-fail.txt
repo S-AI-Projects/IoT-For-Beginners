@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+AssertionError: Deliberate wrong order assertion failed as expected
+Deliberate failure exit code: 1
