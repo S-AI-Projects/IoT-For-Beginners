@@ -1,0 +1,18 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_default_deny_when_no_rule_matches (test_example.TestAccessPolicyEvaluation.test_default_deny_when_no_rule_matches) ... ok
+test_deliberate_wrong_result_fails (test_example.TestAccessPolicyEvaluation.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_explicit_deny_overrides_matching_allow (test_example.TestAccessPolicyEvaluation.test_explicit_deny_overrides_matching_allow) ... ok
+test_reader_cannot_write (test_example.TestAccessPolicyEvaluation.test_reader_cannot_write) ... ok
+test_reader_may_read_public (test_example.TestAccessPolicyEvaluation.test_reader_may_read_public) ... ok
+test_run_demo_executes_successfully (test_example.TestAccessPolicyEvaluation.test_run_demo_executes_successfully) ... ok
+test_unknown_role_is_denied (test_example.TestAccessPolicyEvaluation.test_unknown_role_is_denied) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+[ALLOW] reader_read_public: role=reader, action=read, resource=public -> ALLOW: Matched allow rule (PolicyRule(effect='ALLOW', role='reader', action='read', resource='public'))
+[DENY] reader_write_public: role=reader, action=write, resource=public -> DENY: Explicit deny rule matched (PolicyRule(effect='DENY', role='reader', action='write', resource='*'))
+[DENY] editor_write_restricted: role=editor, action=write, resource=restricted -> DENY: Explicit deny rule matched (PolicyRule(effect='DENY', role='editor', action='write', resource='restricted'))
+[DENY] unknown_role_read: role=guest, action=read, resource=public -> DENY: Role 'guest' is unknown
