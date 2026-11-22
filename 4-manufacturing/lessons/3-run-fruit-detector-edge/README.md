@@ -592,6 +592,12 @@ This is the expected behavior - images are not sent to the cloud for classificat
 
 ---
 
+## Applied Lab: Edge Security Scenario Rubric Checker
+
+When running AI models on factory-floor edge devices, securing model weights, local telemetry, and actuator controls against tampering is critical. The [edge security scenario rubric lab](applied-labs/r15-t006/README.md) models structured threat assessments (Asset, Threat, Control, Residual Risk), checking for structural completeness, missing assets, and flag controls unrelated to named threats for human review. It also demonstrates refactoring equivalence between monolithic and modular validators. Run: `python3 -m unittest discover -s 4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not require physical edge hardware or cloud vision APIs.
+
+---
+
 ## 🚀 Challenge
 
 Running AI models on edge devices can be faster that in the cloud - the network hop is shorter. THey can also be slower as the hardware than runs the model may not be as powerful as the cloud.

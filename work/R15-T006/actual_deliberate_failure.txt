@@ -1,0 +1,67 @@
+FFFF
+======================================================================
+FAIL: test_complete_scenarios_pass (test_example.TestSecurityScenarioRubric.test_complete_scenarios_pass)
+One complete scenario passes.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006/test_example.py", line 21, in test_complete_scenarios_pass
+    self.assertEqual(status1, "PASS")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'FAIL' != 'PASS'
+- FAIL
++ PASS
+
+
+======================================================================
+FAIL: test_refactoring_equivalence (test_example.TestSecurityScenarioRubric.test_refactoring_equivalence)
+Verify before/after equivalence between baseline and refactored implementation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006/test_example.py", line 65, in test_refactoring_equivalence
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        baseline_result,
+        ^^^^^^^^^^^^^^^^
+        refactored_result,
+        ^^^^^^^^^^^^^^^^^^
+        f"Mismatch on scenario: {sc}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: Tuples differ: ('PASS', 'Scenario meets structural rubric and demonstrated alignment') != ('FAIL', 'deliberate wrong expectation')
+
+First differing element 0:
+'PASS'
+'FAIL'
+
+- ('PASS', 'Scenario meets structural rubric and demonstrated alignment')
++ ('FAIL', 'deliberate wrong expectation') : Mismatch on scenario: {'asset': 'Edge AI camera hardware and model weights', 'threat': 'Physical tampering or extraction of edge ML model weights from flash storage', 'control': 'Hardware secure boot and encrypted flash storage with TPM/TEE', 'residual_risk': 'Side-channel analysis through physical bus probing'}
+
+======================================================================
+FAIL: test_scenario_without_asset_fails (test_example.TestSecurityScenarioRubric.test_scenario_without_asset_fails)
+A scenario without an asset fails.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006/test_example.py", line 33, in test_scenario_without_asset_fails
+    self.assertIn("asset", reason)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'asset' not found in 'deliberate wrong expectation'
+
+======================================================================
+FAIL: test_unrelated_control_flagged_for_review (test_example.TestSecurityScenarioRubric.test_unrelated_control_flagged_for_review)
+A control unrelated to the named threat is flagged for review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006/test_example.py", line 46, in test_unrelated_control_flagged_for_review
+    self.assertEqual(status, "REVIEW")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 'FAIL' != 'REVIEW'
+- FAIL
++ REVIEW
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=4)
+exit=1

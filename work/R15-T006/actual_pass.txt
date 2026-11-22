@@ -1,0 +1,14 @@
+test_complete_scenarios_pass (test_example.TestSecurityScenarioRubric.test_complete_scenarios_pass)
+One complete scenario passes. ... ok
+test_refactoring_equivalence (test_example.TestSecurityScenarioRubric.test_refactoring_equivalence)
+Verify before/after equivalence between baseline and refactored implementation. ... ok
+test_scenario_without_asset_fails (test_example.TestSecurityScenarioRubric.test_scenario_without_asset_fails)
+A scenario without an asset fails. ... ok
+test_unrelated_control_flagged_for_review (test_example.TestSecurityScenarioRubric.test_unrelated_control_flagged_for_review)
+A control unrelated to the named threat is flagged for review. ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+exit=0

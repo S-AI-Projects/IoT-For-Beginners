@@ -1,0 +1,3 @@
+python: Python 3.14 (or standard library unittest)
+unittest: stdlib
+inputs/expected: see 4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t006/README.md scenarios table
