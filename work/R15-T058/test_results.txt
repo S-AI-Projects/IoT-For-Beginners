@@ -1,0 +1,8 @@
+test_complete_scenario_passes (test_example.TestSecurityScenarioRubric) ... ok
+test_missing_asset_fails_and_recovers_on_next_valid_input (test_example.TestSecurityScenarioRubric) ... ok
+test_unrelated_control_flagged_for_review (test_example.TestSecurityScenarioRubric) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
