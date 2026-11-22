@@ -1,0 +1,12 @@
+test_exact_worked_example_regression (test_example.TestSensorMessageWorkedExample.test_exact_worked_example_regression)
+Execute the exact published worked example as a regression test. ... ok
+test_multiple_devices_and_float_timestamps (test_example.TestSensorMessageWorkedExample.test_multiple_devices_and_float_timestamps)
+Deduplication is scoped to (device_id, timestamp), allowing identical timestamps for different devices. ... ok
+test_schema_validations (test_example.TestSensorMessageWorkedExample.test_schema_validations)
+Ensure boundary types and malformed payloads are correctly flagged. ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+exit=0

@@ -1,0 +1,16 @@
+..F
+======================================================================
+FAIL: test_schema_validations (test_example.TestSensorMessageWorkedExample.test_schema_validations)
+Ensure boundary types and malformed payloads are correctly flagged.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/1-getting-started/lessons/1-introduction-to-iot/applied-labs/r15-t007/test_example.py", line 50, in test_schema_validations
+    self.assertFalse(validate_record("invalid-json")[0])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)
+exit=1

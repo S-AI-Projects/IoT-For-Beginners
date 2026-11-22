@@ -207,6 +207,12 @@ All these types of devices have sensors and/or actuators and talk to the Interne
 
 ---
 
+## Applied Lab: Sensor-Message Stream Validation & Regression Testing
+
+To understand data validation and deduplication in message ingestion pipelines, the [worked sensor-message validation example](applied-labs/r15-t007/README.md) details an input-to-output walkthrough of a telemetry stream. It verifies that messages received out-of-order are sorted chronologically, duplicates on `(device_id, timestamp)` are reported, and string readings are rejected. Run: `python3 -m unittest discover -s 1-getting-started/lessons/1-introduction-to-iot/applied-labs/r15-t007 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not connect to real IoT hardware or cloud event hubs.
+
+---
+
 ## 🚀 Challenge
 
 List as many IoT devices as you can that are in your home, school or workplace - there may be more than you think!
