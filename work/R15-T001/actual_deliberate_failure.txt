@@ -1,0 +1,62 @@
+FF...FF.
+======================================================================
+FAIL: test_boundary_retention_at_300 (test_example.TestMoistureHysteresis.test_boundary_retention_at_300)
+300 retains previous state whether off or on.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t001/test_example.py", line 27, in test_boundary_retention_at_300
+    self.assertEqual(c1.process_reading(300), "off")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'on' != 'off'
+- on
++ off
+
+
+======================================================================
+FAIL: test_boundary_retention_at_600 (test_example.TestMoistureHysteresis.test_boundary_retention_at_600)
+600 retains previous state whether on or off.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t001/test_example.py", line 42, in test_boundary_retention_at_600
+    self.assertEqual(c2.process_reading(600), "off")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'on' != 'off'
+- on
++ off
+
+
+======================================================================
+FAIL: test_sample_sequence (test_example.TestMoistureHysteresis.test_sample_sequence)
+Starting off, readings [700,250,400,650] produce [off,on,on,off].
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t001/test_example.py", line 21, in test_sample_sequence
+    self.assertEqual(simulate_moisture_control(readings, initial_state="off"), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['on', 'on', 'on', 'on'] != ['off', 'on', 'on', 'off']
+
+First differing element 0:
+'on'
+'off'
+
+- ['on', 'on', 'on', 'on']
++ ['off', 'on', 'on', 'off']
+
+======================================================================
+FAIL: test_threshold_switching (test_example.TestMoistureHysteresis.test_threshold_switching)
+Reading 299 turns on; reading 601 turns off.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t001/test_example.py", line 48, in test_threshold_switching
+    self.assertEqual(c.process_reading(601), "off")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'on' != 'off'
+- on
++ off
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+FAILED (failures=4)
+exit=1

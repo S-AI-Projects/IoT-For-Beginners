@@ -243,6 +243,12 @@ This approach means the farmer only needs to get a few lab measurements for a fi
 
 ---
 
+## Applied Lab: Moisture-Control Hysteresis
+
+To prevent actuator chattering caused by rapid sensor fluctuations around a single threshold, a control system applies hysteresis with separate lower and upper limits. The [moisture-control hysteresis example](applied-labs/r15-t001/README.md) demonstrates a dual-threshold controller where readings below 300 activate watering, readings above 600 deactivate watering, and intermediate values retain the previous actuator state. Run: `python3 -m unittest discover -s 2-farm/lessons/2-detect-soil-moisture/applied-labs/r15-t001 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not require physical hardware or cloud services.
+
+---
+
 ## 🚀 Challenge
 
 Resistive and capacitive soil moisture sensors have a number of differences. What are these differences, and which type (if any) is the best for a farmer to use? Does this answer change between developing and developed countries?
