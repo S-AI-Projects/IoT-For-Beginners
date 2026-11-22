@@ -453,3 +453,24 @@ Try running an MQTT broker yourself using [Mosquitto](https://www.mosquitto.org)
 ## Assignment
 
 [Compare and contrast MQTT with other communication protocols](assignment.md)
+
+---
+
+## Applied Lab: Sensor-Message Validation — Evaluation Experiment (R15-T019)
+
+An applied lesson extension evaluating telemetry batch configurations, deduplication, and sorting performance is available in [applied-labs/r15-t019/README.md](applied-labs/r15-t019/README.md).
+
+### Summary & Verification
+- **Concept:** Comparative analysis across three controlled batch configurations (Small, Medium, Large) measuring acceptance rate, duplicate filtering, and chronological sorting.
+- **Fixture:** Evaluates benchmark batch for device `A` at times 2, 1, duplicate `A/1`, and string reading on `B`.
+- **Expected Results:**
+  - Messages for `A` at times 2 then 1 are re-ordered to 1, 2.
+  - Duplicate `A/1` is reported and rejected.
+  - String reading is rejected.
+  - Correctness and sorting invariants hold across all three batch sizes.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 1-getting-started/lessons/4-connect-internet/applied-labs/r15-t019 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Focuses on software batching and contract validation; makes no claim on physical network latency or ML model accuracy.
+
