@@ -1,0 +1,16 @@
+.F..
+======================================================================
+FAIL: test_question_2_diagnose_failure (test_example.TestSensorMessageScenarioAssessment.test_question_2_diagnose_failure)
+Executable check for Q2: Non-numeric string reading fails validation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/6-keep-your-plant-secure/applied-labs/r15-t010/test_example.py", line 53, in test_question_2_diagnose_failure
+    self.assertFalse(ok)
+    ~~~~~~~~~~~~~~~~^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (failures=1)
+exit=1

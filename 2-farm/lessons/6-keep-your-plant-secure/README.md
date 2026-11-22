@@ -209,6 +209,12 @@ Work through the relevant guide to connect your IoT device to the cloud using th
 
 ---
 
+## Applied Lab: Ingestion Security & Scenario Assessment
+
+Protecting IoT systems requires combining transport security with strict application payload validation. The [sensor-message validation lab](applied-labs/r15-t010/README.md) validates message schema, reorders asynchronous arrivals chronologically, and isolates duplicate submissions. It provides three scenario assessment questions (predict output, diagnose failure, choose boundary deduplication policy) with executable automated checks. Run: `python3 -m unittest discover -s 2-farm/lessons/6-keep-your-plant-secure/applied-labs/r15-t010 -p "test_*.py"`. This is a **simulation** in standard-library Python; it does not connect to real IoT Hubs or physical sensors.
+
+---
+
 ## 🚀 Challenge
 
 There are multiple ways to create, manage and delete Azure services such as Resource Groups and IoT Hubs. One way is the [Azure Portal](https://portal.azure.com?WT.mc_id=academic-17441-jabenn) - a web-based interface that gives you a GUI to manage your Azure services.

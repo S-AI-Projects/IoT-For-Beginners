@@ -1,0 +1,3 @@
+python: Python 3.14 (or standard library unittest)
+unittest: stdlib
+inputs/expected: see 2-farm/lessons/6-keep-your-plant-secure/applied-labs/r15-t010/README.md scenario assessment questions

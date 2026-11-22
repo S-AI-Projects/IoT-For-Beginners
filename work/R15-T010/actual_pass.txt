@@ -1,0 +1,14 @@
+test_question_1_predict_output (test_example.TestSensorMessageScenarioAssessment.test_question_1_predict_output)
+Executable check for Q1: Out-of-order messages are reordered chronologically. ... ok
+test_question_2_diagnose_failure (test_example.TestSensorMessageScenarioAssessment.test_question_2_diagnose_failure)
+Executable check for Q2: Non-numeric string reading fails validation. ... ok
+test_question_3_choose_boundary_policy (test_example.TestSensorMessageScenarioAssessment.test_question_3_choose_boundary_policy)
+Executable check for Q3: Default policy protects first-seen reading from replay modification. ... ok
+test_required_ordering_and_duplicates_and_string_rejection (test_example.TestSensorMessageScenarioAssessment.test_required_ordering_and_duplicates_and_string_rejection)
+Messages for A at times 2 then 1 are returned in order 1,2; duplicate reported; string reading rejected. ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+exit=0
