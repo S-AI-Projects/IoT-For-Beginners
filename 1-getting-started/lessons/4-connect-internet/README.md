@@ -453,3 +453,11 @@ Try running an MQTT broker yourself using [Mosquitto](https://www.mosquitto.org)
 ## Assignment
 
 [Compare and contrast MQTT with other communication protocols](assignment.md)
+
+## Applied Lab: Sensor-Message Validation Scenario Assessment (`R15-T059`)
+
+See the [Sensor-Message Validation: Scenario Assessment](./applied-labs/r15-t059/README.md) for a local Python telemetry validator that orders messages by `timestamp`, rejects duplicate `(device_id, timestamp)` pairs, and includes three applied scenario-assessment questions with executable checks.
+
+* **Scope & Limitations:** Pure local simulation using Python 3 standard library fixtures; does not connect to physical IoT boards, MQTT brokers, or cloud services, and makes no claims about real hardware or trained model accuracy.
+* **Invocation:** `python3 1-getting-started/lessons/4-connect-internet/applied-labs/r15-t059/example.py`
+* **Expected Output:** Messages for `A` at timestamps `2` then `1` are returned ordered as `1, 2`; duplicate `A/1` and string reading `"bad_string"` are reported in `rejected`; all three applied assessment questions pass their executable checks.
