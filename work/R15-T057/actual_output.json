@@ -1,0 +1,96 @@
+{
+  "contract_example": {
+    "readings": [
+      700,
+      250,
+      400,
+      650
+    ],
+    "result": {
+      "states": [
+        "off",
+        "on",
+        "on",
+        "off"
+      ],
+      "rejected": [],
+      "metrics": {
+        "accepted_count": 4,
+        "rejected_count": 0,
+        "transitions": 2,
+        "on_ticks": 2
+      }
+    }
+  },
+  "configuration_comparison": {
+    "readings": [
+      650,
+      280,
+      450,
+      550,
+      290,
+      520,
+      620,
+      350
+    ],
+    "runs": [
+      {
+        "config": "narrow_band_400_500",
+        "thresholds": [
+          400,
+          500
+        ],
+        "states": [
+          "off",
+          "on",
+          "on",
+          "off",
+          "on",
+          "off",
+          "off",
+          "on"
+        ],
+        "transitions": 5,
+        "on_ticks": 4
+      },
+      {
+        "config": "contract_band_300_600",
+        "thresholds": [
+          300,
+          600
+        ],
+        "states": [
+          "off",
+          "on",
+          "on",
+          "on",
+          "on",
+          "on",
+          "off",
+          "off"
+        ],
+        "transitions": 2,
+        "on_ticks": 5
+      },
+      {
+        "config": "wide_band_200_700",
+        "thresholds": [
+          200,
+          700
+        ],
+        "states": [
+          "off",
+          "off",
+          "off",
+          "off",
+          "off",
+          "off",
+          "off",
+          "off"
+        ],
+        "transitions": 0,
+        "on_ticks": 0
+      }
+    ]
+  }
+}
