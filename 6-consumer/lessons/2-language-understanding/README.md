@@ -557,3 +557,24 @@ There are many ways to request the same thing, such as setting a timer. Think of
 ## Assignment
 
 [Cancel the timer](assignment.md)
+
+---
+
+## Applied Lab: Explicit Access-Policy Evaluation (R15-T011)
+
+An applied laboratory extension demonstrating explicit role/action/resource access-policy evaluation is available in [applied-labs/r15-t011/README.md](applied-labs/r15-t011/README.md).
+
+### Summary & Verification
+- **Concept:** Translates extracted speech intents and entities into validated authorization decisions with default deny and explicit deny precedence.
+- **Fixture:** Evaluates matrix rules for roles (`reader`, `editor`, `admin`) against actions and resources.
+- **Expected Results:**
+  - `reader` may read `public` (`ALLOW`).
+  - `reader` cannot write (`DENY`).
+  - Explicit deny overrides matching allow (e.g. `editor` writing to `restricted` is `DENY`).
+  - Unknown role `guest` is denied (`DENY`).
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 6-consumer/lessons/2-language-understanding/applied-labs/r15-t011 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Deterministic local Python fixture. Requires no physical IoT hardware, cloud API keys, or GPU resources.
+
