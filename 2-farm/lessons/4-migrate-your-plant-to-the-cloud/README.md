@@ -435,3 +435,24 @@ The IoT Hub SDK is open source for both Arduino and Python. In the code repos on
 ## Assignment
 
 [Learn about cloud services](assignment.md)
+
+---
+
+## Applied Lab: Tensor-Shape Contract & Image Batch Normalization (R15-T013)
+
+An applied lesson extension demonstrating image batch tensor shape validation and pixel normalization is available in [applied-labs/r15-t013/README.md](applied-labs/r15-t013/README.md).
+
+### Summary & Verification
+- **Concept:** Preprocessing validation for synthetic image batches ($N \times H \times W$) before cloud ingestion.
+- **Fixture:** Evaluates batch `[[[0, 255], [128, 64]]]`, validating shape retention `(1, 2, 2)`, range boundary checks, and $0 \rightarrow 0.0, 255 \rightarrow 1.0$ normalization.
+- **Expected Results:**
+  - Preserves batch shape `(1, 2, 2)`.
+  - Maps 0 to 0.0 and 255 to 1.0.
+  - Rejects negative pixel values and values $> 255$.
+  - Matches independent reference implementation.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 2-farm/lessons/4-migrate-your-plant-to-the-cloud/applied-labs/r15-t013 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Focuses strictly on preprocessing pipeline integrity; makes no claims on cloud ML model accuracy or latency.
+

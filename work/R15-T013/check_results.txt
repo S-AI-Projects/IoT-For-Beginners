@@ -1,0 +1,18 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_compare_two_approaches_equivalence (test_example.TestTensorShapeContract.test_compare_two_approaches_equivalence)
+Compares direct implementation with independent reference calculation. ... ok
+test_deliberate_wrong_result_fails (test_example.TestTensorShapeContract.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_inconsistent_ragged_shape_rejected (test_example.TestTensorShapeContract.test_inconsistent_ragged_shape_rejected) ... ok
+test_negative_pixel_rejected (test_example.TestTensorShapeContract.test_negative_pixel_rejected) ... ok
+test_non_numeric_pixel_rejected (test_example.TestTensorShapeContract.test_non_numeric_pixel_rejected) ... ok
+test_pixel_greater_than_255_rejected (test_example.TestTensorShapeContract.test_pixel_greater_than_255_rejected) ... ok
+test_required_batch_normalization_and_shape (test_example.TestTensorShapeContract.test_required_batch_normalization_and_shape) ... ok
+test_run_demo (test_example.TestTensorShapeContract.test_run_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK
+Input fixture shape: (1, 2, 2)
+Normalized output: [[[0.0, 1.0], [0.5019607843137255, 0.25098039215686274]]]
