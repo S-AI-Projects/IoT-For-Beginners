@@ -1,0 +1,26 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_deliberate_wrong_result_fails (test_example.TestGeofenceMembership.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_invalid_latitude_100_rejected (test_example.TestGeofenceMembership.test_invalid_latitude_100_rejected) ... ok
+test_invalid_longitude_rejected (test_example.TestGeofenceMembership.test_invalid_longitude_rejected) ... ok
+test_planar_model_limitation_check (test_example.TestGeofenceMembership.test_planar_model_limitation_check)
+Verifies explicit planar model behavior. ... ok
+test_question_1_predict_output (test_example.TestGeofenceMembership.test_question_1_predict_output) ... ok
+test_question_2_diagnose_failure (test_example.TestGeofenceMembership.test_question_2_diagnose_failure) ... ok
+test_question_3_choose_boundary_policy (test_example.TestGeofenceMembership.test_question_3_choose_boundary_policy) ... ok
+test_required_benchmark_points (test_example.TestGeofenceMembership.test_required_benchmark_points) ... ok
+test_run_demo (test_example.TestGeofenceMembership.test_run_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
+Classifying local coordinate records:
+  Point (15.0, 75.0) -> INSIDE
+  Point (10.0, 70.0) -> INSIDE
+  Point (21.0, 75.0) -> OUTSIDE
+  Point (100.0, 75.0) -> REJECTED (Invalid latitude 100.0: must be between -90 and 90 degrees)
+
+Q1 Predict Output: True -> Coordinate (20.0, 80.0) lies on the upper corner boundary; evaluated as INSIDE.
+Q2 Diagnose Failure: True -> Correctly diagnosed rejection: Invalid latitude 100.0: must be between -90 and 90 degrees
+Q3 Boundary Policy: INCLUSIVE -> Point (10.0, 70.0) is True with inclusive policy and False with exclusive policy. Inclusive policy prevents false exit alerts caused by GPS jitter on perimeter boundaries.

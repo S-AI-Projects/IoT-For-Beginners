@@ -473,3 +473,21 @@ Try uploading a GeoJSON file with multiple polygons and adjust your code to find
 ## Assignment
 
 [Send notifications using Twilio](assignment.md)
+
+---
+
+## Applied Lab: Geofence Membership — Scenario Assessment (R15-T020)
+
+An applied lesson extension implementing inclusive rectangular geofencing and scenario assessment is available in [applied-labs/r15-t020/README.md](applied-labs/r15-t020/README.md).
+
+### Summary & Verification
+- **Concept:** Planar rectangular teaching geofence $[10, 20] \times [70, 80]$ with inclusive boundary policy.
+- **Fixture:** Classifies $(15, 75)$ and boundary $(10, 70)$ as inside; $(21, 75)$ as outside; rejects invalid latitude $100$.
+- **Model Limitation:** Explicitly planar; does not calculate spherical or ellipsoidal geodesic distances.
+- **Applied Scenarios:** Includes executable rationale and checks for output prediction, failure diagnosis, and boundary policy selection.
+- **Invocation & Automated Checks:**
+  ```bash
+  python3 -m unittest discover -s 3-transport/lessons/4-geofences/applied-labs/r15-t020 -p "test_*.py"
+  ```
+- **Scope & Limitations:** Local calculation logic; requires no physical GPS receiver hardware or cloud mapping services.
+
