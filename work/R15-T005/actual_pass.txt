@@ -1,0 +1,20 @@
+test_actuator_service_command_logging (test_example.TestMoistureControlAdapter.test_actuator_service_command_logging)
+Verify that offline adapter only receives commands on state transitions. ... ok
+test_boundary_retention_at_300 (test_example.TestMoistureControlAdapter.test_boundary_retention_at_300)
+300 retains previous state whether off or on. ... ok
+test_boundary_retention_at_600 (test_example.TestMoistureControlAdapter.test_boundary_retention_at_600)
+600 retains previous state whether on or off. ... ok
+test_contract_constants (test_example.TestMoistureControlAdapter.test_contract_constants)
+Verify thresholds. ... ok
+test_invalid_types_rejected (test_example.TestMoistureControlAdapter.test_invalid_types_rejected)
+Non-integer types raise TypeError. ... ok
+test_out_of_bounds_rejected (test_example.TestMoistureControlAdapter.test_out_of_bounds_rejected)
+Readings outside 0..1023 raise ValueError. ... ok
+test_sample_sequence (test_example.TestMoistureControlAdapter.test_sample_sequence)
+Starting off, readings [700,250,400,650] produce [off,on,on,off]. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+exit=0

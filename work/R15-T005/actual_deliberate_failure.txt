@@ -1,0 +1,57 @@
+FF....F
+======================================================================
+FAIL: test_actuator_service_command_logging (test_example.TestMoistureControlAdapter.test_actuator_service_command_logging)
+Verify that offline adapter only receives commands on state transitions.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/3-automated-plant-watering/applied-labs/r15-t005/test_example.py", line 51, in test_actuator_service_command_logging
+    self.assertEqual(adapter.command_log, ["off", "on", "off"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['off'] != ['off', 'on', 'off']
+
+Second list contains 2 additional elements.
+First extra element 1:
+'on'
+
+- ['off']
++ ['off', 'on', 'off']
+
+======================================================================
+FAIL: test_boundary_retention_at_300 (test_example.TestMoistureControlAdapter.test_boundary_retention_at_300)
+300 retains previous state whether off or on.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/3-automated-plant-watering/applied-labs/r15-t005/test_example.py", line 32, in test_boundary_retention_at_300
+    self.assertEqual(c.process_reading(300), "on")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'off' != 'on'
+- off
++ on
+
+
+======================================================================
+FAIL: test_sample_sequence (test_example.TestMoistureControlAdapter.test_sample_sequence)
+Starting off, readings [700,250,400,650] produce [off,on,on,off].
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gupta/.gemini/antigravity/scratch/IoT-For-Beginners/2-farm/lessons/3-automated-plant-watering/applied-labs/r15-t005/test_example.py", line 22, in test_sample_sequence
+    self.assertEqual(simulate_automated_watering(readings, "off"), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['off', 'off', 'off', 'off'] != ['off', 'on', 'on', 'off']
+
+First differing element 1:
+'off'
+'on'
+
+- ['off', 'off', 'off', 'off']
+?           ^^     ^^
+
++ ['off', 'on', 'on', 'off']
+?           ^     ^
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+FAILED (failures=3)
+exit=1

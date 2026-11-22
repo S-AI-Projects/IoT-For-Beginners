@@ -280,6 +280,12 @@ Update your server code to run the relay for 5 seconds, then wait 20 seconds.
 
 ---
 
+## Applied Lab: Offline Service Adapter for Actuator Control
+
+Testing automated irrigation logic against real hardware or network brokers can be slow and unpredictable. The [offline service adapter lab](applied-labs/r15-t005/README.md) decouples watering control behind a callable actuator interface and provides a deterministic offline adapter to verify hysteresis switching, transition logging, and boundary conditions. Run: `python3 -m unittest discover -s 2-farm/lessons/3-automated-plant-watering/applied-labs/r15-t005 -p "test_*.py"`. This is a **simulation** in standard-library Python; it documents the operational aspects of real relays and pumps that the mock does not model.
+
+---
+
 ## 🚀 Challenge
 
 Can you think of any other IoT or other electrical devices that have a similar problem where it takes a while for the results of the actuator to reach the sensor. You probably have a couple in your house or school.
