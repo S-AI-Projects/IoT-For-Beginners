@@ -611,3 +611,11 @@ Do some timings and compare if the call to your edge device is faster or slower 
 ## Assignment
 
 [Run other services on the edge](assignment.md)
+
+## Applied Lab: Security-Scenario Rubric Comparison (`R15-T060`)
+
+See the [Security-Scenario Rubric: Compare Two Approaches](./applied-labs/r15-t060/README.md) for a local Python rubric checker that evaluates edge fruit-detector security scenarios (`asset`, `threat`, `control`, `residual-risk`) and compares a direct threat-to-control keyword checker against an explicit expected-result table on identical inputs.
+
+* **Scope & Limitations:** Pure local simulation using Python 3 standard library fixtures; makes no claims about real edge camera hardware, cloud IoT services, or trained-model performance. Automated checks verify the structural rubric while human review judges the qualitative explanation.
+* **Invocation:** `python3 4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t060/example.py`
+* **Expected Output:** `SC-01-MISSING-ASSET` returns `FAIL`, `SC-02-COMPLETE-PASS` returns `PASS`, and `SC-03-UNRELATED-CONTROL` returns `FLAG_FOR_REVIEW`, with `match: true` across both comparison approaches.
