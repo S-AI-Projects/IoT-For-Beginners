@@ -1,0 +1,22 @@
+In /Library/Frameworks/Python.framework/Versions/3.15/lib/python3.15/site-packages/__editable__.minigit-0.1.0.pth: /Users/divyaprakash/maingit/src does not exist; skipping sys.path append
+test_calling_before_negotiation_rejected (test_example.TestCapabilityNegotiation.test_calling_before_negotiation_rejected) ... ok
+test_calling_negotiated_capability_succeeds (test_example.TestCapabilityNegotiation.test_calling_negotiated_capability_succeeds) ... ok
+test_calling_resources_rejected_before_dispatch (test_example.TestCapabilityNegotiation.test_calling_resources_rejected_before_dispatch) ... ok
+test_deliberate_wrong_result_fails (test_example.TestCapabilityNegotiation.test_deliberate_wrong_result_fails)
+Demonstrates that a deliberate assertion failure is caught. ... ok
+test_intermediate_state_trace_completeness (test_example.TestCapabilityNegotiation.test_intermediate_state_trace_completeness) ... ok
+test_negotiation_set_intersection (test_example.TestCapabilityNegotiation.test_negotiation_set_intersection) ... ok
+test_run_demo_executes_correctly (test_example.TestCapabilityNegotiation.test_run_demo_executes_correctly) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+Negotiated capabilities: {'tools'}
+Calling 'resources': status=False, msg=REJECTED: Capability 'resources' was not negotiated
+Calling 'tools': status=True, msg=SUCCESS: Capability 'tools' dispatched successfully
+State trace:
+  {'step': 'INIT', 'details': {'client_caps': ['resources', 'tools'], 'server_caps': ['prompts', 'tools']}}
+  {'step': 'NEGOTIATE', 'details': {'negotiated_caps': ['tools']}}
+  {'step': 'DISPATCH_REJECTED', 'details': {'capability': 'resources', 'reason': "Capability 'resources' was not negotiated", 'active_negotiated': ['tools']}}
+  {'step': 'DISPATCH_SUCCESS', 'details': {'capability': 'tools', 'payload': {'action': 'detect_fruit'}}}
