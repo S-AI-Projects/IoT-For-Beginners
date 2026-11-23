@@ -608,6 +608,21 @@ Do some timings and compare if the call to your edge device is faster or slower 
 * Read more on edge computing, with an emphasis on how 5G can help expand edge computing in the [what is edge computing and why does it matter? article on NetworkWorld](https://www.networkworld.com/article/3224893/what-is-edge-computing-and-how-it-s-changing-the-network.html)
 * Learn more about running AI services in IoT Edge by watching the [learn how to use Azure IoT Edge on a pre-built AI service on the Edge to do language detection episode of Learn Live on Microsoft Channel9](https://channel9.msdn.com/Shows/Learn-Live/Sharpen-Your-AI-Edge-Skills-Episode-4-Learn-How-to-Use-Azure-IoT-Edge-on-a-Pre-Built-AI-Service-on-t?WT.mc_id=academic-17441-jabenn)
 
+## Applied lab: R15-T049 — Edge security scenario recovery
+
+This **fictional local teaching example** extends this lesson with [edge security scenario recovery](applied-labs/r15-t049/README.md). Requires only Python 3 (standard library); no device, service, subscription or downloads.
+
+Run from the repository root:
+
+```sh
+python3 4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t049/example.py
+python3 -m unittest discover -s 4-manufacturing/lessons/3-run-fruit-detector-edge/applied-labs/r15-t049 -p "test_*.py"
+```
+
+Expected fixture/results: Three fictional complete scenarios -> `PASS`; missing asset -> `FAIL`; next complete input -> `PASS`; unrelated tags -> `REVIEW`.
+
+**Scope:** Structure-only checks; human judges security correctness. No model/device used. The lab README explains boundaries, invalid cases and how to demonstrate a deliberately failing assertion.
+
 ## Assignment
 
 [Run other services on the edge](assignment.md)
