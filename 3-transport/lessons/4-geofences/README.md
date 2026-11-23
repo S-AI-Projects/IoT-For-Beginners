@@ -470,6 +470,21 @@ Try uploading a GeoJSON file with multiple polygons and adjust your code to find
 * Read more on Azure Maps geofencing API on the [Microsoft Azure Maps Spatial - Get Geofence documentation](https://docs.microsoft.com/rest/api/maps/spatial/getgeofence?WT.mc_id=academic-17441-jabenn).
 * Read more on consumer groups in the [Features and terminology in Azure Event Hubs - Event consumers documentation on Microsoft docs](https://docs.microsoft.com/azure/event-hubs/event-hubs-features?WT.mc_id=academic-17441-jabenn#event-consumers)
 
+## Applied lab: R15-T043 — Geofence membership comparison
+
+This **fictional local teaching example** extends this lesson with [geofence membership comparison](applied-labs/r15-t043/README.md). Requires only Python 3 (standard library); no device, service, subscription or downloads.
+
+Run from the repository root:
+
+```sh
+python3 3-transport/lessons/4-geofences/applied-labs/r15-t043/example.py
+python3 -m unittest discover -s 3-transport/lessons/4-geofences/applied-labs/r15-t043 -p "test_*.py"
+```
+
+Expected fixture/results: `(15,75)` and boundary `(10,70)` -> `inside`; `(21,75)` -> `outside`; `(100,75)` -> rejected invalid latitude.
+
+**Scope:** Inclusive rectangle only, not spherical distance, polygon or live GPS. The lab README explains boundaries, invalid cases and how to demonstrate a deliberately failing assertion.
+
 ## Assignment
 
 [Send notifications using Twilio](assignment.md)
